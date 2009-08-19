@@ -8,6 +8,9 @@ urlpatterns = patterns('',
     # Example:
     # (r'^xmms2_django/', include('xmms2_django.foo.urls')),
 
+    (r'^$', 'xmms2_django.xmms2.views.player'),
+    (r'^action/(?P<action>\w+)/$', 'xmms2_django.xmms2.views.run_action'),
+
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

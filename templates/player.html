@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block html_body %}
+<div id="xmms_returns">
+  <h1>{{ song_title }}</h1>
+  <h2>{{ song_artist }}</h2>
+  <h3>{{ xmms_message }}</h3>
+</div>
+
+<div id="xmms_play">
+  <p>
+    <a href="/action/play/">play</a>
+  </p>
+</div>
+
+<div id="xmms_pause">
+  <p>
+    <a href="/action/pause/">pause</a>
+  </p>
+</div>
+
+<div id="xmms_stop">
+  <p>
+    <a href="/action/stop/">stop</a>
+  </p>
+</div>
+{% endblock %}
