@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block html_body %}
 <div id="xmms_returns">
-  <h1>{{ song_title }}</h1>
-  <h2>{{ song_artist }}</h2>
-  <h3>{{ xmms_message }}</h3>
+  <h1>{{ player.song }}</h1>
+  <h2>{{ player.artist }}</h2>
+  <h2>{{ player.album }}</h2>
+  <h3>{{ player.error }}</h3>
 </div>
 
 <div id="xmms_play">
