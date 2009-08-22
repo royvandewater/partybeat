@@ -18,4 +18,4 @@ def run_action(request, action):
 
 def get_info(request):
   player = Xmms_controller().get_player_info()
-  return render_to_response('player.html', locals(), context_instance=RequestContext(request))
+  return render_to_response('info.xml', locals(), context_instance=RequestContext(request))

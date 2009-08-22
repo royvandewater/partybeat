@@ -2,3 +2,11 @@
   margin   : 0;
   padding  : 0;
 }
+
+#xmms_returns span {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

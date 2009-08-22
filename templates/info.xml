@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xmms2>
+    <player_status>
+        <is_playing>{{ player.is_playing }}</is_playing>
+    </player_status>
+    <current_song>
+        <name>{{ player.song }}</name>
+        <artist>{{ player.artist }}</artist>
+        <album>{{ player.album }}</album>
+    </current_song>
+</xmms2>

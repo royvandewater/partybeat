@@ -1,30 +1,28 @@
 {% extends 'base.html' %}
 {% block html_body %}
 <div id="xmms_returns">
-  <h1>{{ player.song }}</h1>
-  <h2>{{ player.artist }}</h2>
-  <h2>{{ player.album }}</h2>
-  <h3>{{ player.error }}</h3>
-  <h3>{{ player.status }}</h3>
+  <span id="current_song">{{ player.song }}</span>
+  <span id="current_artist">{{ player.artist }}</span>
+  <span id="current_album">{{ player.album }}</span>
+  <span id="current_error">{{ player.error }}</span>
+  <span id="current_status">{{ player.status }}</span>
 </div>
 
 
-{% if player.is_playing %}
-  <div id="xmms_pause">
-    <p>
-      <a href="/action/pause/">pause</a>
-    </p>
-  </div>
-{% else %}
-  <div id="xmms_play">
-    <p>
-      <a href="/action/play/">play</a>
-    </p>
-  </div>
-{% endif %}
+<div id="xmms_pause" class="action{% if not player.is_playing %} hidden {% endif %}">
+  <p>
+    <a href="/action/pause/">pause</a>
+  </p>
+</div>
+
+<div id="xmms_play" class="action{% if player.is_playing %} hidden {% endif %}">
+  <p>
+    <a href="/action/play/">play</a>
+  </p>
+</div>
 
 
-<div id="xmms_stop">
+<div id="xmms_stop" class="action">
   <p>
     <a href="/action/stop/">stop</a>
   </p>
