@@ -5,19 +5,24 @@
   <h2>{{ player.artist }}</h2>
   <h2>{{ player.album }}</h2>
   <h3>{{ player.error }}</h3>
+  <h3>{{ player.status }}</h3>
 </div>
 
-<div id="xmms_play">
-  <p>
-    <a href="/action/play/">play</a>
-  </p>
-</div>
 
-<div id="xmms_pause">
-  <p>
-    <a href="/action/pause/">pause</a>
-  </p>
-</div>
+{% if player.is_playing %}
+  <div id="xmms_pause">
+    <p>
+      <a href="/action/pause/">pause</a>
+    </p>
+  </div>
+{% else %}
+  <div id="xmms_play">
+    <p>
+      <a href="/action/play/">play</a>
+    </p>
+  </div>
+{% endif %}
+
 
 <div id="xmms_stop">
   <p>

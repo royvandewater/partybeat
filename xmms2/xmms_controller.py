@@ -47,8 +47,13 @@ class Xmms_controller:
         except IOError, detail:
             return ("Connection failed: %s" % detail)
 
-    def get_player_info(self):
-        player = Player()
+    def get_player_status(self, player): 
+        status = self.xmms.playback_status()
+        status.wait()
+        player.set_status(status.value())
+        return player
+
+    def get_player_info(self, player):
         result = self.xmms.playback_current_id()
         result.wait()
 
@@ -81,6 +86,8 @@ class Player:
         self.artist = ""
         self.album  = ""
         self.error  = ""
+        self.status = ""
+        self.statusid = ""
     
     def set_info(self, minfo):
         self.set_song(minfo)
@@ -107,3 +114,11 @@ class Player:
             self.album = minfo["album"]
         except KeyError:
             self.album = "unknown"
+
+    def set_status(self, statusid):
+        status_types = ("Stop", "Play", "Pause")
+        self.status = status_types[statusid]
+        self.statusid = statusid
+
+    def is_playing(self):
+        return True if self.statusid == 1 else False
