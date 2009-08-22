@@ -5,6 +5,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   <head>
     <title>{% block title %}xmms2 player{% endblock %}</title>
       <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/base.css" />
+      <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-1.3.2{% if not debug %}.min{% endif %}.js"></script>
       <script type="text/javascript" src="{{MEDIA_URL}}js/standard.js"></script>
       {% block html_head %}
       {% endblock %}

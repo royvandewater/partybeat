@@ -2,6 +2,8 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+# Debug setting
+INTERNAL_IPS = "127.0.0.1/"
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -71,6 +73,12 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     "/home/doppler/Projects/git/xmms2_django/templates/",
+)
+
+# Nescessary for debug
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',    
+    'django.core.context_processors.media',
 )
 
 INSTALLED_APPS = (
