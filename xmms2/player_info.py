@@ -3,41 +3,15 @@
 # player controls (Such as play, pause, stop, etc). This provides a safer mechanism for the Django
 # Template class to get access information from the xmms2 player
 
-class Player:
+from song import Song
+
+class Player(Song):
     def __init__(self):
-        self.song   = ""
-        self.artist = ""
-        self.album  = ""
-        self.error  = ""
+        self.playlist = []
+        self.current_song = Song()
         self.status = ""
         self.statusid = ""
     
-    def set_info(self, minfo):
-        self.set_song(minfo)
-        self.set_artist(minfo)
-        self.set_album(minfo)
-
-    def set_error(self, error):
-        self.error = error
-
-    def set_song(self, minfo):
-        try:
-            self.song = minfo["title"]
-        except KeyError:
-            self.song = "unknown"
-
-    def set_artist(self, minfo):
-        try:
-            self.artist = minfo["artist"]
-        except KeyError:
-            self.artist = "unknown"
-
-    def set_album(self, minfo):
-        try:
-            self.album = minfo["album"]
-        except KeyError:
-            self.album = "unknown"
-
     def set_status(self, statusid):
         status_types = ("Stop", "Play", "Pause")
         self.status = status_types[statusid]
@@ -45,3 +19,7 @@ class Player:
 
     def is_playing(self):
         return True if self.statusid == 1 else False
+
+    def add_to_playlist(self, song):
+        if isinstance(song, Song):
+            self.playlist.append(song)

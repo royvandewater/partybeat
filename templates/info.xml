@@ -2,6 +2,7 @@
 <xmms2>
     <player_status>
         <is_playing>{{ player.is_playing }}</is_playing>
+        <current_action>{{ player.status }}</current_action>
     </player_status>
     <current_song>
         <name>{{ player.song }}</name>

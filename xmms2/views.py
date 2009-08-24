@@ -7,15 +7,18 @@ from xmms_controller import Xmms_controller
 from player_info import Player
 
 def player(request):
-  xmms2 = Xmms_controller()
-  player = xmms2.get_player_info()
-  return render_to_response('player.html', locals(), context_instance=RequestContext(request))
+    xmms2 = Xmms_controller()
+    player = xmms2.get_player_info()
+    return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
 def run_action(request, action):
-  xmms2 = Xmms_controller()
-  message = xmms2.do_action(action)
-  return HttpResponseRedirect('/')
+    xmms2 = Xmms_controller()
+    message = xmms2.do_action(action)
+    try:
+        return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
+    except (KeyError):
+        return HttpResponseRedirect('/')
 
 def get_info(request):
-  player = Xmms_controller().get_player_info()
-  return render_to_response('info.xml', locals(), context_instance=RequestContext(request))
+    player = Xmms_controller().get_player_info()
+    return render_to_response('info.xml', locals(), context_instance=RequestContext(request))
