@@ -86,6 +86,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.admin',
-    'davidydesign.main',
+    # 'django.contrib.admin',
+    'xmms2_django.xmms2',
 )
