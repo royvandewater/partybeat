@@ -34,5 +34,5 @@ class Song:
         except KeyError:
             self.album = "unknown"
 
-    def set_position(self, position)
+    def set_position(self, position):
         self.position = position

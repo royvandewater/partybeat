@@ -13,7 +13,7 @@ class Player(Song):
         self.statusid = ""
     
     def set_status(self, statusid):
-        status_types = ("Stop", "Play", "Pause")
+        status_types = ("Stopped", "Playing", "Paused")
         self.status = status_types[statusid]
         self.statusid = statusid
 

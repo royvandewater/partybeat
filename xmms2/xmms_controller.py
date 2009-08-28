@@ -44,10 +44,6 @@ class Xmms_controller:
         return self.print_playback_error(result2, "next")
 
     def previous(self):
-        # result = self.xmms.playlist_current_pos()
-        # result.wait()
-        # current_position = result.get_value():
-            # if current_position > 0:
         result = self.xmms.playlist_set_next_rel(-1)
         result.wait()
         result2 = self.xmms.playback_tickle()
@@ -93,7 +89,7 @@ class Xmms_controller:
             self.player.set_error("Nothing is playing")
             return self.player
 
-        minfo = get_song_info_from_id(self, id)
+        minfo = self.get_song_info_from_id(id)
         self.player.set_info(minfo)
         self.get_player_status()
         return self.player
