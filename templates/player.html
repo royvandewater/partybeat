@@ -38,4 +38,15 @@
     <a href="/action/stop/">stop</a>
   </p>
 </div>
+
+<div id="playlist">
+    {% for item in player.playlist %}
+    <div class="playlist_item">
+        <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
+        <span class="playlist_item_title">{{ item.title }}</span>-
+        <span class="playlist_item_artist">{{ item.artist }}</span>-
+        <span class="playlist_item_album">{{ item.album }}</span>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
