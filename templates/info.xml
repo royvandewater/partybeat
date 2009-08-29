@@ -5,8 +5,17 @@
         <current_action>{{ player.status }}</current_action>
     </player_status>
     <current_song>
-        <name>{{ player.song }}</name>
+        <title>{{ player.title }}</title>
         <artist>{{ player.artist }}</artist>
         <album>{{ player.album }}</album>
     </current_song>
+    <playlist>
+    {% for song in player.playlist %}
+        <song id="{{song.position}}">
+            <title>{{ song.title }}</name>
+            <artist>{{ song.artist }}</artist>
+            <album>{{ song.album }}</album>
+        </song>
+    {% endfor %}
+    </playlist>
 </xmms2>

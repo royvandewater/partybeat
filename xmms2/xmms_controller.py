@@ -1,29 +1,17 @@
 import xmmsclient
 import os
 from player_info import Player
+from song import Song
 
 class Xmms_controller:
     def __init__(self):
         self.xmms = self.get_xmmsclient()
         self.player = Player()
 
-    def do_action(self, action):
-        if action == "play":
-            return self.play()
-        elif action == "stop":
-            return self.stop()
-        elif action == "pause":
-            return self.pause()
-        elif action == "next":
-            return self.next()
-        elif action == "previous":
-            return self.previous()
-
     def pause(self):
         result = self.xmms.playback_pause()
         result.wait()
         return self.print_playback_error(result, "pause")
-
 
     def play(self):
         result = self.xmms.playback_start()
@@ -50,14 +38,23 @@ class Xmms_controller:
         result2.wait()
         return self.print_playback_error(result2, "previous")
 
-
-
     def print_playback_error(self, result, action):
         if result.iserror():
             return("playback %s returned error, %s" % (action, result.get_error()))
         else:
             return("playback %s run" % (action)) 
 
+    def do_action(self, action):
+        if action == "play":
+            return self.play()
+        elif action == "stop":
+            return self.stop()
+        elif action == "pause":
+            return self.pause()
+        elif action == "next":
+            return self.next()
+        elif action == "previous":
+            return self.previous()
 
     def get_xmmsclient(self):
         xmms = xmmsclient.XMMS("xmms2")
@@ -92,6 +89,7 @@ class Xmms_controller:
         minfo = self.get_song_info_from_id(id)
         self.player.set_info(minfo)
         self.get_player_status()
+        self.build_playlist()
         return self.player
 
     def get_song_info_from_id(self, id):
@@ -107,6 +105,10 @@ class Xmms_controller:
     def build_playlist(self):
         playlist_ids = self.xmms.playlist_list_entries()
         playlist_ids.wait()
+        song_ids = playlist_ids.get_list()
 
-        for song_id in playlist_ids:
-            song_info = get_song_info_from_id(song_id)
+        for song_id in song_ids:
+            minfo = self.get_song_info_from_id(song_id)
+            song = Song()
+            song.set_info(minfo, position=len(self.player.playlist))
+            self.player.add_to_playlist(song)

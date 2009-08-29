@@ -1,0 +1,20 @@
+{"xmms2": {
+    "player_status": {
+        "is_playing": "{{ player.is_playing }}",
+        "current_action": "{{ player.status }}"
+    },
+    "current_song": {
+        "title": "{{ player.title }}",
+        "artist": "{{ player.artist }}",
+        "album": "{{ player.album }}"
+    },
+    "playlist": [
+      {% for song in player.playlist %}
+        {"song": "{{ song.position }}", 
+         "title": "{{ song.title }}",
+         "artist": "{{ song.artist }}",
+         "album": "{{ song.album }}"
+        }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+}}

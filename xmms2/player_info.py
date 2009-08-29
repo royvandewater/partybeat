@@ -23,3 +23,5 @@ class Player(Song):
     def add_to_playlist(self, song):
         if isinstance(song, Song):
             self.playlist.append(song)
+        else:
+            return "Item was not a song and could not be added to playlist"

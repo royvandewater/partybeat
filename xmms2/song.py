@@ -7,20 +7,14 @@ class Song:
         self.error  = error
         self.position = position
 
-    def set_info(self, minfo, position=0):
-        self.set_song(minfo)
-        self.set_artist(minfo)
-        self.set_album(minfo)
-        self.set_position(position)
+    def __str__(self):
+        return ("{0}: {1}".format(self.position, self.title))
 
-    def set_error(self, error):
-        self.error = error
-
-    def set_song(self, minfo):
+    def set_title(self, minfo):
         try:
-            self.song = minfo["title"]
+            self.title = minfo["title"]
         except KeyError:
-            self.song = "unknown"
+            self.title = "unknown"
 
     def set_artist(self, minfo):
         try:
@@ -34,5 +28,14 @@ class Song:
         except KeyError:
             self.album = "unknown"
 
+    def set_error(self, error):
+        self.error = error
+
     def set_position(self, position):
         self.position = position
+
+    def set_info(self, minfo, position=0):
+        self.set_title(minfo)
+        self.set_artist(minfo)
+        self.set_album(minfo)
+        self.set_position(position)

@@ -30,8 +30,8 @@ function update_info() {
         // format and output result
         
         // Get song name
-        $("#current_song").html(
-            $("current_song name", xml).text()
+        $("#current_title").html(
+            $("current_song title", xml).text()
         )
 
         // Get song artist
