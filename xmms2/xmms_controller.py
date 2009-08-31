@@ -1,5 +1,5 @@
-import xmmsclient
 import os
+import xmmsclient
 from player_info import Player
 from song import Song
 
@@ -74,7 +74,6 @@ class Xmms_controller:
     def get_player_info(self):
         result = self.xmms.playback_current_id()
         result.wait()
-
         
         if result.iserror():
             self.player.set_error("Playback current id returns error, %s" % result.get_error())
