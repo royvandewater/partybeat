@@ -11,5 +11,6 @@ class Song(models.Model):
     def __unicode__(self):
         return ("{0}: {1}".format(self.position, self.title))
 
-class LastUpdate(models.Model):
-    time = models.TimeField()
+class XmmsStatus(models.Model):
+    last_update = models.TimeField()
+    current_action = models.CharField(max_length=25)
