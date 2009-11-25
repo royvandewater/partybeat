@@ -3,7 +3,7 @@ import sys
 import time
 import unittest
 import xmmsclient
-from layer import Xmms_layer
+from daemon import Xmms_daemon
 
 class TestSequenceFunctions(unittest.TestCase):
 

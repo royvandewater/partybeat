@@ -6,7 +6,7 @@ import xmmsclient
 def main():
     pass
 
-class Xmms_layer:
+class Xmms_daemon:
     def __init__(self):
         self.xmms = self.get_xmmsclient()
         pass
