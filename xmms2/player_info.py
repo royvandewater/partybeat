@@ -12,10 +12,8 @@ class Player(Song):
         self.status = ""
         self.statusid = ""
     
-    def set_status(self, statusid):
-        status_types = ("Stopped", "Playing", "Paused")
-        self.status = status_types[statusid]
-        self.statusid = statusid
+    def set_status(self, status):
+        self.status = status
 
     def is_playing(self):
         return True if self.statusid == 1 else False

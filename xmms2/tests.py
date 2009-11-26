@@ -73,13 +73,11 @@ class XmmsControllerActive(unittest.TestCase):
         self.assertEqual(player.playlist, [])
         self.assert_(isinstance(player.current_song, Song))
         self.assertEqual(player.status, "")
-        self.assertEqual(player.statusid, "")
 
     def testPlayer_set_status(self):
         player = self.player
         player.set_status(1)
         self.assertEqual(player.status, "Playing")
-        self.assertEqual(player.statusid, 1)
 
     def testPlayer_is_playing(self):
         player = self.player
