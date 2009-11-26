@@ -89,7 +89,7 @@ class Xmms_controller:
         minfo = self.get_song_info_from_id(id)
         self.player.set_info(minfo)
         self.get_player_status()
-        self.build_playlist()
+        # self.build_playlist()
         return self.player
 
     def get_song_info_from_id(self, id):
