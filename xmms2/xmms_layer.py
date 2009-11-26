@@ -1,6 +1,6 @@
 import datetime
 from xmms_controller import Xmms_controller
-import models
+from models import *
 
 class Xmms_layer:
     def __init__(self):
@@ -13,6 +13,8 @@ class Xmms_layer:
         else:
             self.xmms2 = xmmsStatus
             load_player_from_db()
+            # save it in the database as well
+            save_in_db()
 
 
     def reload_data(self):
@@ -31,3 +33,7 @@ class Xmms_layer:
         player.status = self.xmms2.current_action
 
         this.player = player
+
+    def save_in_db(self):
+        this.xmms2.save()
+        this.player.current_song
