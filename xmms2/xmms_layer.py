@@ -20,5 +20,3 @@ class Xmms_layer:
         self.player = xmms2.get_player_info()
 
     def load_from_db(self):
-        
-
