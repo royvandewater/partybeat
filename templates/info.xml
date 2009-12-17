@@ -13,7 +13,7 @@
     <playlist>
     {% for song in player.playlist %}
         <song id="{{song.position}}">
-            <title>{{ song.title }}</name>
+            <title>{{ song.title }}</title>
             <artist>{{ song.artist }}</artist>
             <album>{{ song.album }}</album>
         </song>

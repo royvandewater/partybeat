@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $(document).everyTime(2000, function() { 
         update_info();
     });
@@ -29,9 +30,10 @@ function update_info() {
     $.post('/info/', function(xml) {
         // format and output result
         
-        // Get song name
+        // Get song name (Done differently cause I need the song_name var later on)
+        var song_name = $("current_song title", xml).text()
         $("#current_title").html(
-            $("current_song title", xml).text());
+            song_name);
 
         // Get song artist
         $("#current_artist").html(
@@ -57,18 +59,29 @@ function update_info() {
             $("#xmms_pause").addClass("hidden");
         }
 
+        // Clear current playlist
+        $("#playlist").empty();
         // Load in data from playlist
-            
         $(xml).find("song").each(function() {
                 var position = $(this).attr('id');
                 var title = $(this).find('title').text();
                 var artist = $(this).find('artist').text();
                 var album = $(this).find('album').text();
-                $('<div class="playlist_item"></div>').html(
-                    '<span class="playlist_item_position">' + position + '</span>' +
-                    '<span class="playlist_item_title">' + title + '</span>' +
-                    '<span class="playlist_item_artist">' + artist + '</span>' +
-                    '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
+                if(title == song_name)
+                {
+                    $('<div class="playlist_item highlight"></div>').html(
+                        '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
+                        '<span class="playlist_item_title">' + title + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
+                } else {
+                    $('<div class="playlist_item"></div>').html(
+                        '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
+                        '<span class="playlist_item_title">' + title + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
+                }
+                
         });
         
         
