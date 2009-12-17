@@ -2,12 +2,13 @@
 <xmms2>
     <player_status>
         <is_playing>{{ player.is_playing }}</is_playing>
-        <current_action>{{ player.status }}</current_action>
+        <current_action>{{ player.verbose_action }}</current_action>
+        <last_update>{{ xmms_layer.timer }}</last_update>
     </player_status>
     <current_song>
-        <title>{{ player.title }}</title>
-        <artist>{{ player.artist }}</artist>
-        <album>{{ player.album }}</album>
+        <title>{{ player.current_song.title }}</title>
+        <artist>{{ player.current_song.artist }}</artist>
+        <album>{{ player.current_song.album }}</album>
     </current_song>
     <playlist>
     {% for song in player.playlist %}

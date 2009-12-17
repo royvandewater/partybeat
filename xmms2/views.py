@@ -4,6 +4,7 @@ from django.template import RequestContext
 
 from models import *
 from xmms_controller import Xmms_controller
+from xmms_layer import Xmms_layer
 from player_info import Player
 
 def player(request):
@@ -20,5 +21,6 @@ def run_action(request, action):
         return HttpResponseRedirect('/')
 
 def get_info(request):
-    player = Xmms_layer()
+    xmms_layer = Xmms_layer()
+    player = xmms_layer.player
     return render_to_response('info.xml', locals(), context_instance=RequestContext(request))

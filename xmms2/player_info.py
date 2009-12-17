@@ -23,3 +23,14 @@ class Player(Song):
             self.playlist.append(song)
         else:
             return "Item was not a song and could not be added to playlist"
+
+    def verbose_action(self):
+        if self.status == 0:
+            return "Stopped"
+        elif self.status == 1:
+            return "Playing"
+        elif self.status == 2:
+            return "Paused"
+        else:
+            return "Unknown"
+           

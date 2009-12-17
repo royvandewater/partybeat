@@ -86,7 +86,7 @@ class Xmms_controller:
             return self.player
 
         minfo = self.get_song_info_from_id(id)
-        self.player.set_info(minfo)
+        self.player.current_song.set_info(minfo)
         self.get_player_status()
         # self.build_playlist()
         return self.player

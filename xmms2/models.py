@@ -13,4 +13,4 @@ class Song(models.Model):
 
 class XmmsStatus(models.Model):
     last_update = models.DateTimeField()
-    current_action = models.CharField(max_length=25)
+    current_action = models.IntegerField()
