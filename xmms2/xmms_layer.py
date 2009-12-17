@@ -8,12 +8,12 @@ def song_sort(song):
     return song.position 
 
 class Xmms_layer:
-    def __init__(self):
+    def __init__(self, force_refresh=False):
         xmmsStatus = XmmsStatus.objects.get()
         # If data is older than 2 seconds, refresh data
         time_diff = datetime.datetime.now() - xmmsStatus.last_update
         self.timer = time_diff.seconds
-        if(time_diff.seconds > 2):
+        if time_diff.seconds > 2 or force_refresh:
             self.xmms2 = Xmms_controller()
             self.xmms2.get_xmmsclient()
             self.player = self.xmms2.get_player_info()

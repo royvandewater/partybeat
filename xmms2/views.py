@@ -15,6 +15,7 @@ def player(request):
 def run_action(request, action):
     xmms2 = Xmms_controller()
     message = xmms2.do_action(action)
+    xmms_layer = Xmms_layer(True)
     try:
         return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
     except (KeyError):
