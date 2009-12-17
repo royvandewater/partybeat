@@ -3,6 +3,10 @@ from xmms_controller import Xmms_controller
 from player_info import Player
 from models import *
 
+
+def song_sort(song):
+    return song.position 
+
 class Xmms_layer:
     def __init__(self):
         xmmsStatus = XmmsStatus.objects.get()
@@ -24,10 +28,11 @@ class Xmms_layer:
         self.xmms2 = Xmms_controller()
         self.player = xmms2.get_player_info()
 
+
     def load_player_from_db(self):
         player = Player()
         # Retrieves playlist from database
-        all_songs = Song.objects.all()
+        all_songs = sorted(Song.objects.all(), key=song_sort)
         # Store the current song
         if(all_songs):
             player.set_status(4)
@@ -60,3 +65,13 @@ class Xmms_layer:
         song.artist = self.player.current_song.artist
         song.album = self.player.current_song.album
         song.save()
+
+        # Now the other songs
+        for song_item in self.player.playlist:
+            song = Song()
+            song.title = song_item.title
+            song.artist = song_item.artist
+            song.album = song_item.album
+            song.error = song_item.error
+            song.position = song_item.position
+            song.save()

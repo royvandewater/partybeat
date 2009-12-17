@@ -88,7 +88,7 @@ class Xmms_controller:
         minfo = self.get_song_info_from_id(id)
         self.player.current_song.set_info(minfo)
         self.get_player_status()
-        # self.build_playlist()
+        self.build_playlist()
         return self.player
 
     def get_song_info_from_id(self, id):
@@ -104,11 +104,12 @@ class Xmms_controller:
     def build_playlist(self):
         playlist_ids = self.xmms.playlist_list_entries()
         playlist_ids.wait()
-        song_ids = playlist_ids.get_list()
+        song_ids = playlist_ids.value()
         # song_ids = playlist_ids.value()
 
-        for song_id in song_ids:
+        for song_id in song_ids[1:]:
             minfo = self.get_song_info_from_id(song_id)
             song = Song()
             song.set_info(minfo, position=len(self.player.playlist))
+            song.set_position(song.position + 1)
             self.player.add_to_playlist(song)

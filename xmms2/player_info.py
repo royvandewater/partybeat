@@ -16,7 +16,7 @@ class Player(Song):
         self.status = status
 
     def is_playing(self):
-        return True if self.statusid == 1 else False
+        return True if self.status == 1 else False
 
     def add_to_playlist(self, song):
         if isinstance(song, Song):

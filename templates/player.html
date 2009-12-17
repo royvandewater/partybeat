@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block html_body %}
 <div id="xmms_returns">
-  <span id="current_title">{{ player.title }}</span>
-  <span id="current_artist">{{ player.artist }}</span>
-  <span id="current_album">{{ player.album }}</span>
-  <span id="current_error">{{ player.error }}</span>
-  <span id="current_error">{{ player.pk }}</span>
+  <span id="current_title">{{ player.current_song.title }}</span>
+  <span id="current_artist">{{ player.current_song.artist }}</span>
+  <span id="current_album">{{ player.current_song.album }}</span>
+  <span id="current_error">{{ player.current_song.error }}</span>
   <span id="current_status">{{ player.verbose_action }}</span>
 </div>
 
