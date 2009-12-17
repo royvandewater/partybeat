@@ -67,9 +67,9 @@ class Xmms_controller:
             except KeyError:
                 song.title = "Unknown"
             try:
-                self.artist = minfo["artist"]
+                song.artist = minfo["artist"]
             except KeyError:
-                self.artist = "unknown"
+                song.artist = "unknown"
             try:
                 song.album = minfo["album"]
             except KeyError:
