@@ -31,23 +31,19 @@ function update_info() {
         
         // Get song name
         $("#current_title").html(
-            $("current_song title", xml).text()
-        )
+            $("current_song title", xml).text());
 
         // Get song artist
         $("#current_artist").html(
-            $("current_song artist", xml).text()
-        )
+            $("current_song artist", xml).text());
 
         // Get song album
         $("#current_album").html(
-            $("current_song album", xml).text()
-        )
+            $("current_song album", xml).text());
 
         // Get xmms2 status (whether it's playing or not)
         $("#current_status").html(
-            $("player_status current_action", xml).text()
-        )
+            $("player_status current_action", xml).text());
 
         // Decide whether to display the play button or the pause button
         var is_playing_string = $("player_status is_playing", xml).text();
@@ -60,6 +56,21 @@ function update_info() {
             $("#xmms_play").removeClass("hidden");
             $("#xmms_pause").addClass("hidden");
         }
+
+        // Load in data from playlist
+            
+        $(xml).find("song").each(function() {
+                var position = $(this).attr('id');
+                var title = $(this).find('title').text();
+                var artist = $(this).find('artist').text();
+                var album = $(this).find('album').text();
+                $('<div class="playlist_item"></div>').html(
+                    '<span class="playlist_item_position">' + position + '</span>' +
+                    '<span class="playlist_item_title">' + title + '</span>' +
+                    '<span class="playlist_item_artist">' + artist + '</span>' +
+                    '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
+        });
+        
         
     });
 }
@@ -67,9 +78,13 @@ function update_info() {
 function string_to_boolean(boolean_string) {
     boolean_string = trim(boolean_string);
     if(boolean_string.toLowerCase() == "true")
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 function trim(stringToTrim) { 
