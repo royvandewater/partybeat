@@ -25,3 +25,7 @@ def get_info(request):
     xmms_layer = Xmms_layer()
     player = xmms_layer.player
     return render_to_response('info.xml', locals(), context_instance=RequestContext(request))
+
+def fix(request):
+    xmms_layer = Xmms_layer(True)
+    return player(request)
