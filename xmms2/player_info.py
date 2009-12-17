@@ -3,9 +3,9 @@
 # player controls (Such as play, pause, stop, etc). This provides a safer mechanism for the Django
 # Template class to get access information from the xmms2 player
 
-from song import Song
+from models import Song
 
-class Player(Song):
+class Player():
     def __init__(self):
         self.playlist = []
         self.current_song = Song()

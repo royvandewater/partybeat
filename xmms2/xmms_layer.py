@@ -3,7 +3,6 @@ from xmms_controller import Xmms_controller
 from player_info import Player
 from models import *
 
-
 def song_sort(song):
     return song.position 
 
@@ -55,9 +54,7 @@ class Xmms_layer:
         xmms2Status.save()
         # We also need to save all the player's songs
         # First clear out the old songs
-        songs = Song.objects.all()
-        for song in songs:
-            song.delete()
+        Song.objects.all().delete()
         # Start with the current song
         song = Song()
         song.position = 0

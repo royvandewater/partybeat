@@ -1,7 +1,7 @@
 import os
 import xmmsclient
 from player_info import Player
-from song import Song
+from models import Song
 
 class Xmms_controller:
     def __init__(self):
@@ -56,6 +56,27 @@ class Xmms_controller:
         elif action == "previous":
             return self.previous()
 
+    def get_song_from_minfo(self, minfo):
+            song = Song()
+            # song.set_info(minfo, position=len(self.player.playlist))
+            # song.set_position(song.position + 1)
+
+            try:
+                song.title = minfo["title"]
+            except KeyError:
+                song.title = "Unknown"
+            try:
+                self.artist = minfo["artist"]
+            except KeyError:
+                self.artist = "unknown"
+            try:
+                song.album = minfo["album"]
+            except KeyError:
+                song.album = "Unknown"
+
+            song.position = len(self.player.playlist) + 1
+            return song
+
     def get_xmmsclient(self):
         xmms = xmmsclient.XMMS("xmms2")
 
@@ -86,7 +107,7 @@ class Xmms_controller:
             return self.player
 
         minfo = self.get_song_info_from_id(id)
-        self.player.current_song.set_info(minfo)
+        self.player.current_song = self.get_song_from_minfo(minfo)
         self.get_player_status()
         self.build_playlist()
         return self.player
@@ -101,6 +122,7 @@ class Xmms_controller:
 
         return result.value()
 
+
     def build_playlist(self):
         playlist_ids = self.xmms.playlist_list_entries()
         playlist_ids.wait()
@@ -108,9 +130,7 @@ class Xmms_controller:
         # song_ids = playlist_ids.value()
         position_in_playlist = self.player.current_song.position
 
-        for song_id in song_ids[position_in_playlist:]:
+        for song_id in song_ids:
             minfo = self.get_song_info_from_id(song_id)
-            song = Song()
-            song.set_info(minfo, position=len(self.player.playlist))
-            song.set_position(song.position + 1)
+            song = self.get_song_from_minfo(minfo)
             self.player.add_to_playlist(song)
