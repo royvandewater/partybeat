@@ -106,8 +106,9 @@ class Xmms_controller:
         playlist_ids.wait()
         song_ids = playlist_ids.value()
         # song_ids = playlist_ids.value()
+        position_in_playlist = self.player.current_song.position
 
-        for song_id in song_ids[1:]:
+        for song_id in song_ids[position_in_playlist:]:
             minfo = self.get_song_info_from_id(song_id)
             song = Song()
             song.set_info(minfo, position=len(self.player.playlist))
