@@ -9,6 +9,7 @@
         <title>{{ player.current_song.title }}</title>
         <artist>{{ player.current_song.artist }}</artist>
         <album>{{ player.current_song.album }}</album>
+        <xmms_id>{{ player.current_song.xmms_id }}</xmms_id>
     </current_song>
     <playlist>
     {% for song in player.playlist %}
@@ -16,6 +17,7 @@
             <title>{{ song.title }}</title>
             <artist>{{ song.artist }}</artist>
             <album>{{ song.album }}</album>
+            <xmms_id>{{ song.xmms_id }}</xmms_id>
         </song>
     {% endfor %}
     </playlist>

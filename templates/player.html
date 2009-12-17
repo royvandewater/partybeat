@@ -42,7 +42,7 @@
 <div id="playlist">
     {% for item in player.playlist %}
      
-    <div class="playlist_item{% ifequal item.title player.current_song.title %} highlight{% endifequal %}">
+    <div class="playlist_item{% ifequal item.xmms_id player.current_song.xmms_id %} highlight{% endifequal %}">
         <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
         <span class="playlist_item_title">{{ item.title }}</span> -
         <span class="playlist_item_artist">{{ item.artist }}</span> -

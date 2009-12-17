@@ -30,10 +30,12 @@ function update_info() {
     $.post('/info/', function(xml) {
         // format and output result
         
-        // Get song name (Done differently cause I need the song_name var later on)
-        var song_name = $("current_song title", xml).text()
+        var current_xmms_id = $("current_song xmms_id", xml).text();
+
+        // Get song name 
         $("#current_title").html(
-            song_name);
+            $("current_song title", xml).text());
+
 
         // Get song artist
         $("#current_artist").html(
@@ -67,7 +69,8 @@ function update_info() {
                 var title = $(this).find('title').text();
                 var artist = $(this).find('artist').text();
                 var album = $(this).find('album').text();
-                if(title == song_name)
+                var xmms_id = $(this).find('xmms_id').text();
+                if(current_xmms_id == xmms_id)
                 {
                     $('<div class="playlist_item highlight"></div>').html(
                         '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +

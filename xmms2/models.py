@@ -7,6 +7,7 @@ class Song(models.Model):
     album = models.CharField(max_length=255)
     error = models.CharField(max_length=255)
     position = models.IntegerField()
+    xmms_id = models.IntegerField()
 
     def __unicode__(self):
         return ("{0}: {1}".format(self.position, self.title))

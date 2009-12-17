@@ -35,10 +35,7 @@ class Xmms_layer:
         # Store the current song
         if(all_songs):
             player.set_status(4)
-            cur_song = all_songs[0]
-            player.current_song.title = cur_song.title 
-            player.current_song.artist = cur_song.artist 
-            player.current_song.album = cur_song.album 
+            player.current_song = all_songs[0]
 
         # load the rest in the playlist
         player.playlist = all_songs[1:]
@@ -57,18 +54,10 @@ class Xmms_layer:
         Song.objects.all().delete()
         # Start with the current song
         song = Song()
+        song = self.player.current_song
         song.position = 0
-        song.title = self.player.current_song.title
-        song.artist = self.player.current_song.artist
-        song.album = self.player.current_song.album
         song.save()
 
         # Now the other songs
-        for song_item in self.player.playlist:
-            song = Song()
-            song.title = song_item.title
-            song.artist = song_item.artist
-            song.album = song_item.album
-            song.error = song_item.error
-            song.position = song_item.position
+        for song in self.player.playlist:
             song.save()

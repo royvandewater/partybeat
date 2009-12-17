@@ -57,6 +57,7 @@ class Xmms_controller:
             return self.previous()
 
     def get_song_from_minfo(self, minfo):
+            # print(minfo) # uncomment to get detailed info on xmms return object printed to console
             song = Song()
             # song.set_info(minfo, position=len(self.player.playlist))
             # song.set_position(song.position + 1)
@@ -73,6 +74,11 @@ class Xmms_controller:
                 song.album = minfo["album"]
             except KeyError:
                 song.album = "Unknown"
+
+            try:
+                song.xmms_id = minfo["id"]
+            except KeyError:
+                song.xmms_id = -1
 
             song.position = len(self.player.playlist) + 1
             return song
