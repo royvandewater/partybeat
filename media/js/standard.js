@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-    $(document).everyTime(1000, function() { 
+    $(document).everyTime(2000, function() { 
         update_info();
     });
 
