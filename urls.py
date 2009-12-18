@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^action/(?P<action>\w+)/$', 'xmms2_django.xmms2.views.run_action'),
     (r'^refresh/$', 'xmms2_django.xmms2.views.refresh'),
     (r'^info/$', 'xmms2_django.xmms2.views.get_info'),
+    (r'^playlist/$', 'xmms2_django.xmms2.views.playlist'),
     (r'^fix/$', 'xmms2_django.xmms2.views.fix'),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 

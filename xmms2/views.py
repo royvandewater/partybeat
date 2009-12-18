@@ -35,3 +35,7 @@ def get_info(request):
 def fix(request):
     xmms_layer = Xmms_layer(True)
     return player(request)
+
+def playlist(request):
+    player = Xmms_layer().player
+    return render_to_response('playlist.html', locals(), context_instance=RequestContext(request))

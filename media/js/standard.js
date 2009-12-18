@@ -72,32 +72,8 @@ function update_info() {
             $("#xmms_pause").addClass("hidden");
         }
 
-        // Clear current playlist
-        $("#playlist").empty();
         // Load in data from playlist
-        $(xml).find("song").each(function() {
-                var position = $(this).attr('id');
-                var name = $(this).find('name').text();
-                var artist = $(this).find('artist').text();
-                var album = $(this).find('album').text();
-                var xmms_id = $(this).find('xmms_id').text();
-                if(current_xmms_id == xmms_id)
-                {
-                    $('<div class="playlist_item highlight"></div>').html(
-                        '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
-                        '<span class="playlist_item_name">' + name + '</span>&nbsp;-&nbsp;' +
-                        '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
-                        '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
-                } else {
-                    $('<div class="playlist_item"></div>').html(
-                        '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
-                        '<span class="playlist_item_name">' + name + '</span>&nbsp;-&nbsp;' +
-                        '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
-                        '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
-                }
-                
-        });
-        
+        $("#playlist").load("/playlist/");
         
     });
 }

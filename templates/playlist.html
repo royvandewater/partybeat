@@ -1,0 +1,9 @@
+{% for item in player.playlist %}
+<div class="playlist_item{% ifequal item.xmms_id player.current_song.xmms_id %} highlight{% endifequal %}">
+    <span class="playlist_item_delete"><img src="{{ MEDIA_URL }}img/icons/delete/5.png" alt="delete" />
+    <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
+    <span class="playlist_item_name">{{ item.name }}</span> -
+    <span class="playlist_item_artist">{{ item.artist }}</span> -
+    <span class="playlist_item_album">{{ item.album }}</span>
+</div>
+{% endfor %}
