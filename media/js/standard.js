@@ -27,10 +27,18 @@ $(document).ready(function() {
         update_info();
 
     });
+
+    $("#playlist > div span a").live("click", function(e) {
+        e.preventDefault();
+        var target_url = $(this).attr("href");
+        $.post(target_url, {source: "ajax"});
+
+        force_update();
+    });
+
 });
 
 function force_update() {
-
         var target_url = "/refresh/";
         $.post(target_url, {source: "ajax"});
 }
@@ -73,7 +81,8 @@ function update_info() {
         }
 
         // Load in data from playlist
-        $("#playlist").load("/playlist/");
+        target_url = "/playlist/";
+        $("#playlist").load(target_url);
         
     });
 }
