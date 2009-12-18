@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^info/$', 'xmms2_django.xmms2.views.get_info'),
     (r'^playlist/$', 'xmms2_django.xmms2.views.playlist'),
     (r'^fix/$', 'xmms2_django.xmms2.views.fix'),
+    (r'^delete/(?P<xmms_id>\d+)/$', 'xmms2_django.xmms2.views.delete'),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
