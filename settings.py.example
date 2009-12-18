@@ -88,4 +88,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     # 'django.contrib.admin',
     'xmms2_django.xmms2',
+    'xmms2_django.song_storage',
 )
