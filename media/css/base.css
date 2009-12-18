@@ -12,10 +12,8 @@
 }
 
 .highlight {
-    background-color: #FFFFCC;
-}
-
-.playlist_item_title {
-    width: 10px;
-    background-color: #FF0000;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
 }
