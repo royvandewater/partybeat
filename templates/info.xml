@@ -6,7 +6,7 @@
         <last_update>{{ xmms_layer.timer }}</last_update>
     </player_status>
     <current_song>
-        <title>{{ player.current_song.title }}</title>
+        <name>{{ player.current_song.name }}</name>
         <artist>{{ player.current_song.artist }}</artist>
         <album>{{ player.current_song.album }}</album>
         <xmms_id>{{ player.current_song.xmms_id }}</xmms_id>
@@ -14,7 +14,7 @@
     <playlist>
     {% for song in player.playlist %}
         <song id="{{song.position}}">
-            <title>{{ song.title }}</title>
+            <name>{{ song.name }}</name>
             <artist>{{ song.artist }}</artist>
             <album>{{ song.album }}</album>
             <xmms_id>{{ song.xmms_id }}</xmms_id>

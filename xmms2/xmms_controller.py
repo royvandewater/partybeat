@@ -63,16 +63,16 @@ class Xmms_controller:
             # song.set_position(song.position + 1)
 
             try:
-                song.title = minfo["title"]
+                song.name = minfo["title"]
             except KeyError:
-                song.title = "Unknown"
+                song.name = "Unknown"
 
-            if song.title == "Unknown":
+            if song.name == "Unknown":
                 try:
-                    song.title = minfo["url"].rpartition("/")[2]
+                    song.name = minfo["url"].rpartition("/")[2]
                 except KeyError:
                     print("Caught")
-                    song.title = "Unknown"
+                    song.name = "Unknown"
 
             try:
                 song.artist = minfo["artist"]

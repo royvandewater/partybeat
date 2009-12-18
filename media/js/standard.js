@@ -33,8 +33,8 @@ function update_info() {
         var current_xmms_id = $("current_song xmms_id", xml).text();
 
         // Get song name 
-        $("#current_title").html(
-            $("current_song title", xml).text());
+        $("#current_name").html(
+            $("current_song name", xml).text());
 
 
         // Get song artist
@@ -66,7 +66,7 @@ function update_info() {
         // Load in data from playlist
         $(xml).find("song").each(function() {
                 var position = $(this).attr('id');
-                var title = $(this).find('title').text();
+                var name = $(this).find('name').text();
                 var artist = $(this).find('artist').text();
                 var album = $(this).find('album').text();
                 var xmms_id = $(this).find('xmms_id').text();
@@ -74,13 +74,13 @@ function update_info() {
                 {
                     $('<div class="playlist_item highlight"></div>').html(
                         '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
-                        '<span class="playlist_item_title">' + title + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_name">' + name + '</span>&nbsp;-&nbsp;' +
                         '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
                         '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
                 } else {
                     $('<div class="playlist_item"></div>').html(
                         '<span class="playlist_item_position">' + position + '</span>:&nbsp;&nbsp;' +
-                        '<span class="playlist_item_title">' + title + '</span>&nbsp;-&nbsp;' +
+                        '<span class="playlist_item_name">' + name + '</span>&nbsp;-&nbsp;' +
                         '<span class="playlist_item_artist">' + artist + '</span>&nbsp;-&nbsp;' +
                         '<span class="playlist_item_album">' + album + '</span>').appendTo("#playlist");
                 }

@@ -14,3 +14,8 @@
 .highlight {
     background-color: #FFFFCC;
 }
+
+.playlist_item_title {
+    width: 10px;
+    background-color: #FF0000;
+}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block html_body %}
 <div id="xmms_returns">
-  <span id="current_title">{{ player.current_song.title }}</span>
+  <span id="current_name">{{ player.current_song.name }}</span>
   <span id="current_artist">{{ player.current_song.artist }}</span>
   <span id="current_album">{{ player.current_song.album }}</span>
   <span id="current_error">{{ player.current_song.error }}</span>
@@ -44,7 +44,7 @@
      
     <div class="playlist_item{% ifequal item.xmms_id player.current_song.xmms_id %} highlight{% endifequal %}">
         <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
-        <span class="playlist_item_title">{{ item.title }}</span> -
+        <span class="playlist_item_name">{{ item.name }}</span> -
         <span class="playlist_item_artist">{{ item.artist }}</span> -
         <span class="playlist_item_album">{{ item.album }}</span>
     </div>
