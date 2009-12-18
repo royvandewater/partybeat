@@ -17,3 +17,8 @@
     font-weight: bold;
     font-size: 1.2em;
 }
+
+.playlist_item_delete a img {
+    border-style: none;
+    border-width:  0;
+}
