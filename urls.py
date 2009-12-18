@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 
     (r'^$', 'xmms2_django.xmms2.views.player'),
     (r'^action/(?P<action>\w+)/$', 'xmms2_django.xmms2.views.run_action'),
+    (r'^refresh/$', 'xmms2_django.xmms2.views.refresh'),
     (r'^info/$', 'xmms2_django.xmms2.views.get_info'),
     (r'^fix/$', 'xmms2_django.xmms2.views.fix'),
 

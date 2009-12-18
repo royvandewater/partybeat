@@ -7,6 +7,12 @@ from xmms_controller import Xmms_controller
 from xmms_layer import Xmms_layer
 from player_info import Player
 
+def get_blank(request):
+    try:
+        return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
+    except (KeyError):
+        return HttpResponseRedirect('/')
+
 def player(request):
     xmms2 = Xmms_controller()
     player = xmms2.get_player_info()
@@ -16,10 +22,11 @@ def run_action(request, action):
     xmms2 = Xmms_controller()
     message = xmms2.do_action(action)
     xmms_layer = Xmms_layer(True)
-    try:
-        return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
-    except (KeyError):
-        return HttpResponseRedirect('/')
+    return get_blank(request)
+
+def refresh(request):
+    xmms_layer = Xmms_layer(True)
+    return get_blank(request)
 
 def get_info(request):
     xmms_layer = Xmms_layer()

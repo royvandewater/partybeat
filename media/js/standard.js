@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-    $(document).everyTime(2000, function() { 
+    $(document).everyTime(1000, function() { 
         update_info();
     });
 
@@ -19,10 +19,21 @@ $(document).ready(function() {
         // return page
         $.post(target_url, {source: "ajax"});
 
+        // We'll want to force a player status update after 500 milliseconds
+        // because switching tracks takes a second
+
+        setTimeout("force_update()", 100); 
+
         update_info();
 
     });
 });
+
+function force_update() {
+
+        var target_url = "/refresh/";
+        $.post(target_url, {source: "ajax"});
+}
 
 function update_info() {
 
