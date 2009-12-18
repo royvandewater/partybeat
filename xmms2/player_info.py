@@ -11,6 +11,7 @@ class Player():
         self.current_song = Song()
         self.status = ""
         self.statusid = ""
+        self.error = ""
     
     def set_status(self, status):
         self.status = status
@@ -23,6 +24,9 @@ class Player():
             self.playlist.append(song)
         else:
             return "Item was not a song and could not be added to playlist"
+
+    def set_error(self, error):
+        self.error = error
 
     def verbose_action(self):
         if self.status == 0:
