@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     (r'^fix/$', 'xmms2_django.xmms2.views.fix'),
     (r'^delete/(?P<xmms_id>\d+)/$', 'xmms2_django.xmms2.views.delete'),
 
+    # Library files
+    (r'^library/', 'xmms2_django.song_storage.views.library'),
+
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
