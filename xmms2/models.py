@@ -15,3 +15,4 @@ class Song(models.Model):
 class XmmsStatus(models.Model):
     last_update = models.DateTimeField()
     current_action = models.IntegerField()
+    timeout = models.IntegerField()

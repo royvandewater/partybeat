@@ -12,7 +12,9 @@ class Xmms_layer:
         # If data is older than 2 seconds, refresh data
         time_diff = datetime.datetime.now() - xmmsStatus.last_update
         self.timer = time_diff.seconds
-        if time_diff.seconds > 2 or force_refresh:
+        milliseconds = (time_diff.seconds * 1000) + (time_diff.microseconds / 1000)
+        if milliseconds > xmmsStatus.timeout or force_refresh:
+            print(milliseconds)
             self.xmms2 = Xmms_controller()
             self.xmms2.get_xmmsclient()
             self.player = self.xmms2.get_player_info()
