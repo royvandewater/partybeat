@@ -13,6 +13,6 @@ class Song(models.Model):
         return ("{0}: {1}".format(self.position, self.name))
 
 class XmmsStatus(models.Model):
+    timeout = models.IntegerField(help_text="Cache refresh time in milliseconds, set too low and xmms2 will crash")
+    current_action = models.IntegerField(help_text="0: Stopped, 1: Playing, 2: Paused")
     last_update = models.DateTimeField()
-    current_action = models.IntegerField()
-    timeout = models.IntegerField()
