@@ -11,14 +11,4 @@
         <album>{{ player.current_song.album }}</album>
         <xmms_id>{{ player.current_song.xmms_id }}</xmms_id>
     </current_song>
-    <playlist>
-    {% for song in player.playlist %}
-        <song id="{{song.position}}">
-            <name>{{ song.name }}</name>
-            <artist>{{ song.artist }}</artist>
-            <album>{{ song.album }}</album>
-            <xmms_id>{{ song.xmms_id }}</xmms_id>
-        </song>
-    {% endfor %}
-    </playlist>
 </xmms2>

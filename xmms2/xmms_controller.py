@@ -148,3 +148,9 @@ class Xmms_controller:
             minfo = self.get_song_info_from_id(song_id)
             song = self.get_song_from_minfo(minfo)
             self.player.add_to_playlist(song)
+
+    def delete(self, xmms_id):
+        # Delete item from playlist 
+        result = self.xmms.medialib_remove_entry(int(xmms_id))
+        result.wait()
+        return self.print_playback_error(result, "delete")
