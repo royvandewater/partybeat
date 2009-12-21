@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<{{ category }}>
+    {% for item in items %}
+        <{{ item_name }}>{{ item }}</{{ item_name }}>
+    {% endfor %}
+</{{ category }}>
