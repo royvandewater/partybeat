@@ -19,6 +19,12 @@ urlpatterns = patterns('',
     # Library files
     (r'^library/$', 'xmms2_django.song_storage.views.library'),
     (r'^library/artists/$', 'xmms2_django.song_storage.views.artists'),
+    (r'^library/albums/$', 'xmms2_django.song_storage.views.albums'),
+    (r'^library/albums/(?P<artist>\w+)/$', 'xmms2_django.song_storage.views.albums'),
+    (r'^library/songs/$', 'xmms2_django.song_storage.views.songs'),
+    (r'^library/by_album/(?P<album>\w+)/$', 'xmms2_django.song_storage.views.songs'),
+    (r'^library/songs/(?P<artist>\w+)/$', 'xmms2_django.song_storage.views.songs'),
+    (r'^library/songs/(?P<artist>\w+)/(?P<album>\w+)/$', 'xmms2_django.song_storage.views.songs'),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
