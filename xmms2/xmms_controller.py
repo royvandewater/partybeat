@@ -112,18 +112,18 @@ class Xmms_controller:
         
         if result.iserror():
             self.player.set_error("Playback current id returns error, %s" % result.get_error())
-            return self.player
+        else:
+            id = result.value()
 
-        id = result.value()
+            if id == 0:
+                self.player.set_error("Nothing is playing")
 
-        if id == 0:
-            self.player.set_error("Nothing is playing")
-            return self.player
+        if not self.player.errored:
+            minfo = self.get_song_info_from_id(id)
+            self.player.current_song = self.get_song_from_minfo(minfo)
+            self.get_player_status()
+            self.build_playlist()
 
-        minfo = self.get_song_info_from_id(id)
-        self.player.current_song = self.get_song_from_minfo(minfo)
-        self.get_player_status()
-        self.build_playlist()
         return self.player
 
     def get_song_info_from_id(self, id):

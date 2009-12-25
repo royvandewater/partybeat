@@ -3,11 +3,12 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from models import *
-from xmms_controller import Xmms_controller
+from xmms_controller import *
 from xmms_layer import Xmms_layer
 from player_info import Player
 from xmms2_django.song_storage.models import SongFile
 import xmms2_django.song_storage.views as song_views
+
 
 def get_blank(request):
     try:
@@ -15,11 +16,17 @@ def get_blank(request):
     except (KeyError):
         return HttpResponseRedirect('/')
 
-def player(request):
+def render_error(request, message):
+    return render_to_response('error.html', locals(), context_instance=RequestContext(request))
+
+def get_player():
     xmms2 = Xmms_controller()
-    player = xmms2.get_player_info()
-    # songFiles = SongFile.objects.all()
-    artists = song_views.get_artists()
+    return xmms2.get_player_info()
+
+def player(request): # Currently uncalled
+    player = get_player()
+    if player.errored:
+        return render_error(request, player.error)
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
 def run_action(request, action):
@@ -33,7 +40,13 @@ def refresh(request):
 
 def get_info(request):
     xmms_layer = Xmms_layer()
+    if(xmms_layer.errored):
+        return render_error(request, xmms_layer.error)
+
     player = xmms_layer.player
+    if(player.errored):
+        return render_error(request, player.error)
+
     return render_to_response('info.xml', locals(), context_instance=RequestContext(request))
 
 def fix(request):

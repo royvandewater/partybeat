@@ -8,13 +8,14 @@ def song_sort(song):
 
 class Xmms_layer:
     def __init__(self, force_refresh=False):
+        self.errored = False
+        self.error = None
         xmmsStatus = XmmsStatus.objects.get()
         # If data is older than 2 seconds, refresh data
         time_diff = datetime.datetime.now() - xmmsStatus.last_update
         self.timer = time_diff.seconds
         milliseconds = (time_diff.seconds * 1000) + (time_diff.microseconds / 1000)
         if milliseconds > xmmsStatus.timeout or force_refresh:
-            print(milliseconds)
             self.xmms2 = Xmms_controller()
             self.xmms2.get_xmmsclient()
             self.player = self.xmms2.get_player_info()
@@ -48,9 +49,15 @@ class Xmms_layer:
 
     def save_in_db(self, xmms2Status, player):
         # We need to convert the xmms_controller object to an xmms2 status object for saving
-        xmms2Status.current_action = player.status
-        xmms2Status.last_update = datetime.datetime.now()
-        xmms2Status.save()
+        if not player.errored:
+            xmms2Status.current_action = player.status
+            xmms2Status.last_update = datetime.datetime.now()
+            xmms2Status.save()
+        else:
+            self.errored = True 
+            self.error = player.error
+            return None
+
         # We also need to save all the player's songs
         # First clear out the old songs
         Song.objects.all().delete()
@@ -63,3 +70,4 @@ class Xmms_layer:
         # Now the other songs
         for song in self.player.playlist:
             song.save()
+

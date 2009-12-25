@@ -12,6 +12,7 @@ class Player():
         self.status = ""
         self.statusid = ""
         self.error = ""
+        self.errored = False
     
     def set_status(self, status):
         self.status = status
@@ -26,6 +27,7 @@ class Player():
             return "Item was not a song and could not be added to playlist"
 
     def set_error(self, error):
+        self.errored = True
         self.error = error
 
     def verbose_action(self):

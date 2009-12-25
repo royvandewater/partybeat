@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block html_body %}
+    <h1>Error occured</h1>
+    <h3>{{ message }}</h3>
+    {% if fix_link %}
+    <div id="error_fix">
+        <a href="{{ fix_link }}">Click to fix</a>
+    </div>
+    {% endif %}
+{% endblock %}
