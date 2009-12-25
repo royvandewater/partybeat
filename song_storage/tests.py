@@ -6,18 +6,42 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from models import *
 
 class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+    def setUp(self):
+        songFile = SongFile()
+        songFile.file = None
+        songFile.name = "In the Air Tonight"
+        songFile.artist = "Phil Collins"
+        songFile.album = "Hits..."
+        songFile.supersave()
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
+    def test_name(self):
+        """
+        Tests that a new songFile can be accessed by name
+        """
+        songFile = SongFile.objects.get(name="In the Air Tonight")
+        self.assertEqual(songFile.artist, "Phil Collins")
 
->>> 1 + 1 == 2
-True
-"""}
+    def test_artist(self):
+        """
+        Tests that a new songFile can be accessed by artist
+        """
+        songFile = SongFile.objects.get(artist="Phil Collins")
+        self.assertEqual(songFile.album, "Hits...")
+
+    def test_album(self):
+        """
+        Tests that a new songFile can be accessed by album
+        """
+        songFile = SongFile.objects.get(album="Hits...")
+        self.assertEqual(songFile.artist, "Phil Collins")
+
+    def test_unicode(self):
+        """
+        Tests that the output string is correct
+        """
+        songFile = SongFile.objects.get(name="In the Air Tonight")
+        self.assertEqual(songFile.__unicode__(), u"Phil Collins - Hits... - In the Air Tonight")
 
