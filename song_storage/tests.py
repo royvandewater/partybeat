@@ -45,3 +45,10 @@ class SimpleTest(TestCase):
         songFile = SongFile.objects.get(name="In the Air Tonight")
         self.assertEqual(songFile.__unicode__(), u"Phil Collins - Hits... - In the Air Tonight")
 
+    def test_print_list(self):
+        """
+        Tests that the print list funciton works right
+        """
+        list = ["a", "b", "c"]
+        self.assertEqual(SongFile().print_list(list), "a - b - c")
+
