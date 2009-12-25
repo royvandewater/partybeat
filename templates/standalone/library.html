@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block html_head %}
+      <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/library.css" />
+      <script type="text/javascript" src="{{MEDIA_URL}}js/library.js"></script>
+{% endblock %}
+
+{% block html_body %}
+    {% include "library.html" %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block html_head %}
+      <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/xmms2.css" />
+      <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/library.css" />
+      <script type="text/javascript" src="{{MEDIA_URL}}js/xmms2.js"></script>
+      <script type="text/javascript" src="{{MEDIA_URL}}js/library.js"></script>
+{% endblock %}
+{% block html_body %}
+
+<div id="player">
+    {% include "player.html" %}
+</div>
+
+<div id="song_library">
+    {% include "library.html" %}
+</div>
+
+{% endblock %}

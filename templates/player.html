@@ -1,9 +1,3 @@
-{% extends 'base.html' %}
-{% block html_head %}
-      <script type="text/javascript" src="{{MEDIA_URL}}js/xmms2.js"></script>
-      <script type="text/javascript" src="{{MEDIA_URL}}js/library.js"></script>
-{% endblock %}
-{% block html_body %}
 <div id="xmms_returns">
   <span id="current_name">{{ player.current_song.name }}</span>
   <span id="current_artist">{{ player.current_song.artist }}</span>
@@ -46,7 +40,3 @@
 <div id="playlist">
     {% include "playlist.html" %}
 </div>
-<div id="song_library">
-    {% include "library.html" %}
-</div>
-{% endblock %}
