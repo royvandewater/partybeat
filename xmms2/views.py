@@ -7,6 +7,7 @@ from xmms_controller import Xmms_controller
 from xmms_layer import Xmms_layer
 from player_info import Player
 from xmms2_django.song_storage.models import SongFile
+import xmms2_django.song_storage.views as song_views
 
 def get_blank(request):
     try:
@@ -17,7 +18,8 @@ def get_blank(request):
 def player(request):
     xmms2 = Xmms_controller()
     player = xmms2.get_player_info()
-    songFiles = SongFile.objects.all()
+    # songFiles = SongFile.objects.all()
+    artists = song_views.get_artists()
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
 def run_action(request, action):

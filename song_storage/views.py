@@ -4,13 +4,17 @@ from django.template import RequestContext
 
 from models import *
 
-def artists(request):
+def get_artists():
     songFiles = SongFile.objects.all().order_by('artist')
     artists = []
     for song in songFiles:
         if not song.artist in artists:
             artists.append(song.artist)
 
+    return artists
+    
+def artists(request):
+    artists = get_artists();
     return generic_xml(request, "artists", "artist", artists)
 
 def albums(request, artist=None):
@@ -49,5 +53,6 @@ def generic_xml(request, category, item_name, items):
     return render_to_response('generic.xml', locals(), context_instance=RequestContext(request))
 
 def library(request):
-    songFiles = SongFile.objects.all() 
+    # songFiles = SongFile.objects.all() 
+    artists = get_artists();
     return render_to_response('library.html', locals(), context_instance=RequestContext(request))
