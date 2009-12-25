@@ -55,4 +55,4 @@ def generic_xml(request, category, item_name, items):
 def library(request):
     # songFiles = SongFile.objects.all() 
     artists = get_artists();
-    return render_to_response('library.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('standalone_library.html', locals(), context_instance=RequestContext(request))
