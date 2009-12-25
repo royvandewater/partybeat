@@ -18,6 +18,9 @@ class SongFile(models.Model):
             total += " - " + item
         return total
 
+    def supersave(self, force_insert=False, force_update=False):
+        super(SongFile, self).save(force_insert, force_update)
+
     def save(self, force_insert=False, force_update=False):
         # Call the real save method
         super(SongFile, self).save(force_insert, force_update)
