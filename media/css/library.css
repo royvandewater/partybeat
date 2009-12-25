@@ -2,5 +2,11 @@
   margin   : 0;
   padding  : 0;
 }
+.library_artists li:hover {
+    background-color: black;
+    color: white;
+}
 
-
+.library_artist_odd {
+    background-color: #ddd;
+}

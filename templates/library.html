@@ -2,7 +2,7 @@
 <div id="library">
     <ul class="library_artists">
         {% for artist in artists %}
-        <li> {{ artist }} </li>
+        <li class="library_artist_{% cycle 'odd' 'even' %}"> {{ artist }} </li>
         {% endfor %}
     </ul>
 </div>
