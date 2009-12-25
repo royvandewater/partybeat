@@ -27,7 +27,7 @@ def player(request): # Currently uncalled
     player = get_player()
     if player.errored:
         return render_error(request, player.error)
-    return render_to_response('player.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('standalone/player.html', locals(), context_instance=RequestContext(request))
 
 def run_action(request, action):
     xmms2 = Xmms_controller()
