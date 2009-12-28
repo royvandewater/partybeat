@@ -19,6 +19,8 @@ urlpatterns = patterns('',
 
     # Library files
     (r'^library/$', 'xmms2_django.song_storage.views.library'),
+    (r'^library/noajax/(?P<artist>[0-9a-zA-Z\+\-_]+)/$', 'xmms2_django.song_storage.views.library'),
+    (r'^library/noajax/(?P<artist>[0-9a-zA-Z\+\-_]+)/(?P<album>[0-9a-zA-Z\+\-_]+)/$', 'xmms2_django.song_storage.views.library'),
     (r'^library/artists/$', 'xmms2_django.song_storage.views.artists'),
     (r'^library/albums/$', 'xmms2_django.song_storage.views.albums'),
     (r'^library/albums/(?P<artist>\w+)/$', 'xmms2_django.song_storage.views.albums'),

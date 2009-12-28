@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from models import *
+from url_string import UrlString
 
 def get_artists():
     songFiles = SongFile.objects.all().order_by('artist')
@@ -11,8 +12,28 @@ def get_artists():
         if not song.artist in artists:
             artists.append(song.artist)
 
-    return artists
-    
+    return_artists = []
+    for artist in artists:
+        return_artists.append(UrlString(artist))
+
+    return return_artists
+
+def get_albums(artist):
+    songFiles = SongFile.objects.filter(artist__icontains=artist).order_by('album')
+    albums = []
+    for song in songFiles:
+        if not song.album in albums:
+            albums.append(UrlString(song.album))
+
+    return albums
+
+def get_songs(artist, album):
+    songFiles = SongFile.objects.filter(artist__icontains=artist, album__icontains=album).order_by('name')
+    songs = []
+    for song in songFiles:
+        songs.append(UrlString(song.name))
+    return songs
+
 def artists(request):
     artists = get_artists();
     return generic_xml(request, "artists", "artist", artists)
@@ -52,7 +73,16 @@ def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
     return render_to_response('generic.xml', locals(), context_instance=RequestContext(request))
 
-def library(request):
+def library(request, artist=None, album=None):
     # songFiles = SongFile.objects.all() 
     artists = get_artists();
+
+    if artist:
+        current_artist = artist.replace("_", " ")
+        albums = get_albums(current_artist)
+
+        if album:
+            current_album = album.replace("_", " ")
+            songs = get_songs(current_artist, current_album)
+
     return render_to_response('standalone/library.html', locals(), context_instance=RequestContext(request))

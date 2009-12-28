@@ -2,11 +2,20 @@
   margin   : 0;
   padding  : 0;
 }
-.library_artists li:hover {
-    background-color: black;
-    color: white;
-}
+
+/* li:hover { */
+    /* background-color: black; */
+    /* color: white; */
+/* } */
 
 .library_artist_odd {
     background-color: #ddd;
+}
+
+.library_albums {
+    margin-left: 2em;
+}
+
+.library_songs {
+    margin-left: 2em;
 }

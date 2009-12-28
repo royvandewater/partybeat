@@ -2,7 +2,31 @@
 <div id="library">
     <ul class="library_artists">
         {% for artist in artists %}
-        <li class="library_artist_{% cycle 'odd' 'even' %}"> {{ artist }} </li>
+        <li class="library_artist_{% cycle 'odd' 'even' %}"> 
+            <a href="/library/noajax/{{ artist.url_safe }}/" >
+                {{ artist }}
+            </a>
+            {% ifequal current_artist.lower artist.string.lower %}
+                <ul class="library_albums">
+                    {% for album in albums %}
+                    <li class="library_album_{% cycle 'odd' 'even' %}">
+                        <a href="/library/noajax/{{ artist.url_safe }}/{{ album.url_safe }}/">
+                            {{ album }}
+                        </a>
+                        {% ifequal current_album.lower album.string.lower %}
+                            <ul class="library_songs">
+                                {% for song in songs %}
+                                    <li class="library_song_{% cycle 'odd' 'even' %}">
+                                        {{ song }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endifequal %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endifequal %}
+        </li>
         {% endfor %}
     </ul>
 </div>
