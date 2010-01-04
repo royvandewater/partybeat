@@ -33,9 +33,9 @@ class Xmms_controller:
 
     def print_playback_error(self, action, error=None):
         if error:
-            return("playback %s returned error, %s" % (action, error))
+            return("action '{0}' returned error: '{1}'".format(action, error))
         else:
-            return("playback %s run" % (action)) 
+            return("action '{0}' executed".format(action)) 
 
     def tickle(self, amount):
         """ Amount = 1 for next, -1 for previous """
@@ -98,41 +98,37 @@ class Xmms_controller:
 
     def get_player_status(self): 
         status = self.xmms.playback_status()
-        self.player.set_status(status.value())
+        self.player.set_status(status)
         return self.player
 
     def get_player_info(self):
-        current_id = self.xmms.playback_current_id()
-        
-        if current_id:
-            self.player.set_error("Playback current id returns error, %s" % result.get_error())
+        try:
+            current_id = self.xmms.playback_current_id()
+        except xmmsclient.sync.XMMSError as e: 
+            self.player.set_error("Playback current id returns error, %s" % e.message)
             return self.player
 
-        id = result
 
-        if id == 0:
+        if current_id == 0:
             self.player.set_error("Nothing is playing")
             return self.player
 
-        minfo = self.get_song_info_from_id(id)
+        minfo = self.get_song_info_from_id(current_id)
         self.player.current_song = self.get_song_from_minfo(minfo)
         self.get_player_status()
         self.build_playlist()
         return self.player
 
     def get_song_info_from_id(self, id):
-        result = self.xmms.medialib_get_info(id)
+        try:
+            return self.xmms.medialib_get_info(id)
 
-        if result.iserror():
-            self.player.set_error("medialib get info returns error, %s" % result.get_error())
+        except xmmsclient.sync.XMMSError as e:
+            self.player.set_error("medialib get info returns error, {0}".format(e.message))
             return None
-
-        return result.value()
-
 
     def build_playlist(self):
         song_ids = self.xmms.playlist_list_entries()
-        # song_ids = playlist_ids.value()
         position_in_playlist = self.player.current_song.position
 
         for song_id in song_ids:
@@ -142,6 +138,4 @@ class Xmms_controller:
 
     def delete(self, xmms_id):
         # Delete item from playlist 
-        result = self.xmms.medialib_remove_entry(int(xmms_id))
-        result.wait()
-        return self.print_playback_error(result, "delete")
+        return do_action(self.xmms.medialib_remove_entry, "delete",  int(xmms_id))
