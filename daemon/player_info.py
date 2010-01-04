@@ -1,10 +1,6 @@
-from django.core.management import setup_environ
-
 import os
 import sys
 
-sys.path.append('/home/doppler/Projects/git/')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'xmms2_django.settings'
 from xmms2_django.xmms2.models import *
 
 class Player():

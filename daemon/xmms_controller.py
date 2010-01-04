@@ -1,14 +1,9 @@
-from django.core.management import setup_environ
-
 import os
 import sys
 
 import xmmsclient.sync
 from player_info import Player
 
-# Needs to be relative to current dir
-sys.path.append('/home/doppler/Projects/git/')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'xmms2_django.settings'
 from xmms2_django.xmms2.models import *
 
 class Xmms_controller:
