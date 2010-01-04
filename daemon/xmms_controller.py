@@ -1,66 +1,62 @@
+from django.core.management import setup_environ
+
 import os
-import xmmsclient
+import sys
+
+import xmmsclient.sync
 from player_info import Player
-from models import Song
+
+# Needs to be relative to current dir
+sys.path.append('/home/doppler/Projects/git/')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'xmms2_django.settings'
+from xmms2_django.xmms2.models import *
 
 class Xmms_controller:
     def __init__(self):
         self.xmms = self.get_xmmsclient()
         self.player = Player()
 
-    def pause(self):
-        result = self.xmms.playback_pause()
-        result.wait()
-        return self.print_playback_error(result, "pause")
+    def do_action(self, action, action_text, amount=None):
+        """
+        action is expected to be a xmms action function
+        # ex: do_action(self.xmms.playback_stop, "stop")
+        """
+        try:
+            if amount:
+                action(amount)
+            else:
+                action()
+            return self.print_playback_error(action_text)
+        except xmmsclient.sync.XMMSError as e:
+            return self.print_playback_error(action_text, e.message)
 
-    def play(self):
-        result = self.xmms.playback_start()
-        result.wait()
-        return self.print_playback_error(result, "play")
 
-
-    def stop(self):
-        result = self.xmms.playback_stop()
-        result.wait()
-        return self.print_playback_error(result, "stop")
-
-    def next(self):
-        result = self.xmms.playlist_set_next_rel(1)
-        result.wait()
-        result2 = self.xmms.playback_tickle()
-        result2.wait()
-        return self.print_playback_error(result2, "next")
-
-    def previous(self):
-        result = self.xmms.playlist_set_next_rel(-1)
-        result.wait()
-        result2 = self.xmms.playback_tickle()
-        result2.wait()
-        return self.print_playback_error(result2, "previous")
-
-    def print_playback_error(self, result, action):
-        if result.iserror():
-            return("playback %s returned error, %s" % (action, result.get_error()))
+    def print_playback_error(self, action, error=None):
+        if error:
+            return("playback %s returned error, %s" % (action, error))
         else:
             return("playback %s run" % (action)) 
 
-    def do_action(self, action):
+    def tickle(self, amount):
+        """ Amount = 1 for next, -1 for previous """
+        self.xmms.playlist_set_next_rel(amount)
+        self.xmms.playback_tickle()
+
+
+    def action(self, action):
         if action == "play":
-            return self.play()
+            return self.do_action(self.xmms.playback_start, "play")
         elif action == "stop":
-            return self.stop()
+            return self.do_action(self.xmms.playback_stop, "stop")
         elif action == "pause":
-            return self.pause()
+            return self.do_action(self.xmms.playback_pause, "pause")
         elif action == "next":
-            return self.next()
+            return self.do_action(self.tickle, "next", 1)
         elif action == "previous":
-            return self.previous()
+            return self.do_action(self.tickle, "next", -1)
 
     def get_song_from_minfo(self, minfo):
-            # print(minfo) # uncomment to get detailed info on xmms return object printed to console
             song = Song()
-            # song.set_info(minfo, position=len(self.player.playlist))
-            # song.set_position(song.position + 1)
 
             try:
                 song.name = minfo["title"]
@@ -92,7 +88,7 @@ class Xmms_controller:
             return song
 
     def get_xmmsclient(self):
-        xmms = xmmsclient.XMMS("xmms2")
+        xmms = xmmsclient.sync.XMMSSync("xmms2_django_daemon")
 
         try:
             xmms.connect(os.getenv("XMMS_PATH"))
@@ -102,19 +98,17 @@ class Xmms_controller:
 
     def get_player_status(self): 
         status = self.xmms.playback_status()
-        status.wait()
         self.player.set_status(status.value())
         return self.player
 
     def get_player_info(self):
-        result = self.xmms.playback_current_id()
-        result.wait()
+        current_id = self.xmms.playback_current_id()
         
-        if result.iserror():
+        if current_id:
             self.player.set_error("Playback current id returns error, %s" % result.get_error())
             return self.player
 
-        id = result.value()
+        id = result
 
         if id == 0:
             self.player.set_error("Nothing is playing")
@@ -128,7 +122,6 @@ class Xmms_controller:
 
     def get_song_info_from_id(self, id):
         result = self.xmms.medialib_get_info(id)
-        result.wait()
 
         if result.iserror():
             self.player.set_error("medialib get info returns error, %s" % result.get_error())
@@ -138,9 +131,7 @@ class Xmms_controller:
 
 
     def build_playlist(self):
-        playlist_ids = self.xmms.playlist_list_entries()
-        playlist_ids.wait()
-        song_ids = playlist_ids.value()
+        song_ids = self.xmms.playlist_list_entries()
         # song_ids = playlist_ids.value()
         position_in_playlist = self.player.current_song.position
 
