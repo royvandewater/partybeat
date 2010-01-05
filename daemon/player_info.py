@@ -44,3 +44,7 @@ class Player():
     def clear_playlist(self):
         """ resets the current playlist """
         self.playlist = []
+
+    def playlist_size(self):
+        """ Returns the size of the playlist plus the currently playing item """
+        return len(self.playlist) + 1

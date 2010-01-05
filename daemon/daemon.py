@@ -42,6 +42,8 @@ def update_status(player):
     xmmsStatus.current_action = player.status
     # Set update time
     xmmsStatus.last_update = datetime.datetime.now()
+    # Set number of songs in playlist
+    xmmsStatus.playlist_size = player.playlist_size()
     # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout

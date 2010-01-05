@@ -17,6 +17,7 @@ class XmmsStatus(models.Model):
     timeout = models.IntegerField(help_text="Cache refresh time in milliseconds, set too low and xmms2 will crash")
     current_action = models.IntegerField(help_text="0: Stopped, 1: Playing, 2: Paused")
     last_update = models.DateTimeField()
+    playlist_size = models.IntegerField(help_text="Sets number of songs currently in playlist")
 
 class Action(models.Model):
     """

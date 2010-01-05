@@ -1,4 +1,6 @@
 import datetime
+import time
+
 from xmms2_django.daemon.player_info import Player
 from xmms2_django.daemon.models import *
 
@@ -14,6 +16,12 @@ class Xmms_layer:
         player = Player()
         # Retrieves playlist from database
         all_songs = sorted(Song.objects.filter(active=True), key=song_sort)
+        # If the length of all songs is not equal to the number of songs in 
+        # status, the daemon is probably still writing to the db, so we
+        # wait 50 milliseconds
+        if len(all_songs) != self.xmms2.playlist_size:
+            time.sleep(0.05)
+
         # Store the current song
         if(all_songs):
             player.set_status(4)
