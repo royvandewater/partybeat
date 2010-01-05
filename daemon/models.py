@@ -16,3 +16,14 @@ class XmmsStatus(models.Model):
     timeout = models.IntegerField(help_text="Cache refresh time in milliseconds, set too low and xmms2 will crash")
     current_action = models.IntegerField(help_text="0: Stopped, 1: Playing, 2: Paused")
     last_update = models.DateTimeField()
+
+class Action(models.Model):
+    """
+    Each action is a task to be performed by the xmms2 player. This includes,
+    but is not limited to: play, pause, next, previous, add item to playlist,
+    remove item from playlist, reorder item in playlist, etc
+    """
+    command = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return ("{0}".format(self.command))

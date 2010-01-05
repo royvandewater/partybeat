@@ -17,6 +17,9 @@ def main(argv):
     # enter main loop
     try:
         while True:
+            # Execute existing actions in queue
+            execute_action_queue(xmms_controller)
+
             # clear existing player attribute
             xmms_controller.clear_player()
             xmms_controller.get_player_info()
@@ -61,3 +64,19 @@ def save_songs(player):
     # # Now save the other songs
     for song in player.playlist:
         song.save()
+
+def execute_action_queue(xmms_controller):
+    """
+    Retrieves the queue of actions from the db, executes each item in the queue 
+    and delete those items immediately after execution
+    """
+    for action in Action.objects.all():
+        execute_action(xmms_controller, action.command)
+        action.delete()
+
+def execute_action(xmms_controller, command):
+    """
+    Executes the provided command
+    """
+    if command.lower() in ("play", "stop", "pause", "next", "previous"):
+        xmms_controller.action(command.lower())

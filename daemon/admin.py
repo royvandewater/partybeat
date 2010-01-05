@@ -5,4 +5,8 @@ from models import *
 class XmmsStatusAdmin(admin.ModelAdmin):
     list_display = ('last_update', 'current_action',)
 
+class ActionAdmin(admin.ModelAdmin):
+    list_display = ('command',)
+
 admin.site.register(XmmsStatus, XmmsStatusAdmin)
+admin.site.register(Action, ActionAdmin)

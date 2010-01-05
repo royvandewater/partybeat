@@ -48,7 +48,7 @@ class Xmms_controller:
         elif action == "next":
             return self.do_action(self.tickle, "next", 1)
         elif action == "previous":
-            return self.do_action(self.tickle, "next", -1)
+            return self.do_action(self.tickle, "previous", -1)
 
     def get_song_from_minfo(self, minfo):
             song = Song()
