@@ -89,7 +89,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'xmms2_django.xmms2',
+    'xmms2_django.player',
     'xmms2_django.song_storage',
     'xmms2_django.daemon',
 )
