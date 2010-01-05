@@ -17,10 +17,13 @@ def main(argv):
     # enter main loop
     try:
         while True:
+            # clear existing player attribute
+            xmms_controller.clear_player()
             xmms_controller.get_player_info()
             print('.')
             # We need to update the db with the relevant info
             timeout = update_status(xmms_controller.player)
+            save_songs(xmms_controller.player)
 
             time.sleep(timeout/1000)
     except KeyboardInterrupt:
@@ -41,3 +44,20 @@ def update_status(player):
     # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout
+
+def save_songs(player):
+    """
+    Saves all the songs in the playelist into the db
+    (First removes all the existing songs)
+    """
+    # Delete all the songs
+    Song.objects.all().delete()
+    
+    # Save the current song
+    song = player.current_song
+    song.position = 0
+    song.save()
+    
+    # # Now save the other songs
+    for song in player.playlist:
+        song.save()

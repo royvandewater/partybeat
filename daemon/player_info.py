@@ -40,4 +40,7 @@ class Player():
             return "Paused"
         else:
             return "Unknown"
-           
+
+    def clear_playlist(self):
+        """ resets the current playlist """
+        self.playlist = []

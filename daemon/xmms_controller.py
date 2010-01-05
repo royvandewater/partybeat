@@ -123,6 +123,7 @@ class Xmms_controller:
             return None
 
     def build_playlist(self):
+        self.player.clear_playlist()
         song_ids = self.xmms.playlist_list_entries()
         position_in_playlist = self.player.current_song.position
 
@@ -134,3 +135,6 @@ class Xmms_controller:
     def delete(self, xmms_id):
         # Delete item from playlist 
         return do_action(self.xmms.medialib_remove_entry, "delete",  int(xmms_id))
+
+    def clear_player(self):
+        """ Re inits the player object """
