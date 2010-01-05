@@ -22,9 +22,7 @@ $(document).ready(function() {
         // We'll want to force a player status update after 500 milliseconds
         // because switching tracks takes a second
 
-        setTimeout("force_update()", 100); 
-
-        update_info();
+        setTimeout("update_info()", 100); 
 
     });
 
@@ -32,16 +30,9 @@ $(document).ready(function() {
         e.preventDefault();
         var target_url = $(this).attr("href");
         $.post(target_url, {source: "ajax"});
-
-        force_update();
     });
 
 });
-
-function force_update() {
-        var target_url = "/refresh/";
-        $.post(target_url, {source: "ajax"});
-}
 
 function update_info() {
 
