@@ -22,7 +22,7 @@ $(document).ready(function() {
         // We'll want to force a player status update after 200 milliseconds
         // because the daemon needs time to write to the db
 
-        setTimeout("update_info()", 100); 
+        setTimeout("update_info()", 200); 
 
     });
 
