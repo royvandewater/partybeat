@@ -19,8 +19,8 @@ $(document).ready(function() {
         // return page
         $.post(target_url, {source: "ajax"});
 
-        // We'll want to force a player status update after 500 milliseconds
-        // because switching tracks takes a second
+        // We'll want to force a player status update after 200 milliseconds
+        // because the daemon needs time to write to the db
 
         setTimeout("update_info()", 100); 
 
