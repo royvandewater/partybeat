@@ -26,8 +26,7 @@ def main(argv):
             # We need to update the db with the relevant info
             timeout = update_status(xmms_controller.player)
             save_songs(xmms_controller.player)
-
-            time.sleep(timeout/1000)
+            time.sleep(timeout/1000.0)
     except KeyboardInterrupt:
         print("\nDaemon terminating")
         sys.exit(0)
