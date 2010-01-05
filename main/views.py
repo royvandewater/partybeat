@@ -13,14 +13,10 @@ def get_blank(request):
 
 def player(request):
     xmms2 = Xmms_layer()
+    xmms2.load_player_from_db()
     player = xmms2.player
     songFiles = SongFile.objects.all()
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
-
-def run_action(request, action):
-    xmms2 = Xmms_controller()
-    # message = xmms2.do_action(action)
-    return get_blank(request)
 
 def get_info(request):
     xmms_layer = Xmms_layer()

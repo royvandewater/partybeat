@@ -9,10 +9,10 @@ urlpatterns = patterns('',
     # (r'^xmms2_django/', include('xmms2_django.foo.urls')),
 
     (r'^$', 'xmms2_django.main.views.player'),
-    # (r'^action/(?P<action>\w+)/$', 'xmms2_django.player.views.run_action'),
+    (r'^action/(?P<action>\w+)/$', 'xmms2_django.player.views.run_action'),
     # (r'^refresh/$', 'xmms2_django.player.views.refresh'),
-    # (r'^info/$', 'xmms2_django.player.views.get_info'),
-    # (r'^playlist/$', 'xmms2_django.player.views.playlist'),
+    (r'^info/$', 'xmms2_django.player.views.get_info'),
+    (r'^playlist/$', 'xmms2_django.player.views.playlist'),
     # (r'^fix/$', 'xmms2_django.player.views.fix'),
     # (r'^delete/(?P<xmms_id>\d+)/$', 'xmms2_django.player.views.delete'),
 

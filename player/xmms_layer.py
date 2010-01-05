@@ -7,11 +7,10 @@ def song_sort(song):
 
 class Xmms_layer:
     def __init__(self):
-        self.xmms2 = XmmsStatus.objects.get()
-        self.load_player_from_db()
-
+        self.xmms2 = XmmsStatus()
 
     def load_player_from_db(self):
+        self.xmms2 = XmmsStatus.objects.get()
         player = Player()
         # Retrieves playlist from database
         all_songs = sorted(Song.objects.all(), key=song_sort)
@@ -26,3 +25,13 @@ class Xmms_layer:
         player.status = self.xmms2.current_action
 
         self.player = player
+
+    def store_action(self, command):
+        """
+        Creates a new action and stores it in the db
+        """
+        print("store_action called with command: '{0}'".format(command))
+        if command.lower() in ("play", "stop", "pause", "next", "previous"):
+            action = Action()
+            action.command = command
+            action.save()
