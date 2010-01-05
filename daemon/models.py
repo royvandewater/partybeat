@@ -8,6 +8,7 @@ class Song(models.Model):
     error = models.CharField(max_length=255)
     position = models.IntegerField()
     xmms_id = models.IntegerField()
+    active = models.BooleanField()
 
     def __unicode__(self):
         return ("{0}: {1}".format(self.position, self.name))

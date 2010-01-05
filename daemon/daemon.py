@@ -49,19 +49,24 @@ def update_status(player):
 def save_songs(player):
     """
     Saves all the songs in the playelist into the db
-    (First removes all the existing songs)
+    then removes all the old songs
     """
-    # Delete all the songs
-    Song.objects.all().delete()
     
     # Save the current song
     song = player.current_song
     song.position = 0
+    song.active = False
     song.save()
     
     # # Now save the other songs
     for song in player.playlist:
+        song.active = False
         song.save()
+
+    # Delete all the old songs
+    Song.objects.filter(active=True).delete()
+    Song.objects.all().update(active=True)
+
 
 def execute_action_queue(xmms_controller):
     """
