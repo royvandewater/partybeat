@@ -23,7 +23,6 @@ def main(argv):
             # clear existing player attribute
             xmms_controller.clear_player()
             xmms_controller.get_player_info()
-            print('.')
             # We need to update the db with the relevant info
             timeout = update_status(xmms_controller.player)
             save_songs(xmms_controller.player)
