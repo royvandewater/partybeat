@@ -1,7 +1,7 @@
 import os
 import sys
 
-from xmms2_django.xmms2.models import *
+from models import *
 
 class Player():
     """

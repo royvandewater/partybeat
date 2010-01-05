@@ -1,14 +1,12 @@
 from django.core.management.base import BaseCommand
-from xmms_controller import Xmms_controller
 
 import sys
 import os
 import time
 import datetime
 
-sys.path.append('/home/doppler/Projects/git/')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'xmms2_django.settings'
-from xmms2_django.xmms2.models import *
+from models import *
+from xmms_controller import Xmms_controller
 
 def main(argv):
     # perform initialization

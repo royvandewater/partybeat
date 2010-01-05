@@ -2,9 +2,9 @@ import os
 import sys
 
 import xmmsclient.sync
-from player_info import Player
 
-from xmms2_django.xmms2.models import *
+from models import *
+from player_info import Player
 
 class Xmms_controller:
     def __init__(self):
