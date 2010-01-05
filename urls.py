@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^xmms2_django/', include('xmms2_django.foo.urls')),
 
-    # (r'^$', 'xmms2_django.player.views.player'),
+    (r'^$', 'xmms2_django.main.views.player'),
     # (r'^action/(?P<action>\w+)/$', 'xmms2_django.player.views.run_action'),
     # (r'^refresh/$', 'xmms2_django.player.views.refresh'),
     # (r'^info/$', 'xmms2_django.player.views.get_info'),

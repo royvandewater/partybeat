@@ -2,8 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from models import *
-from xmms_layer import Xmms_layer
+from xmms2_django.player.xmms_layer import Xmms_layer
 from xmms2_django.song_storage.models import SongFile
 
 def get_blank(request):
@@ -12,9 +11,11 @@ def get_blank(request):
     except (KeyError):
         return HttpResponseRedirect('/')
 
-# def player(request):
-    # xmms2 = Xmms_layer()
-    # return render_to_response('player.html', locals(), context_instance=RequestContext(request))
+def player(request):
+    xmms2 = Xmms_layer()
+    player = xmms2.player
+    songFiles = SongFile.objects.all()
+    return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
 def run_action(request, action):
     xmms2 = Xmms_controller()
