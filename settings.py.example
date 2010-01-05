@@ -13,9 +13,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'xmms2_django'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'xmms2_django'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'qeFG3HQt4s5WseTh'         # Not used with sqlite3.
+DATABASE_NAME = '<db_name>'             # Or path to database file if using sqlite3.
+DATABASE_USER = '<db_user>'             # Not used with sqlite3.
+DATABASE_PASSWORD = '<db_password>'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -43,7 +43,8 @@ MEDIA_ROOT = '/home/doppler/Projects/git/xmms2_django/media/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://192.168.1.107/xd/media/'
+# MEDIA_URL = 'http://192.168.1.107/xd/media/'
+MEDIA_URL = 'http://localhost/xd/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -79,6 +80,7 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',    
     'django.core.context_processors.media',
+    'django.core.context_processors.auth',
 )
 
 INSTALLED_APPS = (
@@ -86,7 +88,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'xmms2_django.xmms2',
     'xmms2_django.song_storage',
     'xmms2_django.daemon',
