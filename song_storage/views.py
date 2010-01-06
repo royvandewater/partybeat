@@ -3,6 +3,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from models import *
+from xmms2_django.daemon.models import Action
+
+def get_blank(request):
+    try:
+        return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
+    except (KeyError):
+        return HttpResponseRedirect('/')
 
 def artists(request):
     songFiles = SongFile.objects.all().order_by('artist')
@@ -51,3 +58,10 @@ def generic_xml(request, category, item_name, items):
 def library(request):
     songFiles = SongFile.objects.all() 
     return render_to_response('library.html', locals(), context_instance=RequestContext(request))
+
+def add(request, song_id):
+    songFile = SongFile.objects.get(id=song_id)
+    action = Action()
+    action.command = "add_" + songFile.file.path
+    action.save()
+    return get_blank(request)
