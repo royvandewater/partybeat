@@ -50,9 +50,16 @@ class Xmms_controller:
         elif action == "previous":
             return self.do_action(self.tickle, "previous", -1)
 
+    def add_to_medialib(self, filepath):
+        filepath = "file://" + filepath
+        error = self.xmms.playlist_add_url(filepath)
+        if error:
+            return self.print_playback_error("enqueue_{0}".format(filepath), error)
+        else 
+            return self.print_playback_error("enqueue_{0}".format(filepath))
+
     def get_song_from_minfo(self, minfo):
             song = Song()
-
             try:
                 song.name = minfo["title"]
             except KeyError:

@@ -2,6 +2,8 @@ from django.db import models
 import eyeD3
 import mutagen
 
+from xmms2_django.daemon.models import Action
+
 # Create your models here.
 class SongFile(models.Model):
     file = models.FileField(upload_to="music/%Y/%m/%d")
@@ -54,4 +56,3 @@ class SongFile(models.Model):
                 self.album = "Unknown"
             # Save again!
             super(SongFile, self).save(force_insert, force_update)
-

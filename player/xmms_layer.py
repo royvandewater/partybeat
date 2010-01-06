@@ -19,8 +19,10 @@ class Xmms_layer:
         # If the length of all songs is not equal to the number of songs in 
         # status, the daemon is probably still writing to the db, so we
         # wait 50 milliseconds
-        if len(all_songs) != self.xmms2.playlist_size:
+        limit = 0
+        if len(all_songs) != self.xmms2.playlist_size and limit < 3:
             time.sleep(0.05)
+            limit += 1
 
         # Store the current song
         if(all_songs):
