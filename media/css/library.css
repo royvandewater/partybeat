@@ -1,0 +1,8 @@
+.library_item_add a img {
+    border-style: none;
+    border-width:  0;
+}
+
+.library_item:hover {
+    background-color: #ffd;
+}
