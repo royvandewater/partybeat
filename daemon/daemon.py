@@ -89,9 +89,4 @@ def execute_action(xmms_controller, command):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
         filepath = command.partition("_")[2]
         if filepath:
-            print(xmms_controller.add_to_medialib(filepath))
-    elif command.startswith("enqueue"):
-        id = command.partition("_")[2]
-        if id:
-            print(xmms_controller.enqueue(int(id)))
-    
+            xmms_controller.enqueue(filepath)

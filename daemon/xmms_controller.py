@@ -50,7 +50,7 @@ class Xmms_controller:
         elif action == "previous":
             return self.do_action(self.tickle, "previous", -1)
 
-    def add_to_medialib(self, filepath):
+    def enqueue(self, filepath):
         filepath = "file://" + filepath
         error = self.xmms.playlist_add_url(filepath)
         if error:
