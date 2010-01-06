@@ -55,7 +55,7 @@ class Xmms_controller:
         error = self.xmms.playlist_add_url(filepath)
         if error:
             return self.print_playback_error("enqueue_{0}".format(filepath), error)
-        else 
+        else:
             return self.print_playback_error("enqueue_{0}".format(filepath))
 
     def get_song_from_minfo(self, minfo):
