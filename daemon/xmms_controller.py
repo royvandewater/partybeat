@@ -131,6 +131,7 @@ class Xmms_controller:
 
         minfo = self.get_song_info_from_id(current_id)
         self.player.current_song = self.get_song_from_minfo(minfo)
+        del(minfo)
         self.get_player_status()
         self.build_playlist()
         return self.player
@@ -152,6 +153,10 @@ class Xmms_controller:
             minfo = self.get_song_info_from_id(song_id)
             song = self.get_song_from_minfo(minfo)
             self.player.add_to_playlist(song)
+            del(minfo)
+            del(song)
 
     def clear_player(self):
         """ Re inits the player object """
+        del(self.player)
+        self.player = Player()

@@ -12,8 +12,18 @@ def main(argv):
     # perform initialization
     xmms_controller = Xmms_controller()
 
+    print("Daemon Initializing...")
+    # Check for active connection
+    print("Waiting for xmms2...")
+
+    connected = False
+    while not connected:
+        connected = check_for_connetion(xmms_controller)
+        time.sleep(1)
+
+    print("xmms2 found")
     print("Daemon Initialized")
-    
+
     # enter main loop
     try:
         while True:
@@ -25,7 +35,8 @@ def main(argv):
             xmms_controller.get_player_info()
             # We need to update the db with the relevant info
             timeout = update_status(xmms_controller.player)
-            save_songs(xmms_controller.player)
+            # save_songs(xmms_controller.player)
+            timeout = 100
             time.sleep(timeout/1000.0)
     except KeyboardInterrupt:
         print("\nDaemon terminating")
@@ -40,11 +51,11 @@ def update_status(player):
     xmmsStatus = XmmsStatus.objects.get()
     # Set the current action
     xmmsStatus.current_action = player.status
-    # Set update time
+    # # Set update time
     xmmsStatus.last_update = datetime.datetime.now()
-    # Set number of songs in playlist
+    # # Set number of songs in playlist
     xmmsStatus.playlist_size = player.playlist_size()
-    # Save back to db
+    # # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout
 
@@ -96,3 +107,11 @@ def execute_action(xmms_controller, command):
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
                 print( xmms_controller.delete(int(split_command[2])) )
+
+def check_for_connetion(xmms_controller):
+    """ Returns true if the xmms connection is valid """
+    xmms_controller.get_player_info()
+    if xmms_controller.player.status or xmms_controller.player.status == 0:
+        return True
+    else:
+        return False
