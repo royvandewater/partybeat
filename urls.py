@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     (r'^info/$', 'xmms2_django.player.views.get_info'),
     (r'^playlist/$', 'xmms2_django.player.views.playlist'),
     # (r'^fix/$', 'xmms2_django.player.views.fix'),
-    # (r'^delete/(?P<xmms_id>\d+)/$', 'xmms2_django.player.views.delete'),
+    (r'^delete/(?P<position>\d+)/$', 'xmms2_django.player.views.delete'),
 
     # Library files
     (r'^library/$', 'xmms2_django.song_storage.views.library'),

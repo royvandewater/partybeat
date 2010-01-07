@@ -83,10 +83,16 @@ def execute_action(xmms_controller, command):
     """
     Executes the provided command
     """
-    if command.lower() in ("play", "stop", "pause", "next", "previous"):
-        xmms_controller.action(command.lower())
-    elif command.startswith("add"):
+    # Make command matching case insensitive
+    command = command.lower()
+    if command in ("play", "stop", "pause", "next", "previous"):
+        xmms_controller.action(command)
+    # Double parenthesis are because add and delete are in a tuple
+    elif command.startswith(("add", "delete",)):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
-        filepath = command.partition("_")[2]
-        if filepath:
-            xmms_controller.enqueue(filepath)
+        split_command = command.partition("_")
+        if split_command[2]:
+            if split_command[0] == "add":
+                xmms_controller.enqueue(split_command[2])
+            elif split_command[0] == "delete":
+                print( xmms_controller.delete(int(split_command[2])) )

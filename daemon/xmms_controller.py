@@ -58,8 +58,22 @@ class Xmms_controller:
         else:
             return self.print_playback_error("enqueue_{0}".format(filepath))
 
+    def delete(self, id):
+        error = self.xmms.playlist_remove_entry(id)
+        if error:
+            return self.print_playback_error("delete_{0}".format(id), error)
+        else:
+            return self.print_playback_error("delete_{0}".format(id))
+
     def get_song_from_minfo(self, minfo):
             song = Song()
+            if minfo == "Could not retrieve info for that entry!":
+                song.position = 0
+                song.name = "Unknown"
+                song.artist = "Unknown"
+                song.album = "Unknown"
+                song.xmms_id = -1
+                return song
             try:
                 song.name = minfo["title"]
             except KeyError:
@@ -138,10 +152,6 @@ class Xmms_controller:
             minfo = self.get_song_info_from_id(song_id)
             song = self.get_song_from_minfo(minfo)
             self.player.add_to_playlist(song)
-
-    def delete(self, xmms_id):
-        # Delete item from playlist 
-        return do_action(self.xmms.medialib_remove_entry, "delete",  int(xmms_id))
 
     def clear_player(self):
         """ Re inits the player object """
