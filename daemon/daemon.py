@@ -35,7 +35,7 @@ def main(argv):
             xmms_controller.get_player_info()
             # We need to update the db with the relevant info
             timeout = update_status(xmms_controller.player)
-            # save_songs(xmms_controller.player)
+            save_songs(xmms_controller.player)
             timeout = 100
             time.sleep(timeout/1000.0)
     except KeyboardInterrupt:
@@ -76,10 +76,11 @@ def save_songs(player):
         song.active = False
         song.save()
 
+    # player.playlist.save()
+
     # Delete all the old songs
     Song.objects.filter(active=True).delete()
     Song.objects.all().update(active=True)
-
 
 def execute_action_queue(xmms_controller):
     """

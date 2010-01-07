@@ -158,5 +158,5 @@ class Xmms_controller:
 
     def clear_player(self):
         """ Re inits the player object """
-        del(self.player)
-        self.player = Player()
+        # del(self.player)
+        # self.player = Player()

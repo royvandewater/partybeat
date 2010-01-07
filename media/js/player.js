@@ -37,7 +37,7 @@ $(document).ready(function() {
 function update_info() {
 
     // Get current player info
-    $.post('/info/', function(xml) {
+    $.post('/player/info/', function(xml) {
         // format and output result
         
         var current_xmms_id = $("current_song xmms_id", xml).text();
@@ -72,7 +72,7 @@ function update_info() {
         }
 
         // Load in data from playlist
-        target_url = "/playlist/";
+        target_url = "/player/playlist/";
         $("#playlist").load(target_url);
         
     });
