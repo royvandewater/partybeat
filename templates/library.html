@@ -1,4 +1,7 @@
-<h2>Song Library</h2>
+<span id="library_header" >
+    <h2>Song Library</h2>
+    <a href="/library/upload/">Upload song</a>
+</span>
 {% for song in songFiles %}
 <div class="library_item">
     <span class="library_item_add"><a href="/library/add/{{ song.id }}/" /><img src="{{ MEDIA_URL }}img/icons/add/1.png" alt="add" /></a></span>

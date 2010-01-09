@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 
 from models import *
+from forms import *
 from xmms2_django.daemon.models import Action
 
 def get_blank(request):
@@ -66,4 +67,15 @@ def add(request, song_id):
     return get_blank(request)
 
 def upload(request):
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            songFile = SongFile()
+            songFile.file = request.FILES['file']
+            songFile.save()
+            return HttpResponseRedirect('/')
+    else:
+        form = UploadForm()
+    return render_to_response('upload.html', locals())
+
     return get_blank(request)
