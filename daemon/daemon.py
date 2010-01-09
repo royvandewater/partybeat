@@ -8,6 +8,9 @@ import datetime
 from models import *
 from xmms_controller import Xmms_controller
 
+def song_sort(song):
+    return song.position 
+
 def main(argv):
     # perform initialization
     xmms_controller = Xmms_controller()
@@ -65,22 +68,24 @@ def save_songs(player):
     then removes all the old songs
     """
     
-    # Save the current song
-    song = player.current_song
-    song.position = 0
-    song.active = False
-    song.save()
-    
-    # # Now save the other songs
+    # Reference to see if anything has changed
+    old_songs = sorted(Song.objects.filter(active=True), key=song_sort)
+
+    # Build current song list
+    new_songs = []
+    new_songs.append(player.current_song)
+    new_songs[0].position = 0
+
     for song in player.playlist:
-        song.active = False
-        song.save()
+        new_songs.append(song)
 
-    # player.playlist.save()
-
-    # Delete all the old songs
-    Song.objects.filter(active=True).delete()
-    Song.objects.all().update(active=True)
+    if not all_the_same(old_songs, new_songs):
+        for song in new_songs:
+            song.active = False
+            song.save()
+        # Delete all the old songs
+        Song.objects.filter(active=True).delete()
+        Song.objects.all().update(active=True)
 
 def execute_action_queue(xmms_controller):
     """
@@ -116,3 +121,11 @@ def check_for_connetion(xmms_controller):
         return True
     else:
         return False
+
+def all_the_same(old_songs, new_songs):
+    if len(old_songs) != len(new_songs):
+        return False
+    for old, new in zip(old_songs, new_songs):
+        if old.xmms_id != new.xmms_id:
+            return False
+    return True
