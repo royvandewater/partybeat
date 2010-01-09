@@ -9,9 +9,11 @@ urlpatterns = patterns('',
     # (r'^xmms2_django/', include('xmms2_django.foo.urls')),
 
     (r'^$', 'xmms2_django.main.views.player'),
+
+    # Player Files
     (r'^player/', include('xmms2_django.player.urls')),
 
-    # Library files
+    # Library Files
     (r'^library/', include('xmms2_django.song_storage.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
