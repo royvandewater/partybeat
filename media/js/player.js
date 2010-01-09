@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
     $(document).everyTime(2000, function() { 
         update_info();
     });
