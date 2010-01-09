@@ -4,6 +4,7 @@ from django.template import RequestContext
 
 from xmms2_django.player.xmms_layer import Xmms_layer
 from xmms2_django.song_storage.models import SongFile
+from xmms2_django.song_storage.forms import UploadForm
 
 def get_blank(request):
     try:
@@ -16,6 +17,7 @@ def player(request):
     xmms2.load_player_from_db()
     player = xmms2.player
     songFiles = SongFile.objects.all()
+    form = UploadForm()
     return render_to_response('player.html', locals(), context_instance=RequestContext(request))
 
 def get_info(request):

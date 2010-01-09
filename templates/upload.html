@@ -1,7 +1,4 @@
 {% extends 'base.html' %}
 {% block html_body %}
-<form action="/library/upload/" enctype="multipart/form-data" method="post">
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+{% include 'forms/upload.html' %}
 {% endblock %}

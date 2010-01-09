@@ -1,3 +1,7 @@
+#library_header {
+    margin-top: 1.5em;
+}
+
 #library_header h2 {
     display: inline; 
 }
@@ -5,6 +9,10 @@
 #library_header a {
     font-size: 0.8em;
     margin-left: 0.5em;
+}
+
+#library_upload_form {
+    padding: 0.5em;
 }
 
 .library_item_add a img {
