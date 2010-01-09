@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import RequestContext
 
 from models import *
 from xmms2_django.daemon.models import Action
@@ -53,15 +52,18 @@ def songs(request, artist=None, album=None):
 
 def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
-    return render_to_response('generic.xml', locals(), context_instance=RequestContext(request))
+    return render_to_response('generic.xml', locals())
 
 def library(request):
     songFiles = SongFile.objects.all() 
-    return render_to_response('library.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('library.html', locals())
 
 def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
     action = Action()
     action.command = "add_" + songFile.file.path
     action.save()
+    return get_blank(request)
+
+def upload(request):
     return get_blank(request)
