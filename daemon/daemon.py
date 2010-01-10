@@ -54,11 +54,11 @@ def update_status(player):
     xmmsStatus = XmmsStatus.objects.get()
     # Set the current action
     xmmsStatus.current_action = player.status
-    # # Set update time
+    # Set update time
     xmmsStatus.last_update = datetime.datetime.now()
-    # # Set number of songs in playlist
+    # Set number of songs in playlist
     xmmsStatus.playlist_size = player.playlist_size()
-    # # Save back to db
+    # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout
 
@@ -101,15 +101,14 @@ def execute_action(xmms_controller, command):
     Executes the provided command
     """
     # Make command matching case insensitive
-    command = command.lower()
-    if command in ("play", "stop", "pause", "next", "previous"):
+    if command.lower() in ("play", "stop", "pause", "next", "previous"):
         xmms_controller.action(command)
     # Double parenthesis are because add and delete are in a tuple
-    elif command.startswith(("add", "delete",)):
+    elif command.lower().startswith(("add", "delete",)):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
         split_command = command.partition("_")
         if split_command[2]:
-            if split_command[0] == "add":
+            if split_command[0].lower() == "add":
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
                 print( xmms_controller.delete(int(split_command[2])) )
