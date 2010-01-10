@@ -79,3 +79,20 @@ def upload(request):
     return render_to_response('upload.html', locals())
 
     return get_blank(request)
+
+def edit(request, song_id):
+    songFile = SongFile.objects.get(id=int(song_id))
+    if request.method == 'POST':
+        form = EditForm(request.POST)
+        if form.is_valid():
+            songFile.name = form.cleaned_data['name']
+            songFile.artist = form.cleaned_data['artist']
+            songFile.album = form.cleaned_data['album']
+            songFile.save()
+            return HttpResponseRedirect('/')
+    else:
+        data = {'name': songFile.name,
+                'artist': songFile.artist,
+                'album': songFile.album}
+        form = EditForm(data)
+    return render_to_response('edit.html', locals())
