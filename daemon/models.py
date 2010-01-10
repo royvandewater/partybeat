@@ -18,6 +18,7 @@ class XmmsStatus(models.Model):
     current_action = models.IntegerField(help_text="0: Stopped, 1: Playing, 2: Paused")
     last_update = models.DateTimeField()
     playlist_size = models.IntegerField(help_text="Sets number of songs currently in playlist")
+    current_position = models.IntegerField(help_text="Current position of player in playlist")
 
 class Action(models.Model):
     """

@@ -35,6 +35,7 @@ class Xmms_layer:
         player.playlist = all_songs[1:]
 
         player.status = self.xmms2.current_action
+        player.position = self.xmms2.current_position
 
         self.player = player
 

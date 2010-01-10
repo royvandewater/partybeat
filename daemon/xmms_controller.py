@@ -120,6 +120,7 @@ class Xmms_controller:
     def get_player_info(self):
         try:
             current_id = self.xmms.playback_current_id()
+            position = self.xmms.playlist_current_pos()
         except xmmsclient.sync.XMMSError as e: 
             self.player.set_error("Playback current id returns error, %s" % e.message)
             return self.player
@@ -131,6 +132,7 @@ class Xmms_controller:
 
         minfo = self.get_song_info_from_id(current_id)
         self.player.current_song = self.get_song_from_minfo(minfo)
+        self.player.position = position['position'] + 1
         del(minfo)
         self.get_player_status()
         self.build_playlist()
@@ -153,8 +155,6 @@ class Xmms_controller:
             minfo = self.get_song_info_from_id(song_id)
             song = self.get_song_from_minfo(minfo)
             self.player.add_to_playlist(song)
-            del(minfo)
-            del(song)
 
     def clear_player(self):
         """ Re inits the player object """

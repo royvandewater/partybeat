@@ -15,6 +15,7 @@ class Player():
         self.current_song = Song()
         self.status = ""
         self.error = ""
+        self.position = None
     
     def set_status(self, status):
         self.status = status

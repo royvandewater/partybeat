@@ -3,7 +3,7 @@ from django.contrib import admin
 from models import *
 
 class XmmsStatusAdmin(admin.ModelAdmin):
-    list_display = ('last_update', 'current_action', 'timeout', 'playlist_size')
+    list_display = ('last_update', 'current_action', 'timeout', 'playlist_size', 'current_position')
 
 class ActionAdmin(admin.ModelAdmin):
     list_display = ('command',)

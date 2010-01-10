@@ -21,7 +21,7 @@ def main(argv):
 
     connected = False
     while not connected:
-        connected = check_for_connetion(xmms_controller)
+        connected = check_for_connection(xmms_controller)
         time.sleep(1)
 
     print("xmms2 found")
@@ -58,6 +58,8 @@ def update_status(player):
     xmmsStatus.last_update = datetime.datetime.now()
     # Set number of songs in playlist
     xmmsStatus.playlist_size = player.playlist_size()
+    # Set position of current song in playlist
+    xmmsStatus.current_position = player.position
     # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout
@@ -111,9 +113,9 @@ def execute_action(xmms_controller, command):
             if split_command[0].lower() == "add":
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
-                print( xmms_controller.delete(int(split_command[2])) )
+                xmms_controller.delete(int(split_command[2]))
 
-def check_for_connetion(xmms_controller):
+def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """
     xmms_controller.get_player_info()
     if xmms_controller.player.status or xmms_controller.player.status == 0:
