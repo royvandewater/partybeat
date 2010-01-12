@@ -13,7 +13,6 @@ def is_ajax(request):
         return False
 
 def get_blank(request):
-    print(request.POST)
     try:
         return render_to_response('blank.html') if is_ajax(request) else HttpResponseRedirect('/')
     except (KeyError):
@@ -42,8 +41,6 @@ def albums(request, artist=None):
     return generic_xml(request, "albums", "album", albums)
 
 def songs(request, artist=None, album=None):
-    # print(artist)
-    # print(album)
     if artist and album:
         songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
     elif album:
@@ -103,7 +100,6 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
-    print(request.POST)
 
     # Check for ajax
     html_template = "library/forms/edit.html" if is_ajax(request) else "library/edit.html"
