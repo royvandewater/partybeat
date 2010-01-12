@@ -23,36 +23,45 @@ class SongFile(models.Model):
     def save(self, force_insert=False, force_update=False):
         # Call the real save method
         super(SongFile, self).save(force_insert, force_update)
-        # If name, artist and album are set, user is overriding id3 read
-        if not (self.name and self.artist and self.album):
-            # Get the filetype
-            filetype = (self.file.name.rpartition(".")[2]).lower()
-            if filetype == "mp3":
-                from mutagen.mp3 import MP3
-                mp3 = MP3(self.file.path)
+        # Get the filetype
+        filetype = (self.file.name.rpartition(".")[2]).lower()
 
-                self.name = mp3["TIT2"]
-                self.artist = mp3["TPE1"]
-                self.album = mp3["TALB"]
-            elif filetype == "flac":
-                from mutagen.flac import FLAC
-                flac = FLAC(self.file.path)
+        # Save backup of old names
+        old_name = self.name
+        old_artist = self.artist
+        old_album = self.album
+        if filetype == "mp3":
+            from mutagen.mp3 import MP3
+            mp3 = MP3(self.file.path)
 
-                self.name = self.print_list(flac["title"])
-                self.artist = self.print_list(flac["artist"])
-                self.album = self.print_list(flac["album"])
+            self.name = mp3["TIT2"]
+            self.artist = mp3["TPE1"]
+            self.album = mp3["TALB"]
+        elif filetype == "flac":
+            from mutagen.flac import FLAC
+            flac = FLAC(self.file.path)
 
-            elif filetype == "ogg":
-                from mutagen.oggvorbis import OggVorbis
-                ogg = OggVorbis(self.file.path)
+            self.name = self.print_list(flac["title"])
+            self.artist = self.print_list(flac["artist"])
+            self.album = self.print_list(flac["album"])
 
-                self.name = self.print_list(ogg["title"])
-                self.artist = self.print_list(ogg["artist"])
-                self.album = self.print_list(ogg["album"])
+        elif filetype == "ogg":
+            from mutagen.oggvorbis import OggVorbis
+            ogg = OggVorbis(self.file.path)
 
-            else:
-                self.name = self.file.name.rpartition("/")[2]
-                self.artist = "Unknown"
-                self.album = "Unknown"
-            # Save again!
-            super(SongFile, self).save(force_insert, force_update)
+            self.name = self.print_list(ogg["title"])
+            self.artist = self.print_list(ogg["artist"])
+            self.album = self.print_list(ogg["album"])
+
+        else:
+            self.name = self.file.name.rpartition("/")[2]
+            self.artist = "Unknown"
+            self.album = "Unknown"
+
+        # Check if manual data was entered
+        if old_name: self.name = old_name
+        if old_artist: self.artist = old_artist
+        if old_album: self.album = old_album
+            
+        # Save again!
+        super(SongFile, self).save(force_insert, force_update)
