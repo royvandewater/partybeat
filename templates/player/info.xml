@@ -3,7 +3,9 @@
     <player_status>
         <is_playing>{{ player.is_playing }}</is_playing>
         <current_action>{{ player.verbose_action }}</current_action>
-        <last_update>{{ xmms_layer.timer }}</last_update>
+        <last_update>{{ player.last_update }}</last_update>
+        <seek>{{ player.seek }}</seek>
+        <max_seek>{{ player.max_seek }}</max_seek>
     </player_status>
     <current_song>
         <name>{{ player.current_song.name }}</name>

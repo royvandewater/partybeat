@@ -19,6 +19,8 @@ class XmmsStatus(models.Model):
     last_update = models.DateTimeField()
     playlist_size = models.IntegerField(help_text="Sets number of songs currently in playlist")
     current_position = models.IntegerField(help_text="Current position of player in playlist")
+    seek = models.IntegerField()
+    max_seek = models.IntegerField()
 
 class Action(models.Model):
     """
