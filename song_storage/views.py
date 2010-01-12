@@ -57,7 +57,7 @@ def generic_xml(request, category, item_name, items):
 
 def library(request):
     songFiles = SongFile.objects.all() 
-    return render_to_response('library.html', locals())
+    return render_to_response('library/library.html', locals())
 
 def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
@@ -76,7 +76,7 @@ def upload(request):
             return HttpResponseRedirect('/')
     else:
         form = UploadForm()
-    return render_to_response('upload.html', locals())
+    return render_to_response('library/upload.html', locals())
 
     return get_blank(request)
 
@@ -95,4 +95,4 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
-    return render_to_response('edit.html', locals())
+    return render_to_response('library/edit.html', locals())

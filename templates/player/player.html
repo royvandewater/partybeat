@@ -1,5 +1,3 @@
-{% extends 'base.html' %}
-{% block html_body %}
 <div id="xmms_returns">
   <span id="current_name">{{ player.current_song.name }}</span>
   <span id="current_artist">{{ player.current_song.artist }}</span>
@@ -40,9 +38,5 @@
 </div>
 
 <div id="playlist">
-    {% include "playlist.html" %}
+    {% include "player/playlist.html" %}
 </div>
-<div id="song_library">
-    {% include "library.html" %}
-</div>
-{% endblock %}
