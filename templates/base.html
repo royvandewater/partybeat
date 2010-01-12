@@ -4,6 +4,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 <html>
   <head>
     <title>{% block title %}xmms2 player{% endblock %}</title>
+      <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/main.css" />
       <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/player.css" />
       <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/library.css" />
       <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery-1.3.2{% if not debug %}.min{% endif %}.js"></script>

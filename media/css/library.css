@@ -17,10 +17,25 @@
 
 #library_edit_form {
     width: 300px;
+    margin: auto;
 }
 
-#library_edit_form .fieldWrapper {
-    width: 100%;
+#library_edit_form h2 {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#library_edit_form h3 {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+#library_edit_form div {
+    clear: both;
+}
+
+#library_edit_form label {
+    float: left;
 }
 
 #library_edit_form input {

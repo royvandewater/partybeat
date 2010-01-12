@@ -1,11 +1,15 @@
 <div id="library_edit_form">
     <form action="/library/edit/{{ song_id }}/" method="post" >
+        <h2>Edit Song</h2>
+        <h3>Leave fields blank to generate from id3</h3>
         {% for item in form %}
-            <div class="fieldWrapper">
-                {{ item.errors }}
-                {{ item.label_tag }}: {{ item }}
-            </div>
+        <div class="fieldWrapper">
+            {{ item.errors }}
+            {{ item.label_tag }}: {{ item }}
+        </div>
         {% endfor %}
-        <input type="submit" value="Submit" />
+        <div class="fieldWrapper">
+            <input type="submit" value="Submit" />
+        </div>
     </form>
 </div>
