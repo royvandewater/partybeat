@@ -1,0 +1,37 @@
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 0, xmms_id: 295}
+    model: daemon.song
+    pk: 3236578
+-   fields: {active: 1, album: Alone in Iz World, artist: Israel Kamakawiwo'ole, error: '',
+        name: Over the Rainbow, position: 1, xmms_id: 121}
+    model: daemon.song
+    pk: 3236579
+-   fields: {active: 1, album: Pulp Fiction, artist: Soundtrack, error: '', name: Misirlou,
+        position: 2, xmms_id: 290}
+    model: daemon.song
+    pk: 3236580
+-   fields: {active: 1, album: Pulp Fiction, artist: Soundtrack, error: '', name: Royale
+            With Cheese, position: 3, xmms_id: 291}
+    model: daemon.song
+    pk: 3236581
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 4, xmms_id: 295}
+    model: daemon.song
+    pk: 3236582
+-   fields: {active: 1, album: Deadly Hi-Fi, artist: Filibuster, error: '', name: Aargh
+            St., position: 5, xmms_id: 296}
+    model: daemon.song
+    pk: 3236583
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 6, xmms_id: 295}
+    model: daemon.song
+    pk: 3236584
+-   fields: {active: 1, album: '...Hits', artist: Phil Collins, error: '', name: In
+            The Air Tonight, position: 7, xmms_id: 297}
+    model: daemon.song
+    pk: 3236585
+-   fields: {current_action: 2, current_position: 4, last_update: !!timestamp '2010-01-10
+            05:17:57', playlist_size: 8, timeout: 100}
+    model: daemon.xmmsstatus
+    pk: 1
+
