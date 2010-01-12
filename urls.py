@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     (r'^player/', include('xmms2_django.player.urls')),
 
     # Library Files
-    (r'^library/', include('xmms2_django.song_storage.urls')),
+    (r'^library/', include('xmms2_django.library.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

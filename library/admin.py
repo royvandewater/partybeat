@@ -1,5 +1,5 @@
 from django.contrib import admin
-from xmms2_django.song_storage.models import *
+from models import *
 
 class SongFileAdmin(admin.ModelAdmin):
     list_display = ('name', 'album', 'artist',) # The future listview

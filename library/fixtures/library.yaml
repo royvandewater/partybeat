@@ -1,0 +1,25 @@
+-   fields: {album: The Better Life, artist: 3 Doors Down, file: music/2010/01/05/01_Kryptonite.mp3,
+        name: Kryptonite}
+    model: library.songfile
+    pk: 1
+-   fields: {album: Deadly Hi-Fi, artist: Filibuster, file: music/2010/01/05/Aargh_St.mp3,
+        name: Aargh St.}
+    model: library.songfile
+    pk: 2
+-   fields: {album: '...Hits', artist: Phil Collins, file: music/2010/01/06/15_In_The_Air_Tonight.mp3,
+        name: In The Air Tonight}
+    model: library.songfile
+    pk: 3
+-   fields: {album: We Were Dead Before The Ship Even Sank, artist: Modest Mouse,
+        file: music/2010/01/09/02._Modest_Mouse_-_Dashboard.flac, name: Dashboard}
+    model: library.songfile
+    pk: 4
+-   fields: {album: Good News For People Who Love Bad News, artist: Modest Mouse,
+        file: music/2010/01/09/03_-_Modest_Mouse_-_Float_On.flac, name: Float On}
+    model: library.songfile
+    pk: 5
+-   fields: {album: '2007 Warped Tour Compilation [Disc 2]', artist: Meg & Dia, file: music/2010/01/09/2-11_Monster.mp3,
+        name: Monster}
+    model: library.songfile
+    pk: 6
+

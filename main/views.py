@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from xmms2_django.player.xmms_layer import Xmms_layer
-from xmms2_django.song_storage.models import SongFile
-from xmms2_django.song_storage.forms import UploadForm
+from xmms2_django.library.models import SongFile
+from xmms2_django.library.forms import UploadForm
 
 def get_blank(request):
     try:
