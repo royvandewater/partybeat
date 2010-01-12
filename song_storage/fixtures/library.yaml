@@ -1,0 +1,578 @@
+-   fields: {app_label: daemon, model: action, name: action}
+    model: contenttypes.contenttype
+    pk: 12
+-   fields: {app_label: contenttypes, model: contenttype, name: content type}
+    model: contenttypes.contenttype
+    pk: 5
+-   fields: {app_label: auth, model: group, name: group}
+    model: contenttypes.contenttype
+    pk: 2
+-   fields: {app_label: admin, model: logentry, name: log entry}
+    model: contenttypes.contenttype
+    pk: 8
+-   fields: {app_label: auth, model: message, name: message}
+    model: contenttypes.contenttype
+    pk: 4
+-   fields: {app_label: auth, model: permission, name: permission}
+    model: contenttypes.contenttype
+    pk: 1
+-   fields: {app_label: sessions, model: session, name: session}
+    model: contenttypes.contenttype
+    pk: 6
+-   fields: {app_label: sites, model: site, name: site}
+    model: contenttypes.contenttype
+    pk: 7
+-   fields: {app_label: daemon, model: song, name: song}
+    model: contenttypes.contenttype
+    pk: 10
+-   fields: {app_label: song_storage, model: songfile, name: song file}
+    model: contenttypes.contenttype
+    pk: 9
+-   fields: {app_label: auth, model: user, name: user}
+    model: contenttypes.contenttype
+    pk: 3
+-   fields: {app_label: daemon, model: xmmsstatus, name: xmms status}
+    model: contenttypes.contenttype
+    pk: 11
+-   fields: {expire_date: !!timestamp '2010-01-25 21:18:06', session_data: 'gAJ9cQEuN2UwMTg5ZjlkYzkwMTMyYzhkYTc3NTlhYTIzZjAxZGQ=
+
+            '}
+    model: sessions.session
+    pk: ce5d5936ed39eaf4cf63439fd980f725
+-   fields: {expire_date: !!timestamp '2010-01-19 10:10:28', session_data: 'gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k
+
+            cy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigEBdS43ODE2MWIzNzJhMWZkZTgzZjQ3
+
+            MzhmODEyOTZmYTIwYQ==
+
+            '}
+    model: sessions.session
+    pk: 8787f2588b47bd2cc5e4f5684bc772ac
+-   fields: {expire_date: !!timestamp '2010-01-19 11:49:16', session_data: 'gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k
+
+            cy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigEBdS43ODE2MWIzNzJhMWZkZTgzZjQ3
+
+            MzhmODEyOTZmYTIwYQ==
+
+            '}
+    model: sessions.session
+    pk: d8d22be0997a1bf62bd8edad0697ea03
+-   fields: {domain: example.com, name: example.com}
+    model: sites.site
+    pk: 1
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-10 03:30:13', change_message: '',
+        content_type: 11, object_id: '1', object_repr: XmmsStatus object, user: 1}
+    model: admin.logentry
+    pk: 69
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 21:02:51', change_message: '',
+        content_type: 12, object_id: '168', object_repr: delete_0, user: 1}
+    model: admin.logentry
+    pk: 68
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 21:02:21', change_message: '',
+        content_type: 12, object_id: '167', object_repr: delete_1, user: 1}
+    model: admin.logentry
+    pk: 67
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 21:02:10', change_message: '',
+        content_type: 12, object_id: '166', object_repr: delete_2, user: 1}
+    model: admin.logentry
+    pk: 66
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 21:01:10', change_message: '',
+        content_type: 12, object_id: '165', object_repr: delete_2, user: 1}
+    model: admin.logentry
+    pk: 65
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 21:00:45', change_message: '',
+        content_type: 12, object_id: '164', object_repr: delete_295, user: 1}
+    model: admin.logentry
+    pk: 64
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 20:58:58', change_message: '',
+        content_type: 12, object_id: '163', object_repr: delete_295, user: 1}
+    model: admin.logentry
+    pk: 63
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 12:48:24', change_message: '',
+        content_type: 9, object_id: '3', object_repr: Phil Collins - ...Hits - In
+            The Air Tonight, user: 1}
+    model: admin.logentry
+    pk: 62
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-06 11:03:05', change_message: Changed
+            command., content_type: 12, object_id: '127', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 61
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 11:02:22', change_message: '',
+        content_type: 12, object_id: '127', object_repr: enqueue_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 60
+-   fields: {action_flag: 3, action_time: !!timestamp '2010-01-06 11:02:10', change_message: '',
+        content_type: 12, object_id: '126', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 59
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:57:24', change_message: '',
+        content_type: 12, object_id: '126', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 58
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:34:15', change_message: '',
+        content_type: 12, object_id: '125', object_repr: enqueue_3, user: 1}
+    model: admin.logentry
+    pk: 57
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:32:11', change_message: '',
+        content_type: 12, object_id: '124', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 56
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:31:33', change_message: '',
+        content_type: 12, object_id: '123', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 55
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:31:14', change_message: '',
+        content_type: 12, object_id: '122', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 54
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:30:49', change_message: '',
+        content_type: 12, object_id: '121', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 53
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:29:32', change_message: '',
+        content_type: 12, object_id: '120', object_repr: add_/home/doppler/Music/wth.ogg,
+        user: 1}
+    model: admin.logentry
+    pk: 52
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:27:48', change_message: '',
+        content_type: 12, object_id: '119', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 51
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:25:58', change_message: '',
+        content_type: 12, object_id: '118', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 50
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:25:13', change_message: '',
+        content_type: 12, object_id: '117', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 49
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:24:00', change_message: '',
+        content_type: 12, object_id: '116', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 48
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:23:27', change_message: '',
+        content_type: 12, object_id: '115', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 47
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:21:43', change_message: '',
+        content_type: 12, object_id: '114', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 46
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:20:12', change_message: '',
+        content_type: 12, object_id: '113', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 45
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:18:39', change_message: '',
+        content_type: 12, object_id: '112', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 44
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:17:33', change_message: '',
+        content_type: 12, object_id: '111', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 43
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:16:11', change_message: '',
+        content_type: 12, object_id: '110', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 42
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:15:48', change_message: '',
+        content_type: 12, object_id: '109', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 41
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:15:17', change_message: '',
+        content_type: 12, object_id: '108', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 40
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:14:58', change_message: '',
+        content_type: 12, object_id: '107', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 39
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:14:15', change_message: '',
+        content_type: 12, object_id: '106', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 38
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:12:46', change_message: '',
+        content_type: 12, object_id: '105', object_repr: add_/home/doppler/Music/wth.ogg,
+        user: 1}
+    model: admin.logentry
+    pk: 37
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:12:34', change_message: '',
+        content_type: 12, object_id: '104', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 36
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:09:19', change_message: '',
+        content_type: 12, object_id: '103', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 35
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:08:30', change_message: '',
+        content_type: 12, object_id: '102', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 34
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 10:06:35', change_message: '',
+        content_type: 12, object_id: '101', object_repr: add_/home/doppler/Music/wth.ogg,
+        user: 1}
+    model: admin.logentry
+    pk: 33
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:57:13', change_message: '',
+        content_type: 12, object_id: '100', object_repr: add_/home/doppler/Music/wth.ogg,
+        user: 1}
+    model: admin.logentry
+    pk: 32
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:56:05', change_message: '',
+        content_type: 12, object_id: '99', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 31
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:54:59', change_message: '',
+        content_type: 12, object_id: '98', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 30
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:48:09', change_message: '',
+        content_type: 12, object_id: '97', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 29
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:47:53', change_message: '',
+        content_type: 12, object_id: '96', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 28
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:46:41', change_message: '',
+        content_type: 12, object_id: '95', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 27
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-06 09:38:38', change_message: '',
+        content_type: 12, object_id: '94', object_repr: add_/home/doppler/Music/shatner.mp3,
+        user: 1}
+    model: admin.logentry
+    pk: 26
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 12:49:22', change_message: '',
+        content_type: 9, object_id: '2', object_repr: Filibuster - Deadly Hi-Fi -
+            Aargh St., user: 1}
+    model: admin.logentry
+    pk: 25
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:49:12', change_message: Changed
+            artist., content_type: 9, object_id: '1', object_repr: 3 Doors Down -
+            The Better Life - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 24
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:49:06', change_message: Changed
+            artist., content_type: 9, object_id: '1', object_repr: 3 Doors Dow - The
+            Better Life - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 23
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:46:08', change_message: Changed
+            artist., content_type: 9, object_id: '1', object_repr: 3 Doors Down -
+            The Better Life - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 22
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:45:56', change_message: Changed
+            artist., content_type: 9, object_id: '1', object_repr: 3 Doors Down -
+            The Better Life - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 21
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:45:49', change_message: No
+            fields changed., content_type: 9, object_id: '1', object_repr: 3 Doors
+            Down - The Better Life - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 20
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 12:38:56', change_message: '',
+        content_type: 9, object_id: '1', object_repr: 3 Doors Down - The Better Life
+            - Kryptonite, user: 1}
+    model: admin.logentry
+    pk: 19
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 12:32:01', change_message: '',
+        content_type: 11, object_id: '1', object_repr: XmmsStatus object, user: 1}
+    model: admin.logentry
+    pk: 18
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 12:10:27', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 17
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 11:56:08', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 16
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 11:55:02', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 15
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 11:50:49', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 14
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 11:50:36', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 13
+-   fields: {action_flag: 2, action_time: !!timestamp '2010-01-05 11:49:39', change_message: Changed
+            timeout and last_update., content_type: 11, object_id: '1', object_repr: XmmsStatus
+            object, user: 1}
+    model: admin.logentry
+    pk: 12
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:31:50', change_message: '',
+        content_type: 12, object_id: '10', object_repr: play, user: 1}
+    model: admin.logentry
+    pk: 11
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:31:25', change_message: '',
+        content_type: 12, object_id: '9', object_repr: pause, user: 1}
+    model: admin.logentry
+    pk: 10
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:31:17', change_message: '',
+        content_type: 12, object_id: '8', object_repr: next, user: 1}
+    model: admin.logentry
+    pk: 9
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:31:06', change_message: '',
+        content_type: 12, object_id: '7', object_repr: play, user: 1}
+    model: admin.logentry
+    pk: 8
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:29:49', change_message: '',
+        content_type: 12, object_id: '6', object_repr: stop, user: 1}
+    model: admin.logentry
+    pk: 7
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:29:40', change_message: '',
+        content_type: 12, object_id: '5', object_repr: next, user: 1}
+    model: admin.logentry
+    pk: 6
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:29:33', change_message: '',
+        content_type: 12, object_id: '4', object_repr: play, user: 1}
+    model: admin.logentry
+    pk: 5
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:29:27', change_message: '',
+        content_type: 12, object_id: '3', object_repr: pause, user: 1}
+    model: admin.logentry
+    pk: 4
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:29:16', change_message: '',
+        content_type: 12, object_id: '2', object_repr: play, user: 1}
+    model: admin.logentry
+    pk: 3
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 11:28:54', change_message: '',
+        content_type: 12, object_id: '1', object_repr: play, user: 1}
+    model: admin.logentry
+    pk: 2
+-   fields: {action_flag: 1, action_time: !!timestamp '2010-01-05 10:12:55', change_message: '',
+        content_type: 11, object_id: '1', object_repr: XmmsStatus object, user: 1}
+    model: admin.logentry
+    pk: 1
+-   fields: {album: The Better Life, artist: 3 Doors Down, file: music/2010/01/05/01_Kryptonite.mp3,
+        name: Kryptonite}
+    model: song_storage.songfile
+    pk: 1
+-   fields: {album: Deadly Hi-Fi, artist: Filibuster, file: music/2010/01/05/Aargh_St.mp3,
+        name: Aargh St.}
+    model: song_storage.songfile
+    pk: 2
+-   fields: {album: '...Hits', artist: Phil Collins, file: music/2010/01/06/15_In_The_Air_Tonight.mp3,
+        name: In The Air Tonight}
+    model: song_storage.songfile
+    pk: 3
+-   fields: {album: We Were Dead Before The Ship Even Sank, artist: Modest Mouse,
+        file: music/2010/01/09/02._Modest_Mouse_-_Dashboard.flac, name: Dashboard}
+    model: song_storage.songfile
+    pk: 4
+-   fields: {album: Good News For People Who Love Bad News, artist: Modest Mouse,
+        file: music/2010/01/09/03_-_Modest_Mouse_-_Float_On.flac, name: Float On}
+    model: song_storage.songfile
+    pk: 5
+-   fields: {album: '2007 Warped Tour Compilation [Disc 2]', artist: Meg & Dia, file: music/2010/01/09/2-11_Monster.mp3,
+        name: Monster}
+    model: song_storage.songfile
+    pk: 6
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 0, xmms_id: 295}
+    model: daemon.song
+    pk: 3236578
+-   fields: {active: 1, album: Alone in Iz World, artist: Israel Kamakawiwo'ole, error: '',
+        name: Over the Rainbow, position: 1, xmms_id: 121}
+    model: daemon.song
+    pk: 3236579
+-   fields: {active: 1, album: Pulp Fiction, artist: Soundtrack, error: '', name: Misirlou,
+        position: 2, xmms_id: 290}
+    model: daemon.song
+    pk: 3236580
+-   fields: {active: 1, album: Pulp Fiction, artist: Soundtrack, error: '', name: Royale
+            With Cheese, position: 3, xmms_id: 291}
+    model: daemon.song
+    pk: 3236581
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 4, xmms_id: 295}
+    model: daemon.song
+    pk: 3236582
+-   fields: {active: 1, album: Deadly Hi-Fi, artist: Filibuster, error: '', name: Aargh
+            St., position: 5, xmms_id: 296}
+    model: daemon.song
+    pk: 3236583
+-   fields: {active: 1, album: The Better Life, artist: 3 Doors Down, error: '', name: Kryptonite,
+        position: 6, xmms_id: 295}
+    model: daemon.song
+    pk: 3236584
+-   fields: {active: 1, album: '...Hits', artist: Phil Collins, error: '', name: In
+            The Air Tonight, position: 7, xmms_id: 297}
+    model: daemon.song
+    pk: 3236585
+-   fields: {current_action: 2, current_position: 4, last_update: !!timestamp '2010-01-10
+            05:17:57', playlist_size: 8, timeout: 100}
+    model: daemon.xmmsstatus
+    pk: 1
+-   fields: {command: play}
+    model: daemon.action
+    pk: 268
+-   fields: {codename: add_logentry, content_type: 8, name: Can add log entry}
+    model: auth.permission
+    pk: 22
+-   fields: {codename: change_logentry, content_type: 8, name: Can change log entry}
+    model: auth.permission
+    pk: 23
+-   fields: {codename: delete_logentry, content_type: 8, name: Can delete log entry}
+    model: auth.permission
+    pk: 24
+-   fields: {codename: add_group, content_type: 2, name: Can add group}
+    model: auth.permission
+    pk: 4
+-   fields: {codename: add_message, content_type: 4, name: Can add message}
+    model: auth.permission
+    pk: 10
+-   fields: {codename: add_permission, content_type: 1, name: Can add permission}
+    model: auth.permission
+    pk: 1
+-   fields: {codename: add_user, content_type: 3, name: Can add user}
+    model: auth.permission
+    pk: 7
+-   fields: {codename: change_group, content_type: 2, name: Can change group}
+    model: auth.permission
+    pk: 5
+-   fields: {codename: change_message, content_type: 4, name: Can change message}
+    model: auth.permission
+    pk: 11
+-   fields: {codename: change_permission, content_type: 1, name: Can change permission}
+    model: auth.permission
+    pk: 2
+-   fields: {codename: change_user, content_type: 3, name: Can change user}
+    model: auth.permission
+    pk: 8
+-   fields: {codename: delete_group, content_type: 2, name: Can delete group}
+    model: auth.permission
+    pk: 6
+-   fields: {codename: delete_message, content_type: 4, name: Can delete message}
+    model: auth.permission
+    pk: 12
+-   fields: {codename: delete_permission, content_type: 1, name: Can delete permission}
+    model: auth.permission
+    pk: 3
+-   fields: {codename: delete_user, content_type: 3, name: Can delete user}
+    model: auth.permission
+    pk: 9
+-   fields: {codename: add_contenttype, content_type: 5, name: Can add content type}
+    model: auth.permission
+    pk: 13
+-   fields: {codename: change_contenttype, content_type: 5, name: Can change content
+            type}
+    model: auth.permission
+    pk: 14
+-   fields: {codename: delete_contenttype, content_type: 5, name: Can delete content
+            type}
+    model: auth.permission
+    pk: 15
+-   fields: {codename: add_action, content_type: 12, name: Can add action}
+    model: auth.permission
+    pk: 34
+-   fields: {codename: add_song, content_type: 10, name: Can add song}
+    model: auth.permission
+    pk: 28
+-   fields: {codename: add_xmmsstatus, content_type: 11, name: Can add xmms status}
+    model: auth.permission
+    pk: 31
+-   fields: {codename: change_action, content_type: 12, name: Can change action}
+    model: auth.permission
+    pk: 35
+-   fields: {codename: change_song, content_type: 10, name: Can change song}
+    model: auth.permission
+    pk: 29
+-   fields: {codename: change_xmmsstatus, content_type: 11, name: Can change xmms
+            status}
+    model: auth.permission
+    pk: 32
+-   fields: {codename: delete_action, content_type: 12, name: Can delete action}
+    model: auth.permission
+    pk: 36
+-   fields: {codename: delete_song, content_type: 10, name: Can delete song}
+    model: auth.permission
+    pk: 30
+-   fields: {codename: delete_xmmsstatus, content_type: 11, name: Can delete xmms
+            status}
+    model: auth.permission
+    pk: 33
+-   fields: {codename: add_session, content_type: 6, name: Can add session}
+    model: auth.permission
+    pk: 16
+-   fields: {codename: change_session, content_type: 6, name: Can change session}
+    model: auth.permission
+    pk: 17
+-   fields: {codename: delete_session, content_type: 6, name: Can delete session}
+    model: auth.permission
+    pk: 18
+-   fields: {codename: add_site, content_type: 7, name: Can add site}
+    model: auth.permission
+    pk: 19
+-   fields: {codename: change_site, content_type: 7, name: Can change site}
+    model: auth.permission
+    pk: 20
+-   fields: {codename: delete_site, content_type: 7, name: Can delete site}
+    model: auth.permission
+    pk: 21
+-   fields: {codename: add_songfile, content_type: 9, name: Can add song file}
+    model: auth.permission
+    pk: 25
+-   fields: {codename: change_songfile, content_type: 9, name: Can change song file}
+    model: auth.permission
+    pk: 26
+-   fields: {codename: delete_songfile, content_type: 9, name: Can delete song file}
+    model: auth.permission
+    pk: 27
+-   fields:
+        date_joined: 2010-01-05 10:09:46
+        email: rv@royvandewater.com
+        first_name: ''
+        groups: []
+        is_active: 1
+        is_staff: 1
+        is_superuser: 1
+        last_login: 2010-01-05 11:49:16
+        last_name: ''
+        password: sha1$56be2$17d13ff61dcb710398c955ab0edf5ceeeb4265df
+        user_permissions: []
+        username: doppler
+    model: auth.user
+    pk: 1
+

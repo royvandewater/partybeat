@@ -34,8 +34,8 @@ def albums(request, artist=None):
     return generic_xml(request, "albums", "album", albums)
 
 def songs(request, artist=None, album=None):
-    print(artist)
-    print(album)
+    # print(artist)
+    # print(album)
     if artist and album:
         songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
     elif album:

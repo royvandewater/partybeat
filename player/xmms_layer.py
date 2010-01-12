@@ -43,7 +43,6 @@ class Xmms_layer:
         """
         Creates a new action and stores it in the db
         """
-        print("store_action called with command: '{0}'".format(command))
         command = command.lower()
         if command.startswith(("play", "stop", "pause", "next", "previous", "delete")):
             action = Action()
