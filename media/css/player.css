@@ -18,7 +18,18 @@
     font-size: 1.2em;
 }
 
-.playlist_item_delete a img {
-    border-style: none;
-    border-width:  0;
+.playlist_item_delete a {
+    /* border-style: none; */
+    /* border-width:  0; */
+    float: left;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    margin-right: 3px;
+    background-image: url('/xd/media/img/icons/delete/5.png');
+}
+
+.highlight a {
+    margin-top: 4px;
 }
