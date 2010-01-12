@@ -16,7 +16,7 @@
 }
 
 #library_edit_form {
-    width: 300px;
+    width: 400px;
     margin: auto;
 }
 
@@ -28,6 +28,7 @@
 #library_edit_form h3 {
     font-size: 0.8em;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #library_edit_form div {
@@ -40,6 +41,12 @@
 
 #library_edit_form input {
     float: right;
+    width: 300px;
+}
+
+#library_edit_form div.submit input {
+    margin-top: 2px;
+    width: 100px;
 }
 
 .library_item_add a img, .library_item_edit a img {
