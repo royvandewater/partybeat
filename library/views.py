@@ -6,9 +6,16 @@ from models import *
 from forms import *
 from xmms2_django.daemon.models import Action
 
+def is_ajax(request):
+    if request.POST.has_key('source') and request.POST['source'] == "ajax":
+        return True
+    else:
+        return False
+
 def get_blank(request):
+    print(request.POST)
     try:
-        return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
+        return render_to_response('blank.html') if is_ajax(request) else HttpResponseRedirect('/')
     except (KeyError):
         return HttpResponseRedirect('/')
 
@@ -96,4 +103,10 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
-    return render_to_response('library/edit.html', locals(), context_instance=RequestContext(request))
+    print(request.POST)
+
+    # Check for ajax
+    html_template = "library/forms/edit.html" if is_ajax(request) else "library/edit.html"
+
+    return render_to_response(html_template, locals(), context_instance=RequestContext(request))
+
