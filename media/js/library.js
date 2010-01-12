@@ -15,10 +15,14 @@ $(document).ready(function() {
         setTimeout("update_info()", 200); 
     });
 
-    $(".library_item_edit > a").fancybox({
+    var fancybox_settings = {
         'frameWidth': 450,
         'frameHeight': 180,
         'overlayOpacity': 0.6,
         'hideOnContentClick': false,
-    });
+    };
+
+    $(".library_item_edit > a").fancybox(fancybox_settings);
+    // Uncomment for ajax upload
+    // $("#library_header > a").fancybox(fancybox_settings);
 });
