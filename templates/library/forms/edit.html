@@ -1,4 +1,11 @@
-<form action="/library/edit/{{ song_id }}/" method="post">
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+<div id="library_edit_form">
+    <form action="/library/edit/{{ song_id }}/" method="post" >
+        {% for item in form %}
+            <div class="fieldWrapper">
+                {{ item.errors }}
+                {{ item.label_tag }}: {{ item }}
+            </div>
+        {% endfor %}
+        <input type="submit" value="Submit" />
+    </form>
+</div>

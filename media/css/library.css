@@ -15,6 +15,18 @@
     padding: 0.5em;
 }
 
+#library_edit_form {
+    width: 300px;
+}
+
+#library_edit_form .fieldWrapper {
+    width: 100%;
+}
+
+#library_edit_form input {
+    float: right;
+}
+
 .library_item_add a img, .library_item_edit a img {
     border-style: none;
     border-width:  0;

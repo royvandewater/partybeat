@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.template import RequestContext
 from django.shortcuts import render_to_response
 
 from models import *
@@ -53,11 +54,11 @@ def songs(request, artist=None, album=None):
 
 def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
-    return render_to_response('library/generic.xml', locals())
+    return render_to_response('library/generic.xml', locals(), context_instance=RequestContext(request))
 
 def library(request):
     songFiles = SongFile.objects.all() 
-    return render_to_response('library/library.html', locals())
+    return render_to_response('library/library.html', locals(), context_instance=RequestContext(request))
 
 def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
@@ -76,7 +77,7 @@ def upload(request):
             return HttpResponseRedirect('/')
     else:
         form = UploadForm()
-    return render_to_response('library/upload.html', locals())
+    return render_to_response('library/upload.html', locals(), context_instance=RequestContext(request))
 
     return get_blank(request)
 
@@ -95,4 +96,4 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
-    return render_to_response('library/edit.html', locals())
+    return render_to_response('library/edit.html', locals(), context_instance=RequestContext(request))
