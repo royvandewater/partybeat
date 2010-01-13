@@ -30,30 +30,36 @@ class SongFile(models.Model):
         old_name = self.name
         old_artist = self.artist
         old_album = self.album
-        if filetype == "mp3":
-            from mutagen.mp3 import MP3
-            mp3 = MP3(self.file.path)
+        try:
+            if filetype == "mp3":
+                from mutagen.mp3 import MP3
+                mp3 = MP3(self.file.path)
 
-            self.name = mp3["TIT2"]
-            self.artist = mp3["TPE1"]
-            self.album = mp3["TALB"]
-        elif filetype == "flac":
-            from mutagen.flac import FLAC
-            flac = FLAC(self.file.path)
+                self.name = mp3["TIT2"]
+                self.artist = mp3["TPE1"]
+                self.album = mp3["TALB"]
+            elif filetype == "flac":
+                from mutagen.flac import FLAC
+                flac = FLAC(self.file.path)
 
-            self.name = self.print_list(flac["title"])
-            self.artist = self.print_list(flac["artist"])
-            self.album = self.print_list(flac["album"])
+                self.name = self.print_list(flac["title"])
+                self.artist = self.print_list(flac["artist"])
+                self.album = self.print_list(flac["album"])
 
-        elif filetype == "ogg":
-            from mutagen.oggvorbis import OggVorbis
-            ogg = OggVorbis(self.file.path)
+            elif filetype == "ogg":
+                from mutagen.oggvorbis import OggVorbis
+                ogg = OggVorbis(self.file.path)
 
-            self.name = self.print_list(ogg["title"])
-            self.artist = self.print_list(ogg["artist"])
-            self.album = self.print_list(ogg["album"])
+                self.name = self.print_list(ogg["title"])
+                self.artist = self.print_list(ogg["artist"])
+                self.album = self.print_list(ogg["album"])
 
-        else:
+            else:
+                self.name = self.file.name.rpartition("/")[2]
+                self.artist = "Unknown"
+                self.album = "Unknown"
+
+        except KeyError:
             self.name = self.file.name.rpartition("/")[2]
             self.artist = "Unknown"
             self.album = "Unknown"
