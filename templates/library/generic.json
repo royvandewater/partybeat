@@ -1,0 +1,4 @@
+{"{{ xml_data.category }}": [{% for item in xml_data.items %}
+    "{{ item }}"{% if not forloop.last %},{% endif %}{% endfor %}
+    ]
+}
