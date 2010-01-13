@@ -19,6 +19,7 @@ $(document).ready(function() {
             interpolate_progress_bar();
     });
 
+
     // Send the player a command without caring about the return value
     $(".action > a").click(function(e) {
         // Disable the default behaviors of all our action links         

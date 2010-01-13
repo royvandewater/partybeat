@@ -1,5 +1,6 @@
 #library_header {
-    margin-top: 1.5em;
+    margin-left: 1.5em;
+    float: left;
 }
 
 #library_header h2 {
@@ -11,12 +12,33 @@
     margin-left: 0.5em;
 }
 
+#library_upload {
+    float: right;
+    margin-right: 10px;
+}
+
+#library_upload a {
+    color: white;
+}
+
 #library_upload_form {
-    padding: 0.5em;
+    width: 400px;
+    margin: auto;
+}
+
+#library_upload_form h2{
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#library_upload_form h3{
+    font-size: 0.8em;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 #library_edit_form {
-    color: black;
     width: 400px;
     margin: auto;
 }
@@ -56,5 +78,19 @@
 }
 
 .library_item:hover {
-    background-color: #ffd;
+    background-color: #555;
+}
+
+#song_library {
+    margin-top: 30px;
+    color: white;
+    padding: 10px;
+}
+
+#song_library .spacer {
+    height: 12px;
+}
+
+.clearboth {
+    clear: both;
 }

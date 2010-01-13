@@ -12,3 +12,13 @@ body {
 .clear_both {
     clear: both;
 }
+
+.player_element {
+    border: solid 2px white;
+    background: #7b8287 url('/xd/media/img/player/background.png') repeat-x bottom left;
+}
+
+#fancy_inner #fancy_bg {
+    border: solid 2px white;
+    background: #7b8287 url('/xd/media/img/player/background.png') repeat-x bottom left;
+}

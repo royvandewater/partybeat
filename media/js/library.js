@@ -24,5 +24,5 @@ $(document).ready(function() {
 
     $(".library_item_edit > a").fancybox(fancybox_settings);
     // Uncomment for ajax upload
-    // $("#library_header > a").fancybox(fancybox_settings);
+    $("#library_upload a").fancybox(fancybox_settings);
 });
