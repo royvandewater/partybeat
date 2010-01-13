@@ -56,6 +56,10 @@ function update_info() {
         $("#current_status").html(
             $("player_status current_action", xml).text());
 
+        // Get progress on current track
+        var seek = $("player_status seek");
+        var max_seek = $("player_status max_seek");
+
         // Decide whether to display the play button or the pause button
         var is_playing_string = $("player_status is_playing", xml).text();
         var is_playing = string_to_boolean(is_playing_string);

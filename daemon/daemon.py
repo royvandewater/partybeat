@@ -60,6 +60,9 @@ def update_status(player):
     xmmsStatus.playlist_size = player.playlist_size()
     # Set position of current song in playlist
     xmmsStatus.current_position = player.position
+    # Set seek time of song
+    xmmsStatus.seek = player.seek
+    xmmsStatus.max_seek = player.max_seek
     # Save back to db
     xmmsStatus.save()
     return xmmsStatus.timeout
