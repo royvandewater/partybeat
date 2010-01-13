@@ -76,7 +76,7 @@ function update_info() {
         current_progress = seek / max_seek;
         var offset = current_progress * 500;
 
-        // Decide whether to display the play button or the pause button
+        // Decide whether xmms2 is playing (used to determine progress bar interpolation)
         var is_playing_string = $("player_status is_playing", xml).text();
         is_playing = string_to_boolean(is_playing_string);
     });
