@@ -41,6 +41,10 @@
     display: inline;
 }
 
+#xmms_player div.action img {
+    border: 0 none;
+}
+
 #xmms_player div.hidden {
     display: none;
 }

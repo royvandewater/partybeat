@@ -17,25 +17,26 @@
     <div class="clear_both"></div>
 
     <div id="xmms_actions">
-        <div id="xmms_pause" class="action{% if not player.is_playing %} hidden {% endif %}">
-            <a href="/player/action/pause/">pause</a>
-        </div>
-
-        <div id="xmms_play" class="action{% if player.is_playing %} hidden {% endif %}">
-            <a href="/player/action/play/">play</a>
-        </div>
-
         <div id="xmms_previous" class="action">
-            <a href="/player/action/previous/">previous</a>
+            <a href="/player/action/previous/"><img src="{{ MEDIA_URL }}/img/player/previous.png" alt="previous" /></a>
         </div>
 
-        <div id="xmms_next" class="action">
-            <a href="/player/action/next/">next</a>
+        <div id="xmms_play" class="action">
+            <a href="/player/action/play/"><img src="{{ MEDIA_URL }}/img/player/play.png" alt="play" /></a>
+        </div>
+
+        <div id="xmms_pause" class="action">
+            <a href="/player/action/pause/"><img src="{{ MEDIA_URL }}/img/player/pause.png" alt="pause" /></a>
         </div>
 
         <div id="xmms_stop" class="action">
-            <a href="/player/action/stop/">stop</a>
+            <a href="/player/action/stop/"><img src="{{ MEDIA_URL }}/img/player/stop.png" alt="stop" /></a>
         </div>
+
+        <div id="xmms_next" class="action">
+            <a href="/player/action/next/"><img src="{{ MEDIA_URL }}/img/player/next.png" alt="next" /></a>
+        </div>
+
     </div>
 </div>
 

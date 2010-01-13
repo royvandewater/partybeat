@@ -9,6 +9,8 @@ $(document).ready(function() {
     update_info();
     update_playlist();
 
+    setTimeout("interpolate_progress_bar()", 100); 
+
     $(document).everyTime(500, update_info);
     $(document).everyTime(2000, update_playlist);
 
@@ -76,14 +78,6 @@ function update_info() {
         // Decide whether to display the play button or the pause button
         var is_playing_string = $("player_status is_playing", xml).text();
         is_playing = string_to_boolean(is_playing_string);
-
-        if(is_playing) {
-            $("#xmms_play").addClass("hidden");
-            $("#xmms_pause").removeClass("hidden");
-        } else {
-            $("#xmms_play").removeClass("hidden");
-            $("#xmms_pause").addClass("hidden");
-        }
     });
 }
 
