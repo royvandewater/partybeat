@@ -75,6 +75,12 @@
 .library_item_add a img, .library_item_edit a img {
     border-style: none;
     border-width:  0;
+    position: relative;
+    top: 2px;
+}
+
+.library_item_add a img {
+    margin-left: 2px;
 }
 
 .library_item:hover {
