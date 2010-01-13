@@ -2,3 +2,11 @@
     width: 800px;
     margin: auto;
 }
+
+body {
+  font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+}
+
+.clear_both {
+    clear: both;
+}

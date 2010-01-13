@@ -1,42 +1,44 @@
-<div id="xmms_returns">
-  <span id="current_name">{{ player.current_song.name }}</span>
-  <span id="current_artist">{{ player.current_song.artist }}</span>
-  <span id="current_album">{{ player.current_song.album }}</span>
-  <span id="current_error">{{ player.current_song.error }}</span>
-  <span id="current_status">{{ player.verbose_action }}</span>
+<div id="xmms_player">
+    <div class="vertical_space">&nbsp;
+    </div>
+    <div id="xmms_returns">
+        <span id="current_info">
+            {{ player.current_song.name }} -
+            {{ player.current_song.artist }} -
+            {{ player.current_song.album }}
+        </span>
+    </div>
+
+    <div id="xmms_seek">
+        <img src="{{ MEDIA_URL }}/img/player/seek_bar.png" alt="seek_bar" id="seek_bar" />
+        <img src="{{ MEDIA_URL }}/img/player/seek_head.png" alt="seek_head" id="seek_head"/>
+    </div>
+
+    <div class="clear_both"></div>
+
+    <div id="xmms_actions">
+        <div id="xmms_pause" class="action{% if not player.is_playing %} hidden {% endif %}">
+            <a href="/player/action/pause/">pause</a>
+        </div>
+
+        <div id="xmms_play" class="action{% if player.is_playing %} hidden {% endif %}">
+            <a href="/player/action/play/">play</a>
+        </div>
+
+        <div id="xmms_previous" class="action">
+            <a href="/player/action/previous/">previous</a>
+        </div>
+
+        <div id="xmms_next" class="action">
+            <a href="/player/action/next/">next</a>
+        </div>
+
+        <div id="xmms_stop" class="action">
+            <a href="/player/action/stop/">stop</a>
+        </div>
+    </div>
 </div>
 
-
-<div id="xmms_pause" class="action{% if not player.is_playing %} hidden {% endif %}">
-  <p>
-    <a href="/player/action/pause/">pause</a>
-  </p>
-</div>
-
-<div id="xmms_play" class="action{% if player.is_playing %} hidden {% endif %}">
-  <p>
-    <a href="/player/action/play/">play</a>
-  </p>
-</div>
-
-<div id="xmms_previous" class="action">
-  <p>
-    <a href="/player/action/previous/">previous</a>
-  </p>
-</div>
-
-<div id="xmms_next" class="action">
-  <p>
-    <a href="/player/action/next/">next</a>
-  </p>
-</div>
-
-<div id="xmms_stop" class="action">
-  <p>
-    <a href="/player/action/stop/">stop</a>
-  </p>
-</div>
-
-<div id="playlist">
-    {% include "player/playlist.html" %}
-</div>
+    <div id="playlist">
+        {% include "player/playlist.html" %}
+    </div>

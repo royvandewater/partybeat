@@ -39,18 +39,14 @@ function update_info() {
         
         var current_xmms_id = $("current_song xmms_id", xml).text();
 
-        // Get song name 
-        $("#current_name").html(
-            $("current_song name", xml).text());
+        var song_name = $("current_song name", xml).text();
+        var song_artist = $("current_song artist", xml).text();
+        var song_album = $("current_song album", xml).text();
 
+        var current_info = song_name + " - " + song_artist + " - " + song_album;
 
-        // Get song artist
-        $("#current_artist").html(
-            $("current_song artist", xml).text());
-
-        // Get song album
-        $("#current_album").html(
-            $("current_song album", xml).text());
+        // Get info
+        $("#current_info").html(current_info);
 
         // Get xmms2 status (whether it's playing or not)
         $("#current_status").html(
