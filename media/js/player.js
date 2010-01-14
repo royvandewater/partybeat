@@ -51,7 +51,7 @@ $(document).ready(function() {
 function update_info() {
 
     // Get current player info
-    $.post('/player/info/', function(xml) {
+    $.get('/player/info/', function(xml) {
         // format and output result
         
         var current_xmms_id = $("current_song xmms_id", xml).text();

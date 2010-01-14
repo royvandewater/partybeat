@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <{{ xml_data.category }}>
     {% for item in xml_data.items %}
-        <{{ xml_data.item_name }}>{{ item }}</{{ xml_data.item_name }}>
-    {% endfor %}
+    <{{ xml_data.item_name }}>{{ item }}</{{ xml_data.item_name }}>
+{% endfor %}
 </{{ xml_data.category }}>

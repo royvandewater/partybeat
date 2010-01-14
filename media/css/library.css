@@ -87,6 +87,15 @@
     background-color: #555;
 }
 
+.library_item {
+    padding-left: 30px;
+}
+
+#library_current_view h3 {
+    margin-top: 5px;
+    text-align: center;
+}
+
 #song_library {
     margin-top: 30px;
     color: white;

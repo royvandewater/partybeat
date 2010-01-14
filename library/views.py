@@ -58,7 +58,7 @@ def songs(request, artist=None, album=None):
 
 def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
-    return render_to_response('library/generic.xml', locals(), context_instance=RequestContext(request))
+    return render_to_response('library/generic.json', locals(), context_instance=RequestContext(request))
 
 def library(request):
     songFiles = SongFile.objects.all() 
