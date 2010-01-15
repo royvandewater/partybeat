@@ -29,9 +29,6 @@
     bottom: 6px;
 }
 
-#xmms_player a {
-}
-
 #xmms_player div#xmms_actions {
     text-align: center;
     margin-top: 7px;
@@ -90,5 +87,6 @@
 }
 
 #xmms_seek a {
-    height: 10px;
+    height: 12px;
+    width: 35px;
 }
