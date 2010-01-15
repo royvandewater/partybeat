@@ -72,7 +72,7 @@ def add(request, song_id):
     return get_blank(request)
 
 def upload(request):
-    if request.method == 'POST' and request.POST["source"] != "ajax":
+    if request.method == 'POST' and not request.POST.has_key("source"):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             songFile = SongFile()
@@ -87,7 +87,7 @@ def upload(request):
 
 def edit(request, song_id):
     songFile = SongFile.objects.get(id=int(song_id))
-    if request.method == 'POST' and request.POST["source"] != "ajax":
+    if request.method == 'POST' and not request.POST.has_key("source"):
         form = EditForm(request.POST)
         if form.is_valid():
             songFile.name = form.cleaned_data['name']
