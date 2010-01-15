@@ -65,6 +65,14 @@ class Xmms_controller:
         else:
             return self.print_playback_error("delete_{0}".format(id))
 
+    def seek(self, seek_time):
+        try:
+            self.xmms.playback_seek_ms(seek_time)
+            return self.print_playback_error("seek")
+        except xmmsclient.sync.XMMSError as e:
+            return self.print_playback_error("seek", e.message)
+            
+
     def get_song_from_minfo(self, minfo):
             song = Song()
             if minfo == "Could not retrieve info for that entry!":

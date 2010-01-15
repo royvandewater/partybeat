@@ -109,7 +109,7 @@ def execute_action(xmms_controller, command):
     if command.lower() in ("play", "stop", "pause", "next", "previous"):
         xmms_controller.action(command)
     # Double parenthesis are because add and delete are in a tuple
-    elif command.lower().startswith(("add", "delete",)):
+    elif command.lower().startswith(("add", "delete", "seek")):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
         split_command = command.partition("_")
         if split_command[2]:
@@ -117,6 +117,8 @@ def execute_action(xmms_controller, command):
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
                 xmms_controller.delete(int(split_command[2]))
+            elif split_command[0] == "seek":
+                xmms_controller.split(int(split_command[2]))
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """
