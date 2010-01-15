@@ -23,6 +23,11 @@ $(document).ready(function() {
         setTimeout("update_info()", 200); 
     });
 
+    $(".library_item_details").click(function(e) {
+            var target_url = $(this).parent().find(".library_item_add > a").attr("href");
+            $.post(target_url, {source: "ajax"});
+    });
+
     var fancybox_settings = {
         'frameWidth': 450,
         'frameHeight': 180,
@@ -36,3 +41,6 @@ $(document).ready(function() {
 
     // $('.library_item').corner('4px');
 });
+
+function add_to_playlist(e) {
+}
