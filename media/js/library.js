@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     $("#dialog_box").dialog({
-        width: 550,
+        width: 600,
         autoOpen: false,
         closeOnEscape: true,
         modal: true,
