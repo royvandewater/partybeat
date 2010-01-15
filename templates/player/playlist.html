@@ -1,5 +1,5 @@
     {% for item in player.playlist %}
-    <div class="playlist_item{% ifequal item.position player.position %} highlight{% endifequal %}">
+    <div class="playlist_item{% ifequal item.position player.position %} ui-state-hover{% endifequal %}">
         <span class="playlist_item_delete"><a href="/player/delete/{{ item.position }}/" class="ui-icon ui-icon-closethick"></a></span>
         <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
         <span class="playlist_item_name">{{ item.name }}</span> -

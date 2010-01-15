@@ -30,7 +30,6 @@
 }
 
 #xmms_player a {
-    color: white;
 }
 
 #xmms_player div#xmms_actions {
@@ -68,8 +67,8 @@
 
 .highlight {
     background-color: #555;
-    font-weight: bold;
-    font-size: 1.2em;
+    /* font-weight: bold; */
+    /* font-size: 1.2em; */
 }
 
 .playlist_item_delete a {

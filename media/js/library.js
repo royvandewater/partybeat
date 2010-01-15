@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+    $(".library_item").hover(
+        function(e) {
+            $(this).addClass("ui-state-hover");
+        },
+        function(e) {
+            $(this).removeClass("ui-state-hover");
+        });
+
     $(".library_item_add > a").click(function(e) {
         // Disable the default click behaviour
         e.preventDefault();
@@ -26,5 +34,5 @@ $(document).ready(function() {
     // Uncomment for ajax upload
     $("#library_upload a").fancybox(fancybox_settings);
 
-    $('.library_item').corner('4px');
+    // $('.library_item').corner('4px');
 });
