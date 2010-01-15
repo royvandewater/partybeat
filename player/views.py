@@ -37,3 +37,8 @@ def delete(request, position):
     xmms_layer = Xmms_layer()
     xmms_layer.store_action("delete_{0}".format(int(position) - 1))
     return get_blank(request)
+
+def seek(request, seek_time):
+    xmms_layer = Xmms_layer()
+    xmms_layer.store_action("seek_{0}".format(int(seek_time)))
+    return get_blank(request)

@@ -89,3 +89,11 @@
     padding: 10px;
     color: white;
 }
+
+#xmms_seek {
+    height: 5px;
+}
+
+#xmms_seek a {
+    height: 10px;
+}

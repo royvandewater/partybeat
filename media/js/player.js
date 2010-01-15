@@ -3,20 +3,35 @@ var progress_modifier = 0.0;
 // Percentage of the song we have progressed to
 var current_progress = 0.0;
 var is_playing = false;
+var seek_is_dragging = false;
+var max_seek = 100;
 
 $(document).ready(function() {
 
     update_info();
     update_playlist();
 
-    setTimeout("interpolate_progress_bar()", 100); 
+    // Initialize the slider
+    $("#xmms_seek").slider({
+        animate: true,
+        start: function(event, ui){
+            seek_is_dragging = true;
+        },
+        stop: function(event, ui){
+            var new_position = Math.floor(ui.value * max_seek / 100);
+            var url = "/player/action/seek/" + new_position + "/";
+            $.post(url, {source: "ajax"});
+            seek_is_dragging = false;
+        },
+    });
 
     $(document).everyTime(500, update_info);
     $(document).everyTime(2000, update_playlist);
 
     $(document).everyTime(100, function() {
         if( is_playing )
-            interpolate_progress_bar();
+            current_progress += progress_modifier;
+        interpolate_progress_bar();
     });
 
 
@@ -70,7 +85,7 @@ function update_info() {
 
         // Get progress on current track
         var seek = $("player_status seek", xml).text();
-        var max_seek = $("player_status max_seek", xml).text();
+        max_seek = $("player_status max_seek", xml).text();
         progress_modifier = (100 / max_seek);
         current_progress = seek / max_seek;
         var offset = current_progress * 500;
@@ -88,10 +103,9 @@ function update_playlist() {
 }
 
 function interpolate_progress_bar() {
-    current_progress += progress_modifier;
-    var offset = current_progress * 471;
-    if(offset < 485)
-        $("#seek_head").css('left', offset);
+    var offset = current_progress * 100;
+    if(offset < 100 && !seek_is_dragging)
+        $("#xmms_seek").slider('value', offset);
 }
 
 function string_to_boolean(boolean_string) {
