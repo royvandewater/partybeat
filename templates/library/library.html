@@ -1,4 +1,4 @@
-<div id="song_library" class="player_element">
+<div id="song_library" class="player_element ui-widget-content">
     <div id="library_header" >
         <h2>Song Library</h2>
     </div>
@@ -8,8 +8,8 @@
     <div class="clearboth spacer"></div>
     {% for song in songFiles %}
     <div class="library_item">
-        <span class="library_item_add"><a href="/library/add/{{ song.id }}/" title="Add to playlist"><img src="{{ MEDIA_URL }}img/icons/add/1.png" alt="Add to Playlist" /></a></span>
-        <span class="library_item_edit"><a href="/library/edit/{{ song.id }}/" title="Edit Song"><img src="{{ MEDIA_URL }}img/icons/edit/1.png" alt="Edit Song" /></a></span>
+        <span class="library_item_add"><a href="/library/add/{{ song.id }}/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a></span>
+        <span class="library_item_edit"><a href="/library/edit/{{ song.id }}/" title="Edit Song" class="ui-icon ui-icon-gear"></a></span>
         <span class="library_item_name">{{ song.name }}</span> -
         <span class="library_item_artist">{{ song.artist }}</span> -
         <span class="library_item_album">{{ song.album }}</span>

@@ -72,15 +72,14 @@
     width: 100px;
 }
 
-.library_item_add a img, .library_item_edit a img {
-    border-style: none;
-    border-width:  0;
+.library_item span a {
+    display: inline-block;
     position: relative;
     top: 2px;
 }
 
-.library_item_add a img {
-    margin-left: 2px;
+.library_item_edit a {
+    margin-left: -5px;
 }
 
 .library_item:hover {

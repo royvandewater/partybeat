@@ -1,4 +1,4 @@
-<div id="xmms_player" class="player_element" >
+<div id="xmms_player" class="player_element ui-widget-header" >
     <div class="vertical_space">&nbsp;
     </div>
     <div id="xmms_returns">
@@ -17,29 +17,14 @@
     <div class="clear_both"></div>
 
     <div id="xmms_actions">
-        <div id="xmms_previous" class="action">
-            <a href="/player/action/previous/"><img src="{{ MEDIA_URL }}/img/player/previous.png" alt="previous" /></a>
-        </div>
-
-        <div id="xmms_play" class="action">
-            <a href="/player/action/play/"><img src="{{ MEDIA_URL }}/img/player/play.png" alt="play" /></a>
-        </div>
-
-        <div id="xmms_pause" class="action">
-            <a href="/player/action/pause/"><img src="{{ MEDIA_URL }}/img/player/pause.png" alt="pause" /></a>
-        </div>
-
-        <div id="xmms_stop" class="action">
-            <a href="/player/action/stop/"><img src="{{ MEDIA_URL }}/img/player/stop.png" alt="stop" /></a>
-        </div>
-
-        <div id="xmms_next" class="action">
-            <a href="/player/action/next/"><img src="{{ MEDIA_URL }}/img/player/next.png" alt="next" /></a>
-        </div>
-
+        <a href="/player/action/previous/" class="ui-icon ui-icon-seek-prev"></a>
+        <a href="/player/action/play/" class="ui-icon ui-icon-play"></a>
+        <a href="/player/action/pause/" class="ui-icon ui-icon-pause"></a>
+        <a href="/player/action/stop/" class="ui-icon ui-icon-stop"></a>
+        <a href="/player/action/next/" class="ui-icon ui-icon-seek-next"></a>
     </div>
 </div>
 
-<div id="playlist" class="player_element">
+<div id="playlist" class="player_element ui-widget-content">
 {% include "player/playlist.html" %}
 </div>

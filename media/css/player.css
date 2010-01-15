@@ -35,14 +35,12 @@
 
 #xmms_player div#xmms_actions {
     text-align: center;
+    margin-top: 7px;
 }
 
-#xmms_player div.action {
-    display: inline;
-}
-
-#xmms_player div.action img {
-    border: 0 none;
+#xmms_actions a {
+    display: inline-block;
+    /* float: left; */
 }
 
 #xmms_player div.hidden {
@@ -75,19 +73,15 @@
 }
 
 .playlist_item_delete a {
-    /* border-style: none; */
-    /* border-width:  0; */
-    float: left;
-    display: block;
-    width: 16px;
-    height: 16px;
+    display: inline-block;
     margin-top: 1px;
     margin-right: 3px;
-    background-image: url('/xd/media/img/icons/delete/5.png');
+    position: relative;
+    top: 2px;
 }
 
 .highlight a {
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 #playlist {

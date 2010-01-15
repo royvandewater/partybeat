@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 
     // Send the player a command without caring about the return value
-    $(".action > a").click(function(e) {
+    $("#xmms_actions > a").click(function(e) {
         // Disable the default behaviors of all our action links         
         e.preventDefault();
 
@@ -37,7 +37,6 @@ $(document).ready(function() {
         // We'll want to force a player status update after 200 milliseconds
         // because the daemon needs time to write to the db
         setTimeout("update_info()", 200); 
-
     });
 
     $("#playlist > div span a").live("click", function(e) {
