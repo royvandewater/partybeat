@@ -1,4 +1,5 @@
-<form action="/library/upload/" enctype="multipart/form-data" method="post">
-    {{ form }}
+<form action="/library/upload/" enctype="multipart/form-data" method="post" id="library_upload_form_dialog">
+    {{ form.file.errors }}
+    {{ form.file.label }}:  {{ form.file }}
     <input type="submit" value="Upload" />
 </form>

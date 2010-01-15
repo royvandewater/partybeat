@@ -25,6 +25,10 @@
     margin: auto;
 }
 
+#library_upload_form_dialog {
+    padding-top: 20px;
+}
+
 #library_upload_form h2{
     font-size: 1.2em;
     text-align: center;

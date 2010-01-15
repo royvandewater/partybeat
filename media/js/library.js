@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     $("#dialog_box").dialog({
-        width: 500,
+        width: 550,
         autoOpen: false,
         closeOnEscape: true,
         modal: true,
@@ -34,12 +34,6 @@ $(document).ready(function() {
             $.post(target_url, {source: "ajax"});
     });
 
-    var fancybox_settings = {
-        'frameWidth': 450,
-        'frameHeight': 180,
-        'overlayOpacity': 0.6,
-        'hideOnContentClick': false,
-    };
 
     $(".library_item_edit a").click(render_popup);
     $("#library_upload a").click(render_popup);
