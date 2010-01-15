@@ -140,7 +140,10 @@ class Xmms_controller:
 
         minfo = self.get_song_info_from_id(current_id)
         self.player.current_song = self.get_song_from_minfo(minfo)
-        self.player.position = position['position'] + 1
+        try: 
+            self.player.position = position['position'] + 1 
+        except:
+            self.player.position = 0
         self.player.seek = self.xmms.playback_playtime()
         self.player.max_seek = minfo["duration"]
         del(minfo)
