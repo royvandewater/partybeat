@@ -72,7 +72,7 @@ def add(request, song_id):
     return get_blank(request)
 
 def upload(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST["source"] != "ajax":
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             songFile = SongFile()
@@ -81,13 +81,13 @@ def upload(request):
             return HttpResponseRedirect('/')
     else:
         form = UploadForm()
-    return render_to_response('library/upload.html', locals(), context_instance=RequestContext(request))
 
-    return get_blank(request)
+    html_template = "library/forms/upload.html" if is_ajax(request) else "library/upload.html"
+    return render_to_response(html_template, locals(), context_instance=RequestContext(request))
 
 def edit(request, song_id):
     songFile = SongFile.objects.get(id=int(song_id))
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST["source"] != "ajax":
         form = EditForm(request.POST)
         if form.is_valid():
             songFile.name = form.cleaned_data['name']
@@ -100,6 +100,8 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
+
+    print("edit called");
 
     # Check for ajax
     html_template = "library/forms/edit.html" if is_ajax(request) else "library/edit.html"

@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+    $("#dialog_box").dialog({
+        width: 500,
+        autoOpen: false,
+        closeOnEscape: true,
+        modal: true,
+    });
     $(".library_item").hover(
         function(e) {
             $(this).addClass("ui-state-active");
@@ -35,12 +41,22 @@ $(document).ready(function() {
         'hideOnContentClick': false,
     };
 
-    $(".library_item_edit > a").fancybox(fancybox_settings);
-    // Uncomment for ajax upload
-    $("#library_upload a").fancybox(fancybox_settings);
+    $(".library_item_edit a").click(render_popup);
+    $("#library_upload a").click(render_popup);
 
-    // $('.library_item').corner('4px');
+
 });
 
-function add_to_playlist(e) {
+function render_popup(e) {
+        e.preventDefault();
+
+        var target_url = $(this).attr("href");
+        var title = $(this).attr("title");
+
+        $.post(target_url, {source: "ajax"}, function(e){
+            $("#dialog_box").html(e);
+        });
+
+        $("#dialog_box").dialog('open');
+        $("#dialog_box").dialog('option', 'title', title);
 }
