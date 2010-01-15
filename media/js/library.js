@@ -2,10 +2,10 @@ $(document).ready(function() {
 
     $(".library_item").hover(
         function(e) {
-            $(this).addClass("ui-state-hover");
+            $(this).addClass("ui-state-active");
         },
         function(e) {
-            $(this).removeClass("ui-state-hover");
+            $(this).removeClass("ui-state-active");
         });
 
     $(".library_item_add > a").click(function(e) {

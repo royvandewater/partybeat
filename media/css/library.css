@@ -18,7 +18,6 @@
 }
 
 #library_upload a {
-    color: white;
 }
 
 #library_upload_form {
@@ -88,7 +87,6 @@
 
 #song_library {
     margin-top: 30px;
-    color: white;
     padding: 10px;
 }
 
