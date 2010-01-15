@@ -21,7 +21,8 @@ $(document).ready(function() {
             var new_position = Math.floor(ui.value * max_seek / 100);
             var url = "/player/action/seek/" + new_position + "/";
             $.post(url, {source: "ajax"});
-            seek_is_dragging = false;
+            setTimeout("start_slider()", 1000); 
+            update_info();
         },
     });
 
@@ -122,4 +123,8 @@ function string_to_boolean(boolean_string) {
 
 function trim(stringToTrim) { 
     return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
+function start_slider() {
+    seek_is_dragging = false;
 }

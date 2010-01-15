@@ -118,7 +118,7 @@ def execute_action(xmms_controller, command):
             elif split_command[0] == "delete":
                 xmms_controller.delete(int(split_command[2]))
             elif split_command[0] == "seek":
-                xmms_controller.split(int(split_command[2]))
+                xmms_controller.seek(int(split_command[2]))
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """
