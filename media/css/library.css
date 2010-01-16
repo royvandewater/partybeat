@@ -89,16 +89,21 @@
 .library_item span a {
     display: inline-block;
     position: relative;
+}
+
+.library_item_add a {
     top: 2px;
 }
 
 .library_item_edit a {
-    margin-left: -5px;
+    margin-left: -4px;
+    top: 2px;
 }
 
-/* .library_item:hover { */
-    /* background-color: #555; */
-/* } */
+.library_item_download a {
+    margin-left: -4px;
+    top: 3px;
+}
 
 #song_library {
     margin-top: 30px;
