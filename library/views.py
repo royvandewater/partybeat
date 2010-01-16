@@ -6,6 +6,9 @@ from models import *
 from forms import *
 from xmms2_django.daemon.models import Action
 
+def get_filename(filepath):
+    return filepath.rpartition("/")[2]
+
 def is_ajax(request):
     if request.POST.has_key('source') and request.POST['source'] == "ajax":
         return True
@@ -108,3 +111,6 @@ def edit(request, song_id):
 
     return render_to_response(html_template, locals(), context_instance=RequestContext(request))
 
+def download(request, song_id):
+    songFile = SongFile.objects.get(id=int(song_id))
+    return HttpResponseRedirect(songFile.file.url)
