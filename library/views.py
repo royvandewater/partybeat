@@ -1,10 +1,13 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 
 from models import *
 from forms import *
 from xmms2_django.daemon.models import Action
+
+def get_filetype(filepath):
+    return filepath.rpartition(".")[2]
 
 def get_filename(filepath):
     return filepath.rpartition("/")[2]
@@ -113,4 +116,6 @@ def edit(request, song_id):
 
 def download(request, song_id):
     songFile = SongFile.objects.get(id=int(song_id))
-    return HttpResponseRedirect(songFile.file.url)
+    response = HttpResponse(content=songFile.file.chunks(), mimetype="audio/{0}".format(get_filetype(songFile.file.name)))
+    response['Content-Disposition'] = "attachment; filename={0}".format(get_filename(songFile.file.name))
+    return response
