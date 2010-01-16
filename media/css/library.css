@@ -5,6 +5,17 @@
 
 #library_header h2 {
     display: inline; 
+    float: left;
+}
+
+#theme_roll_link {
+    float: left;
+    position: relative;
+    top: 8px;
+}
+
+#theme_roller {
+    margin: 10px 12px 0;
 }
 
 #library_header a {
