@@ -1,5 +1,4 @@
 from django.db import models
-import eyeD3
 import mutagen
 
 from xmms2_django.daemon.models import Action
