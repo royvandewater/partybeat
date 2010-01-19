@@ -6,6 +6,7 @@ $(document).ready(function() {
         closeOnEscape: true,
         modal: true,
     });
+
     $(".library_item").hover(
         function(e) {
             $(this).addClass("ui-state-active");
@@ -39,6 +40,7 @@ $(document).ready(function() {
     $("#library_upload a").click(render_popup);
 
 
+    // $("#theme_roll_link").click(render_theme_roller);
 });
 
 function render_popup(e) {
@@ -54,3 +56,25 @@ function render_popup(e) {
         $("#dialog_box").dialog('open');
         $("#dialog_box").dialog('option', 'title', title);
 }
+
+// function render_theme_roller(e) {
+        // $("#theme_dialog").dialog({
+            // title: "Theme Switcher",
+            // width: 210,
+            // minHeight: 100,
+            // height: 100,
+            // autoOpen: false,
+            // closeOnEscape: true,
+        // });
+        // e.preventDefault();
+
+        // var target_url = $(this).attr("href");
+        // var title = $(this).attr("title");
+
+        // var roller_div = '<div id="theme_roller"></div>';
+        // $("#dialog_box").html(roller_div);
+
+        // $("#dialog_box").dialog('open');
+        // $("#dialog_box").dialog('option', 'title', title);
+        // $("#theme_roller").themeswitcher();
+// }

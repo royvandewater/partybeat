@@ -26,7 +26,7 @@ $(document).ready(function() {
         },
     });
 
-    $(document).everyTime(500, update_info);
+    $(document).everyTime(2000, update_info);
     $(document).everyTime(2000, update_playlist);
 
     $(document).everyTime(100, function() {
