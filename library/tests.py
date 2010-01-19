@@ -19,6 +19,9 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, code)
 
     # Test all urls
+    def test_library(self):
+        self.check_response_code('/library/', 200)
+
     def test_add(self):
         self.check_response_code('/library/add/1/', 302)
 

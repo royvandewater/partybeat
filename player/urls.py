@@ -9,8 +9,8 @@ urlpatterns = patterns('xmms2_django.player.views',
     # Player url patterns
     (r'action/seek/(?P<seek_time>\w+)/$', 'seek'),
     (r'action/(?P<action>\w+)/$', 'run_action'),
+    (r'delete/(?P<position>\d+)/$', 'delete'),
     (r'info/$', 'get_info'),
     (r'playlist/$', 'playlist'),
-    (r'delete/(?P<position>\d+)/$', 'delete'),
-
+    (r'player/$', 'player'),
 )

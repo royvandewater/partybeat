@@ -68,7 +68,7 @@ def generic_xml(request, category, item_name, items):
 
 def library(request):
     songFiles = SongFile.objects.all() 
-    return render_to_response('library/library.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('library/standalone.html', locals(), context_instance=RequestContext(request))
 
 def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
@@ -106,8 +106,6 @@ def edit(request, song_id):
                 'artist': songFile.artist,
                 'album': songFile.album}
         form = EditForm(data)
-
-    print("edit called");
 
     # Check for ajax
     html_template = "library/forms/edit.html" if is_ajax(request) else "library/edit.html"
