@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $(".player_element").corner();
 
     $("#theme_roller").themeswitcher();
     $("#theme_roller_link").click( function(e) {
