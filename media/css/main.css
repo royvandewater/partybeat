@@ -11,3 +11,6 @@ body {
     clear: both;
 }
 
+#theme_roller {
+    display: none;
+}

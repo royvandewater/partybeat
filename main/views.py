@@ -18,6 +18,7 @@ def player(request):
     player = xmms2.player
     songFiles = SongFile.objects.all()
     form = UploadForm()
+    popout = True
     return render_to_response('main.html', locals(), context_instance=RequestContext(request))
 
 def get_info(request):
