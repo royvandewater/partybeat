@@ -39,6 +39,7 @@ $(document).ready(function() {
     $(".library_item_edit a").click(render_popup);
     $("#library_upload a").click(render_popup);
 
+    // Library treeview
 
 });
 
