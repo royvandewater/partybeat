@@ -1,17 +1,21 @@
 {"xmms2": {
     "player_status": {
         "is_playing": "{{ player.is_playing }}",
-        "current_action": "{{ player.status }}"
+        "current_action": "{{ player.status }}",
+        "last_update": "{{ player.last_update }}",
+        "seek": "{{ player.seek }}",
+        "max_seek": "{{ player.max_seek }}"
     },
     "current_song": {
-        "title": "{{ player.title }}",
-        "artist": "{{ player.artist }}",
-        "album": "{{ player.album }}"
+        "name": "{{ player.current_song.name }}",
+        "artist": "{{ player.current_song.artist }}",
+        "album": "{{ player.current_song.album }}",
+        "xmms_id": "{{ player.current_song.xmms_id }}"
     },
     "playlist": [
       {% for song in player.playlist %}
         {"song": "{{ song.position }}", 
-         "title": "{{ song.title }}",
+         "name": "{{ song.name }}",
          "artist": "{{ song.artist }}",
          "album": "{{ song.album }}"
         }{% if not forloop.last %},{% endif %}

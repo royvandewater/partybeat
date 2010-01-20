@@ -66,33 +66,28 @@ $(document).ready(function() {
 function update_info() {
 
     // Get current player info
-    $.post('/player/info/', function(xml) {
+    $.getJSON('/player/info/', function(json) {
+            
         // format and output result
-        
-        var current_xmms_id = $("current_song xmms_id", xml).text();
+        var current_song = json.xmms2.current_song;
+        var player_status = json.xmms2.player_status;
 
-        var song_name = $("current_song name", xml).text();
-        var song_artist = $("current_song artist", xml).text();
-        var song_album = $("current_song album", xml).text();
+        var current_xmms_id = current_song.xmms_id;
 
-        var current_info = song_name + " - " + song_artist + " - " + song_album;
+        var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
 
-        // Get info
+        // Set info
         $("#current_info").html(current_info);
 
-        // Get xmms2 status (whether it's playing or not)
-        $("#current_status").html(
-            $("player_status current_action", xml).text());
-
         // Get progress on current track
-        var seek = $("player_status seek", xml).text();
-        max_seek = $("player_status max_seek", xml).text();
+        var seek = player_status.seek;
+        max_seek = player_status.max_seek;
         progress_modifier = (100 / max_seek);
         current_progress = seek / max_seek;
         var offset = current_progress * 500;
 
-        // Decide whether xmms2 is playing (used to determine progress bar interpolation)
-        var is_playing_string = $("player_status is_playing", xml).text();
+        // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
+        var is_playing_string = player_status.is_playing
         is_playing = string_to_boolean(is_playing_string);
     });
 }
