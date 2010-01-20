@@ -43,7 +43,7 @@ def playlist(request):
     xmms_layer = Xmms_layer()
     xmms_layer.load_player_from_db()
     player = xmms_layer.player
-    return render_to_response('player/playlist.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('player/standalone_playlist.html', locals(), context_instance=RequestContext(request))
 
 def delete(request, position):
     xmms_layer = Xmms_layer()
