@@ -5,11 +5,11 @@ var current_progress = 0.0;
 var is_playing = false;
 var seek_is_dragging = false;
 var max_seek = 100;
+var timeout = 2000;
 
 $(document).ready(function() {
 
     update_info();
-    update_playlist();
 
     // Initialize the slider
     $("#xmms_seek").slider({
@@ -26,8 +26,7 @@ $(document).ready(function() {
         },
     });
 
-    $(document).everyTime(2000, update_info);
-    $(document).everyTime(2000, update_playlist);
+    $(document).everyTime(timeout, update_info);
 
     $(document).everyTime(100, function() {
         if( is_playing )
@@ -71,6 +70,7 @@ function update_info() {
         // format and output result
         var current_song = json.xmms2.current_song;
         var player_status = json.xmms2.player_status;
+        var playlist = json.xmms2.playlist;
 
         var current_xmms_id = current_song.xmms_id;
 
@@ -89,13 +89,27 @@ function update_info() {
         // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
         var is_playing_string = player_status.is_playing
         is_playing = string_to_boolean(is_playing_string);
-    });
-}
 
-function update_playlist() {
-        // Load in data from playlist
-        target_url = "/player/playlist/";
-        $("#playlist").load(target_url);
+        // Clear the playlist
+        $("#playlist").html("");
+            
+        // Build the playlist
+        $.each(playlist, function(i, item) {
+            var song_str = item.position + ": " + item.name + " - " + item.artist + " - " + item.album;
+
+            var hover = ""
+            if( item.position == current_song.position )
+                hover = " ui-state-hover";
+
+            var html_str = '<div class="playlist_item' + hover + '">' + 
+            '<span class="playlist_item_delete">' + 
+                '<a href="/player/delete/' + item.position + '/" ' +
+                   'class="ui-icon ui-icon-closethick"></a>' + 
+            '</span>' + song_str + '</div>';
+            $("#playlist").append(html_str);
+        });
+        
+    });
 }
 
 function interpolate_progress_bar() {

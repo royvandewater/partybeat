@@ -4,17 +4,19 @@
         "current_action": "{{ player.status }}",
         "last_update": "{{ player.last_update }}",
         "seek": "{{ player.seek }}",
-        "max_seek": "{{ player.max_seek }}"
+        "max_seek": "{{ player.max_seek }}",
+        "timeout": "{{ player.timeout }}"
     },
     "current_song": {
         "name": "{{ player.current_song.name }}",
         "artist": "{{ player.current_song.artist }}",
         "album": "{{ player.current_song.album }}",
-        "xmms_id": "{{ player.current_song.xmms_id }}"
+        "xmms_id": "{{ player.current_song.xmms_id }}",
+        "position": "{{ player.position }}"
     },
     "playlist": [
       {% for song in player.playlist %}
-        {"song": "{{ song.position }}", 
+        {"position": "{{ song.position }}", 
          "name": "{{ song.name }}",
          "artist": "{{ song.artist }}",
          "album": "{{ song.album }}"

@@ -37,6 +37,7 @@ class Xmms_layer:
         player.status = self.xmms2.current_action
         player.position = self.xmms2.current_position
         player.last_update = self.xmms2.last_update
+        player.timeout = self.xmms2.timeout
         player.seek = self.xmms2.seek
         player.max_seek = self.xmms2.max_seek
 
