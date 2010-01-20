@@ -21,6 +21,18 @@ def run_action(request, action):
     xmms_layer.store_action(action)
     return get_blank(request)
 
+def main(request):
+    xmms2 = Xmms_layer()
+    xmms2.load_player_from_db()
+    player = xmms2.player
+    return render_to_response('player/standalone.html', locals(), context_instance=RequestContext(request))
+
+def player(request):
+    xmms2 = Xmms_layer()
+    xmms2.load_player_from_db()
+    player = xmms2.player
+    return render_to_response('player/standalone_player.html', locals(), context_instance=RequestContext(request))
+
 def get_info(request):
     xmms_layer = Xmms_layer()
     xmms_layer.load_player_from_db()

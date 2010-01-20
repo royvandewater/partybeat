@@ -24,12 +24,3 @@ def get_info(request):
     xmms_layer = Xmms_layer()
     player = xmms_layer.player
     return render_to_response('info.xml', locals(), context_instance=RequestContext(request))
-
-# def playlist(request):
-    # player = Xmms_layer().player
-    # return render_to_response('playlist.html', locals(), context_instance=RequestContext(request))
-
-# def delete(request, xmms_id):
-    # xmms2 = Xmms_controller()
-    # xmms2.delete(xmms_id)
-    # return get_blank(request)

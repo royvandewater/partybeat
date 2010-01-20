@@ -26,6 +26,9 @@ class SimpleTest(TestCase):
     def test_playlist(self):
         self.check_response_code('/player/playlist/', 200)
 
+    def test_player(self):
+        self.check_response_code('/player/', 200)
+
     def test_action(self):
         self.check_response_code('/player/action/play/', 302)
 
