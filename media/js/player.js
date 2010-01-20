@@ -21,7 +21,7 @@ $(document).ready(function() {
             var new_position = Math.floor(ui.value * max_seek / 100);
             var url = "/player/action/seek/" + new_position + "/";
             $.post(url, {source: "ajax"});
-            setTimeout("start_slider()", 1000); 
+            setTimeout("start_slider()", 2000); 
             update_info();
         },
     });
