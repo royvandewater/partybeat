@@ -3,7 +3,6 @@ $(document).ready(function() {
     $("#theme_roller").themeswitcher();
     $("#theme_roller_link").click( function(e) {
         e.preventDefault();
-        console.log("check");
         $("#theme_roller").slideToggle();
     });
 
