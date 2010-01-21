@@ -91,7 +91,7 @@ function update_info() {
         is_playing = string_to_boolean(is_playing_string);
 
         // Clear the playlist
-        $("#playlist").html("");
+        $("#playlist_songs").html("");
             
         // Build the playlist
         $.each(playlist, function(i, item) {
@@ -106,7 +106,7 @@ function update_info() {
                 '<a href="/player/delete/' + item.position + '/" ' +
                    'class="ui-icon ui-icon-closethick"></a>' + 
             '</span>' + song_str + '</div>';
-            $("#playlist").append(html_str);
+            $("#playlist_songs").append(html_str);
         });
         
     });

@@ -90,3 +90,9 @@
     height: 12px;
     width: 35px;
 }
+
+#playlist_header {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    float: left;
+}

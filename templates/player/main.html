@@ -1,5 +1,11 @@
 {% include "player/player.html" %}
 
 <div id="playlist" class="ui-widget-content ui-corner-all">
-{% include "player/playlist.html" %}
+    <div id="playlist_header" >
+        <h2>Now Playing</h2>
+    </div>
+    <div class="clearboth"></div>
+    <div id="playlist_songs">
+    {% include "player/playlist.html" %}
+    </div>
 </div>
