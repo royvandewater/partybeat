@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.core import serializers
 
 from models import *
 from forms import *
@@ -17,6 +18,12 @@ def is_ajax(request):
         return True
     else:
         return False
+
+def get_json(queryset):
+    JSONSerializer = serializers.get_serializer("json")
+    json_serializer = JSONSerializer()
+    return json_serializer.serialize(queryset)
+
 
 def get_blank(request):
     try:
@@ -44,7 +51,8 @@ def albums(request, artist=None):
         if not song.album in albums:
             albums.append(song.album)
 
-    return generic_xml(request, "albums", "album", albums)
+    return HttpResponse(get_json(albums))
+    # return generic_xml(request, "albums", "album", albums)
 
 def songs(request, artist=None, album=None):
     if artist and album:
@@ -56,11 +64,8 @@ def songs(request, artist=None, album=None):
     else:
         songFiles = SongFile.objects.all()
 
-    songs = []
-    for song in songFiles:
-        songs.append(song.name)
-
-    return generic_xml(request, "songs", "song", songs)
+    return HttpResponse(get_json(songFiles))
+    
 
 def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
