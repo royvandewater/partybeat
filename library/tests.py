@@ -25,18 +25,24 @@ class SimpleTest(TestCase):
     def test_add(self):
         self.check_response_code('/library/add/1/', 302)
 
+    def test_edit(self):
+        self.check_response_code('/library/edit/1/', 200)
+
+    def test_download(self):
+        self.check_response_code('/library/download/1/', 200)
+        
+    def test_upload(self):
+        self.check_response_code('/library/upload/', 200)
+
     def test_artists(self):
         self.check_response_code('/library/artists/', 200)
 
     def test_albums(self):
         self.check_response_code('/library/albums/', 200)
-        self.check_response_code('/library/albums/Phil_Collins/', 200)
+        self.check_response_code('/library/albums/artist/phil_collins/', 200)
 
     def test_songs(self):
         self.check_response_code('/library/songs/', 200)
-
-    def test_edit(self):
-        self.check_response_code('/library/edit/1/', 200)
-
-    def test_upload(self):
-        self.check_response_code('/library/upload/', 200)
+        self.check_response_code('/library/songs/artist/phil_collins/', 200)
+        self.check_response_code('/library/songs/album/hits/', 200)
+        self.check_response_code('/library/songs/artist/phil_collins/album/hits/', 200)

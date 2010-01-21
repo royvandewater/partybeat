@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.core import serializers
+import json
 
 from models import *
 from forms import *
@@ -19,11 +20,23 @@ def is_ajax(request):
     else:
         return False
 
-def get_json(queryset):
-    JSONSerializer = serializers.get_serializer("json")
-    json_serializer = JSONSerializer()
-    return json_serializer.serialize(queryset)
-
+def get_json(data):
+    try:
+        # Assume its a queryset
+        JSONSerializer = serializers.get_serializer("json")
+        json_serializer = JSONSerializer()
+        return json_serializer.serialize(data)
+    except AttributeError:
+        # Assume its a dict and serialize
+        try:
+            return json.dumps(data)
+        except TypeError:
+            # We probably have a 'querysetValues' object here
+            # set() removes the duplicates. However, it also removes the ability to order.
+            # so we use list to make it orderable again and then sort it.
+            data = list(set(data))
+            data.sort()
+            return json.dumps(data)
 
 def get_blank(request):
     try:
@@ -32,27 +45,17 @@ def get_blank(request):
         return HttpResponseRedirect('/')
 
 def artists(request):
-    songFiles = SongFile.objects.all().order_by('artist')
-    artists = []
-    for song in songFiles:
-        if not song.artist in artists:
-            artists.append(song.artist)
+    artists = SongFile.objects.all().values_list('artist', flat=True)
 
-    return generic_xml(request, "artists", "artist", artists)
+    return HttpResponse(get_json(artists))
 
 def albums(request, artist=None):
     if artist:
-        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "))
+        albums = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).values_list('album', flat=True)
     else:
-        songFiles = SongFile.objects.all()
-
-    albums = []
-    for song in songFiles:
-        if not song.album in albums:
-            albums.append(song.album)
+        albums = SongFile.objects.all().values_list('album', flat=True)
 
     return HttpResponse(get_json(albums))
-    # return generic_xml(request, "albums", "album", albums)
 
 def songs(request, artist=None, album=None):
     if artist and album:
