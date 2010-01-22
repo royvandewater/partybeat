@@ -11,12 +11,6 @@
         <a href="/library/upload/" title="Upload Song">Upload Song</a>
     </div>
     <div class="clearboth spacer"></div>
-    {% for song in songFiles %}
-    <div class="library_item">
-        <span class="library_item_add"><a href="/library/add/{{ song.id }}/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a></span>
-        <span class="library_item_edit"><a href="/library/edit/{{ song.id }}/" title="Edit Song" class="ui-icon ui-icon-gear"></a></span>
-        <span class="library_item_download"><a href="/library/download/{{ song.id }}/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a></span>
-        <span class="library_item_details">{{ song.name }} - {{ song.artist }} - {{ song.album }}</span>
+    <div id="library_items">
     </div>
-    {% endfor %}
 </div>
