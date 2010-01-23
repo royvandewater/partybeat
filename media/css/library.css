@@ -40,6 +40,12 @@
     padding-top: 20px;
 }
 
+#library_upload_form_dialog #id_file {
+    color: white;
+    background-color: black;
+    border: 0 none;
+}
+
 #library_upload_form h2{
     font-size: 1.2em;
     text-align: center;
