@@ -40,6 +40,11 @@ $(document).ready(function() {
     $("#library_upload a").click(render_popup);
 
     // Library treeview
+    $.getJSON('/library/artists/', function(json) {
+        $.each(json, function(i, artist) {
+            $('#library_items').append('<div class="library_item">' + artist + '</div>');
+        });
+    });
 
 });
 
