@@ -88,7 +88,7 @@ $(document).ready(function() {
                                             '<a href="/library/download/' + id + '/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a>' +
                                         '</span>' +
                                         '<div class="library_item_details">' + name +  '</div>' +
-                                        '<div class="clearboth">' +
+                                        '<div class="clearboth"></div>' +
                                     '</div>' +
                                  '</li>';
                          subtree += li;
