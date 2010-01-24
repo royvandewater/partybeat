@@ -51,7 +51,7 @@ $(document).ready(function() {
                 $.each(json, function(i, album) {
                     var li = '<li>' +
                                  '<div class="library_row album_item">' +
-                                     '<div class="ui-icon ui-icon-folder-collapsed" ></div>' +
+                                     '<div class="ui-icon ui-icon-triangle-1-e" ></div>' +
                                      '<span>' + album  + '</span>' +
                                  '</div>' + 
                              '</li>';
@@ -60,8 +60,20 @@ $(document).ready(function() {
 
                 subtree += "</ul>";
                 artist_item.parent().append(subtree);
+                artist_item.find("div").removeClass("ui-icon-triangle-1-e");
+                artist_item.find("div").addClass("ui-icon-triangle-1-se");
             });
         } else {
+            if($(this).find("div.ui-icon").is(".ui-icon-triangle-1-se"))
+            {
+                $(this).find("div.ui-icon-triangle-1-se").addClass("ui-icon-triangle-1-e");
+                $(this).find("div.ui-icon-triangle-1-se").removeClass("ui-icon-triangle-1-se");
+            }
+            else
+            {
+                $(this).find("div.ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-se");
+                $(this).find("div.ui-icon-triangle-1-e").removeClass("ui-icon-triangle-1-e");
+            }
             $(this).parent().find("ul").slideToggle();
         }
     });
@@ -96,8 +108,20 @@ $(document).ready(function() {
 
                     subtree += "</ul>";
                     album_item.parent().append(subtree);
+                    album_item.find("div").removeClass("ui-icon-triangle-1-e");
+                    album_item.find("div").addClass("ui-icon-triangle-1-se");
                 });
             } else {
+                if($(this).find("div.ui-icon").is(".ui-icon-triangle-1-se"))
+                {
+                    $(this).find("div.ui-icon-triangle-1-se").addClass("ui-icon-triangle-1-e");
+                    $(this).find("div.ui-icon-triangle-1-se").removeClass("ui-icon-triangle-1-se");
+                }
+                else
+                {
+                    $(this).find("div.ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-se");
+                    $(this).find("div.ui-icon-triangle-1-e").removeClass("ui-icon-triangle-1-e");
+                }
                 $(this).parent().find("ul").slideToggle();
             }
     });
