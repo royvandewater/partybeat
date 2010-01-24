@@ -7,13 +7,13 @@ $(document).ready(function() {
         modal: true,
     });
 
-    $(".library_row").hover(
-        function(e) {
+    $(".library_row").live('mouseover', function(e) {
             $(this).addClass("ui-state-active");
-        },
-        function(e) {
+    });
+
+    $(".library_row").live('mouseout', function(e) {
             $(this).removeClass("ui-state-active");
-        });
+    });
 
     $(".library_item_add > a").click(function(e) {
         // Disable the default click behaviour
@@ -41,13 +41,13 @@ $(document).ready(function() {
 
     // Library treeview
     $(".artist_item").click(function(e){
-        if( $(this).html().length == 0)
+        if( !has_albums(this) )
         {
             var artist = $(this).parent().find("> span").html().toLowerCase().replace(/ /g,"_");
             var artist_item = $(this);
 
             $.getJSON('/library/albums/artist/' + artist + '/', function(json) {
-                var subtree = '<ul class="library_item collapsable">';
+                var subtree = '<ul class="library_item collapsable library_albums">';
                 $.each(json, function(i, album) {
                     var li = '<li>' +
                                  '<div class="library_row"' +
@@ -62,11 +62,18 @@ $(document).ready(function() {
                 artist_item.parent().parent().append(subtree);
             });
         } else {
-            $(this).html("");
+            $(this).parent().parent().find("ul").slideToggle();
         }
     });
 
 });
+
+function has_albums(element) {
+    if ($(element).parent().parent().find("ul").length > 0)
+        return true;
+    else
+        return false;
+}
 
 function render_popup(e) {
         e.preventDefault();

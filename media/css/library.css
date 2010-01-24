@@ -121,3 +121,11 @@
 #library_items div.ui-icon {
     float: left;
 }
+
+#library_items li {
+    list-style: none;
+}
+
+ul.library_albums {
+    margin-left: 20px;
+}
