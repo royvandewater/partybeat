@@ -46,7 +46,7 @@ $(document).ready(function() {
             var artist = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
             var artist_item = $(this);
 
-            $.getJSON('/library/albums/artist/' + artist + '/', function(json) {
+            $.getJSON('/library/albums/?artist=' + escape(artist), function(json) {
                 var subtree = '<ul class="library_item collapsable library_albums">';
                 $.each(json, function(i, album) {
                     var li = '<li>' +
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 var album = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
                 var album_item = $(this);
 
-                $.getJSON('/library/songs/artist/' + artist + '/album/' + album + '/', function(json) {
+                $.getJSON('/library/songs/?artist=' + escape(artist) + '&album=' + escape(album), function(json) {
                     var subtree = '<ul class="library_item library_songs">';
                     $.each(json, function(i, song) {
                         var id = song.pk;
