@@ -112,9 +112,9 @@
 }
 
 #song_library {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px;
-    width: 440px;
+    width: 450px;
     float: left;
 }
 
@@ -136,7 +136,7 @@
 }
 
 #library_items li span {
-    width: 100%;
+    /* width: 100%; */
 }
 
 ul.library_albums {
@@ -145,4 +145,12 @@ ul.library_albums {
 
 ul.library_songs {
     margin-left: 30px;
+}
+
+.library_item_details, .library_item_add, .library_item_edit, .library_item_download {
+    float: left;
+}
+
+.library_item_details {
+    width: 350px;
 }
