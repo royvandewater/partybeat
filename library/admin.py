@@ -3,6 +3,7 @@ from models import *
 
 class SongFileAdmin(admin.ModelAdmin):
     list_display = ('name', 'album', 'artist',) # The future listview
+    search_fields = ['name', 'album', 'artist'] # Search fields
     fieldsets = (
             (None, {
                 'fields': ('file',)
