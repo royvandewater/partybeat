@@ -8,6 +8,15 @@ from models import *
 from forms import *
 from xmms2_django.daemon.models import Action
 
+def ignore_case_and_the(name):
+    name = name.toLower()
+    if name.startswith("the "):
+        try:
+            name = name[3:]
+        except KeyError:
+            name = "the "
+    return name
+
 def get_filetype(filepath):
     return filepath.rpartition(".")[2]
 
