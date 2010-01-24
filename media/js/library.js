@@ -7,7 +7,7 @@ $(document).ready(function() {
         modal: true,
     });
 
-    $(".library_item").hover(
+    $(".library_row").hover(
         function(e) {
             $(this).addClass("ui-state-active");
         },
@@ -40,10 +40,30 @@ $(document).ready(function() {
     $("#library_upload a").click(render_popup);
 
     // Library treeview
-    $.getJSON('/library/artists/', function(json) {
-        $.each(json, function(i, artist) {
-            $('#library_items').append('<div class="library_item">' + artist + '</div>');
-        });
+    $(".artist_item").click(function(e){
+        if( $(this).html().length == 0)
+        {
+            var artist = $(this).parent().find("> span").html().toLowerCase().replace(/ /g,"_");
+            var artist_item = $(this);
+
+            $.getJSON('/library/albums/artist/' + artist + '/', function(json) {
+                var subtree = '<ul class="library_item collapsable">';
+                $.each(json, function(i, album) {
+                    var li = '<li>' +
+                                 '<div class="library_row"' +
+                                     '<div class="ui-icon ui-icon-folder-collapsed album_item" ></div>' +
+                                     '<span class="album_item">' + album  + '</span>' +
+                                 '</div>' + 
+                             '</li>';
+                    subtree += li;
+                });
+
+                subtree += "</ul>";
+                artist_item.parent().parent().append(subtree);
+            });
+        } else {
+            $(this).html("");
+        }
     });
 
 });
@@ -60,4 +80,13 @@ function render_popup(e) {
 
         $("#dialog_box").dialog('open');
         $("#dialog_box").dialog('option', 'title', title);
+}
+
+function display_artists() {
+    $('#library_items').html("")
+    $.getJSON('/library/artists/', function(json) {
+        $.each(json, function(i, artist) {
+            $('#library_items').append('<div class="library_item">' + artist + '</div>');
+        });
+    });
 }

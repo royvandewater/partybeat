@@ -75,7 +75,8 @@ def generic_xml(request, category, item_name, items):
     return render_to_response('library/generic.xml', locals(), context_instance=RequestContext(request))
 
 def library(request):
-    songFiles = SongFile.objects.all() 
+    artists = list(set(SongFile.objects.all().values_list('artist', flat=True)))
+    artists.sort()
     return render_to_response('library/standalone.html', locals(), context_instance=RequestContext(request))
 
 def add(request, song_id):

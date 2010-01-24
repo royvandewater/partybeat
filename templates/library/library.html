@@ -11,6 +11,14 @@
         <a href="/library/upload/" title="Upload Song">Upload Song</a>
     </div>
     <div class="clearboth spacer"></div>
-    <div id="library_items">
-    </div>
+    <ul id="library_items">
+        {% for artist in artists %}
+        <li class="library_item">
+            <div class="library_row">
+                <div class="ui-icon ui-icon-folder-collapsed artist_item" ></div>
+                <span class="artist_item hoverable">{{ artist }}</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>

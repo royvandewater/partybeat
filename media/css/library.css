@@ -117,3 +117,7 @@
 .clearboth {
     clear: both;
 }
+
+#library_items div.ui-icon {
+    float: left;
+}

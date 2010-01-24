@@ -16,7 +16,8 @@ def player(request):
     xmms2 = Xmms_layer()
     xmms2.load_player_from_db()
     player = xmms2.player
-    songFiles = SongFile.objects.all()
+    artists = list(set(SongFile.objects.all().values_list('artist', flat=True)))
+    artists.sort()
     form = UploadForm()
     popout = True
     return render_to_response('main.html', locals(), context_instance=RequestContext(request))
