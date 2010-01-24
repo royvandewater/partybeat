@@ -80,6 +80,8 @@
 #playlist {
     margin-top: 30px;
     padding: 10px;
+    width: 440px;
+    float: right;
 }
 
 #xmms_seek {

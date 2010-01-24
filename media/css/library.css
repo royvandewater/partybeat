@@ -114,6 +114,8 @@
 #song_library {
     margin-top: 30px;
     padding: 10px;
+    width: 440px;
+    float: left;
 }
 
 #song_library .spacer {
