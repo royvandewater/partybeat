@@ -61,7 +61,7 @@ def albums(request, artist=None):
     if artist:
         albums = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).values_list('album', flat=True)
     elif request.method == 'GET' and request.GET.has_key("artist"): 
-        artist = request.GET["artist"] 
+        artist = request.GET["artist"].replace("&amp;", "&")
         print artist
         albums = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).values_list('album', flat=True)
     else:
@@ -71,8 +71,8 @@ def albums(request, artist=None):
 
 def songs(request, artist=None, album=None):
     if request.method == 'GET' and request.GET.has_key("artist") and request.GET.has_key("album"):
-        artist = request.GET["artist"]
-        album = request.GET["album"]
+        artist = request.GET["artist"].replace("&amp;", "&")
+        album = request.GET["album"].replace("&amp;", "&")
         songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
     elif artist and album:
         songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
