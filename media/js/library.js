@@ -15,24 +15,10 @@ $(document).ready(function() {
             $(this).removeClass("ui-state-active");
     });
 
-    $(".library_item_add > a").live('click', function(e) {
-        // Disable the default click behaviour
-        e.preventDefault();
-
-        // Get this object's url
-        var target_url = $(this).attr("href");
-        
-        // Send Request (and don't wait for a response)
-        $.post(target_url, {source: "ajax"});
-
-
-        // Update info is from player.js, forces the playlist to update
-        setTimeout("update_info()", 200); 
-    });
-
     $(".song_item").live('click', function(e) {
             var target_url = $(this).find(".library_item_add > a").attr("href");
             $.post(target_url, {source: "ajax"});
+            setTimeout("update_info()", 200); 
     });
 
 
