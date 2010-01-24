@@ -15,7 +15,7 @@ $(document).ready(function() {
             $(this).removeClass("ui-state-active");
     });
 
-    $(".library_item_add > a").click(function(e) {
+    $(".library_item_add > a").live('click', function(e) {
         // Disable the default click behaviour
         e.preventDefault();
 
@@ -30,18 +30,18 @@ $(document).ready(function() {
         setTimeout("update_info()", 200); 
     });
 
-    $(".library_item_details").click(function(e) {
+    $(".library_item_details").live('click', function(e) {
             var target_url = $(this).parent().find(".library_item_add > a").attr("href");
             $.post(target_url, {source: "ajax"});
     });
 
 
-    $(".library_item_edit a").click(render_popup);
+    $(".library_item_edit a").live('click', render_popup);
     $("#library_upload a").click(render_popup);
 
     // Library treeview
     $(".artist_item").click(function(e){
-        if( !has_albums(this) )
+        if( !has_childs(this) )
         {
             var artist = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
             var artist_item = $(this);
@@ -50,9 +50,9 @@ $(document).ready(function() {
                 var subtree = '<ul class="library_item collapsable library_albums">';
                 $.each(json, function(i, album) {
                     var li = '<li>' +
-                                 '<div class="library_row"' +
-                                     '<div class="ui-icon ui-icon-folder-collapsed album_item" ></div>' +
-                                     '<span class="album_item">' + album  + '</span>' +
+                                 '<div class="library_row album_item">' +
+                                     '<div class="ui-icon ui-icon-folder-collapsed" ></div>' +
+                                     '<span>' + album  + '</span>' +
                                  '</div>' + 
                              '</li>';
                     subtree += li;
@@ -66,9 +66,45 @@ $(document).ready(function() {
         }
     });
 
+    $(".album_item").live('click', function(e){
+            if( !has_childs(this) )
+            {
+                var album = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
+                var album_item = $(this);
+
+                $.getJSON('/library/songs/album/' + album + '/', function(json) {
+                    var subtree = '<ul class="library_item library_songs">';
+                    $.each(json, function(i, song) {
+                        var id = song.pk;
+                        var name = song.fields.name;
+                        var li = '<li>' +
+                                    '<div class="library_row song_item">' +
+                                        '<span class="library_item_add">' +
+                                            '<a href="/library/add/' + id + '/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a>' +
+                                        '</span>' +
+                                        '<span class="library_item_edit">' +
+                                            '<a href="/library/edit/' + id + '/" title="Edit Song" class="ui-icon ui-icon-gear"></a>' +
+                                        '</span>' +
+                                        '<span class="library_item_download">' +
+                                            '<a href="/library/download/' + id + '/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a>' +
+                                        '</span>' +
+                                        '<span class="library_item_details">' + name +  '</span>' +
+                                    '</div>' +
+                                 '</li>';
+                         subtree += li;
+                    });
+
+                    subtree += "</ul>";
+                    album_item.parent().append(subtree);
+                });
+            } else {
+                $(this).parent().find("ul").slideToggle();
+            }
+    });
+
 });
 
-function has_albums(element) {
+function has_childs(element) {
     if ($(element).parent().find("ul").length > 0)
         return true;
     else
