@@ -9,7 +9,7 @@ from forms import *
 from xmms2_django.daemon.models import Action
 
 def ignore_case_and_the(name):
-    name = name.toLower()
+    name = name.lower()
     if name.startswith("the "):
         try:
             name = name[3:]
@@ -44,7 +44,7 @@ def get_json(data):
             # set() removes the duplicates. However, it also removes the ability to order.
             # so we use list to make it orderable again and then sort it.
             data = list(set(data))
-            data.sort()
+            data.sort(key=ignore_case_and_the)
             return json.dumps(data)
 
 def get_blank(request):
@@ -92,7 +92,7 @@ def generic_xml(request, category, item_name, items):
 
 def library(request):
     artists = list(set(SongFile.objects.all().values_list('artist', flat=True)))
-    artists.sort()
+    artists.sort(key=ignore_case_and_the)
     return render_to_response('library/standalone.html', locals(), context_instance=RequestContext(request))
 
 def add(request, song_id):
