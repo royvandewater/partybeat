@@ -39,6 +39,7 @@ function popout_library(e) {
 function popout(element) {
     var dialog_options = {
         width: 800,
+        height: 400,
         autoOpen: true,
         closeOnEscape: false,
         modal: false,
