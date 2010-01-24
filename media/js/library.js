@@ -43,7 +43,7 @@ $(document).ready(function() {
     $(".artist_item").click(function(e){
         if( !has_albums(this) )
         {
-            var artist = $(this).parent().find("> span").html().toLowerCase().replace(/ /g,"_");
+            var artist = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
             var artist_item = $(this);
 
             $.getJSON('/library/albums/artist/' + artist + '/', function(json) {
@@ -59,17 +59,17 @@ $(document).ready(function() {
                 });
 
                 subtree += "</ul>";
-                artist_item.parent().parent().append(subtree);
+                artist_item.parent().append(subtree);
             });
         } else {
-            $(this).parent().parent().find("ul").slideToggle();
+            $(this).parent().find("ul").slideToggle();
         }
     });
 
 });
 
 function has_albums(element) {
-    if ($(element).parent().parent().find("ul").length > 0)
+    if ($(element).parent().find("ul").length > 0)
         return true;
     else
         return false;

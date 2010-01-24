@@ -14,9 +14,9 @@
     <ul id="library_items">
         {% for artist in artists %}
         <li class="library_item">
-            <div class="library_row">
-                <div class="ui-icon ui-icon-folder-collapsed artist_item" ></div>
-                <span class="artist_item hoverable">{{ artist }}</span>
+            <div class="library_row artist_item">
+                <div class="ui-icon ui-icon-folder-collapsed" ></div>
+                <span>{{ artist }}</span>
             </div>
         </li>
         {% endfor %}

@@ -124,6 +124,11 @@
 
 #library_items li {
     list-style: none;
+    cursor: pointer;
+}
+
+#library_items li span {
+    width: 100%;
 }
 
 ul.library_albums {
