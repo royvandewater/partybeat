@@ -81,10 +81,11 @@ $(document).ready(function() {
     $(".album_item").live('click', function(e){
             if( !has_childs(this) )
             {
+                var artist = $(this).parent().parent().parent().find("> div span").html().toLowerCase().replace(/ /g,"_"); 
                 var album = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
                 var album_item = $(this);
 
-                $.getJSON('/library/songs/album/' + album + '/', function(json) {
+                $.getJSON('/library/songs/artist/' + artist + '/album/' + album + '/', function(json) {
                     var subtree = '<ul class="library_item library_songs">';
                     $.each(json, function(i, song) {
                         var id = song.pk;
