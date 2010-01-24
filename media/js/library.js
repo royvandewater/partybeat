@@ -30,8 +30,8 @@ $(document).ready(function() {
         setTimeout("update_info()", 200); 
     });
 
-    $(".library_item_details").live('click', function(e) {
-            var target_url = $(this).parent().find(".library_item_add > a").attr("href");
+    $(".song_item").live('click', function(e) {
+            var target_url = $(this).find(".library_item_add > a").attr("href");
             $.post(target_url, {source: "ajax"});
     });
 
