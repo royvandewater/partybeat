@@ -8,7 +8,7 @@
     float: left;
 }
 
-#theme_roller_link, #popout_library_link {
+#theme_roller_link, #popout_library_link, #float_library_link {
     float: left;
     position: relative;
     top: 8px;

@@ -96,3 +96,21 @@
     margin-bottom: 1em;
     float: left;
 }
+
+#playlist_header h2 {
+    float: left;
+    display: inline; 
+}
+
+#playlist_header a {
+    font-size: 0.8em;
+    margin-left: 0.5em;
+}
+
+#float_playlist_link {
+    float: left;
+    position: relative;
+    top: 8px;
+    margin-left
+}
+

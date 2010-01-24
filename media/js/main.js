@@ -21,4 +21,28 @@ $(document).ready(function() {
         library.focus(); 
         $("#song_library").fadeOut();
     });
+
+    $("#float_playlist_link").click(popout_playlist);
+    $("#float_library_link").click(popout_library);
 });
+
+function popout_playlist(e) {
+    e.preventDefault();
+    popout("#playlist");
+}
+
+function popout_library(e) {
+    e.preventDefault();
+    popout("#song_library");
+}
+
+function popout(element) {
+    var dialog_options = {
+        width: 800,
+        autoOpen: true,
+        closeOnEscape: false,
+        modal: false,
+    };
+
+    $(element).dialog(dialog_options);
+}
