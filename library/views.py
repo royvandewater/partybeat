@@ -12,7 +12,7 @@ def ignore_case_and_the(name):
     name = name.lower()
     if name.startswith("the "):
         try:
-            name = name[3:]
+            name = name[4:]
         except KeyError:
             name = "the "
     return name
@@ -55,6 +55,8 @@ def get_blank(request):
 
 def artists(request):
     artists = SongFile.objects.all().values_list('artist', flat=True)
+    artists = list(set(artists))
+    artists.sort(key=ignore_case_and_the)
     return HttpResponse(get_json(artists))
 
 def albums(request, artist=None):
