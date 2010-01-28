@@ -9,6 +9,15 @@
     <div id="library_upload">
         <a href="/library/upload/" title="Upload Song">Upload Song</a>
     </div>
+    <div id="search_box">
+        <form id="library_search" action="/library/search/" method="get" >
+            <p>
+              <label for="search_input" id="search_input_label">Search:</label>
+              <input name="search_input" id="search_input" type="text" />
+              <input name="submit" value="search" type="submit" id="search_submit" />
+            </p>
+        </form>
+    </div>
     <div class="clearboth spacer"></div>
     <ul id="library_items">
         {% for artist in artists %}

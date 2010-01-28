@@ -154,3 +154,12 @@ ul.library_songs {
 .library_item_details {
     width: 350px;
 }
+
+#search_input {
+    float: right;
+    margin-right: 10px;
+}
+
+#search_input_label {
+    display: none;
+}

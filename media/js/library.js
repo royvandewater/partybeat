@@ -21,6 +21,59 @@ $(document).ready(function() {
             setTimeout("update_info()", 200); 
     });
 
+    $("#search_submit").hide();
+    $("#search_input").bind( 'change keyup', function(e){
+
+            if(this.value.length == 0)
+            {
+                $.getJSON('/library/artists/', function(json) {
+                    $("#library_items").html("")
+                    $.each(json, function(i, artist) {
+                        var li = '<li class="library_item">' + 
+                                    '<div class="library_row artist_item">' +
+                                    '<div class="ui-icon ui-icon-triangle-1-e" ></div>' +
+                                        '<span>' + artist + '</span>' +
+                                    '</div>' +
+                                  '</li>';
+                        $("#library_items").append(li);
+                    });
+                });
+            } else 
+            {
+                $.getJSON('/library/search/', {search_input: this.value}, function(json) {
+                    $("#library_items").html("")
+                    
+                    var subtree = "";
+                    $.each(json, function(i, song) {
+                        var id = song.pk;
+                        var name = song.fields.name;
+                        var artist = song.fields.artist;
+                        var album = song.fields.album;
+                        var li = '<li>' +
+                                    '<div class="library_row song_item">' +
+                                        '<span class="library_item_add">' +
+                                            '<a href="/library/add/' + id + '/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a>' +
+                                        '</span>' +
+                                        '<span class="library_item_edit">' +
+                                            '<a href="/library/edit/' + id + '/" title="Edit Song" class="ui-icon ui-icon-gear"></a>' +
+                                        '</span>' +
+                                        '<span class="library_item_download">' +
+                                            '<a href="/library/download/' + id + '/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a>' +
+                                        '</span>' +
+                                        '<div class="library_item_details">' + name + ' - ' + artist + ' - ' + album +  '</div>' +
+                                        '<div class="clearboth"></div>' +
+                                    '</div>' +
+                                 '</li>';
+                         subtree += li;
+                    });
+
+                    // subtree += "</ul>";
+                    $("#library_items").append(subtree);
+                });
+            }
+    });
+    
+
 
     $(".library_item_edit a").live('click', render_popup);
     $("#library_upload a").click(render_popup);

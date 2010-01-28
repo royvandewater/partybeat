@@ -142,3 +142,18 @@ def download(request, song_id):
     response = HttpResponse(content=songFile.file.chunks(), mimetype="audio/{0}".format(get_filetype(songFile.file.name)))
     response['Content-Disposition'] = "attachment; filename={0}".format(get_filename(songFile.file.name))
     return response
+
+def search(request):
+    if request.method == 'GET':
+        try:
+            artists = SongFile.objects.filter(artist__icontains=request.GET['search_input'])
+            albums = SongFile.objects.filter(album__icontains=request.GET['search_input'])
+            songs = SongFile.objects.filter(name__icontains=request.GET['search_input'])
+            songFiles = set()
+            songFiles.update(artists, albums, songs)
+            return HttpResponse(get_json(songFiles))
+
+        except KeyError:
+            return get_blank(request)
+    else:
+        return get_blank(request)
