@@ -95,7 +95,7 @@ function update_info() {
             
         // Build the playlist
         $.each(playlist, function(i, item) {
-            var song_str = item.position + ": " + item.name + " - " + item.artist + " - " + item.album;
+            var song_str = item.position + ": " + item.name + " - " + item.artist;
 
             var hover = ""
             if( item.position == current_song.position )

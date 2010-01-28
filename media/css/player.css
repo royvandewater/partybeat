@@ -78,8 +78,10 @@
 }
 
 #playlist {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px;
+    width: 450px;
+    float: right;
 }
 
 #xmms_seek {

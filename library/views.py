@@ -8,6 +8,15 @@ from models import *
 from forms import *
 from xmms2_django.daemon.models import Action
 
+def ignore_case_and_the(name):
+    name = name.lower()
+    if name.startswith("the "):
+        try:
+            name = name[3:]
+        except KeyError:
+            name = "the "
+    return name
+
 def get_filetype(filepath):
     return filepath.rpartition(".")[2]
 
@@ -35,7 +44,7 @@ def get_json(data):
             # set() removes the duplicates. However, it also removes the ability to order.
             # so we use list to make it orderable again and then sort it.
             data = list(set(data))
-            data.sort()
+            data.sort(key=ignore_case_and_the)
             return json.dumps(data)
 
 def get_blank(request):
@@ -46,11 +55,14 @@ def get_blank(request):
 
 def artists(request):
     artists = SongFile.objects.all().values_list('artist', flat=True)
-
     return HttpResponse(get_json(artists))
 
 def albums(request, artist=None):
     if artist:
+        albums = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).values_list('album', flat=True)
+    elif request.method == 'GET' and request.GET.has_key("artist"): 
+        artist = request.GET["artist"].replace("&amp;", "&")
+        print artist
         albums = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).values_list('album', flat=True)
     else:
         albums = SongFile.objects.all().values_list('album', flat=True)
@@ -58,7 +70,11 @@ def albums(request, artist=None):
     return HttpResponse(get_json(albums))
 
 def songs(request, artist=None, album=None):
-    if artist and album:
+    if request.method == 'GET' and request.GET.has_key("artist") and request.GET.has_key("album"):
+        artist = request.GET["artist"].replace("&amp;", "&")
+        album = request.GET["album"].replace("&amp;", "&")
+        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
+    elif artist and album:
         songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
     elif album:
         songFiles = SongFile.objects.filter(album__icontains=album.replace("_", " "))
@@ -75,7 +91,8 @@ def generic_xml(request, category, item_name, items):
     return render_to_response('library/generic.xml', locals(), context_instance=RequestContext(request))
 
 def library(request):
-    songFiles = SongFile.objects.all() 
+    artists = list(set(SongFile.objects.all().values_list('artist', flat=True)))
+    artists.sort(key=ignore_case_and_the)
     return render_to_response('library/standalone.html', locals(), context_instance=RequestContext(request))
 
 def add(request, song_id):
