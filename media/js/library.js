@@ -79,7 +79,7 @@ $(document).ready(function() {
     $("#library_upload a").click(render_popup);
 
     // Library treeview
-    $(".artist_item").click(function(e){
+    $(".artist_item").live('click', function(e){
         if( !has_childs(this) )
         {
             var artist = $(this).find("> span").html().toLowerCase().replace(/ /g,"_");
