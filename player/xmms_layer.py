@@ -1,8 +1,8 @@
 import datetime
 import time
 
-from xmms2_django.daemon.player_info import Player
-from xmms2_django.daemon.models import *
+from daemon.player_info import Player
+from daemon.models import *
 
 def song_sort(song):
     return song.position 

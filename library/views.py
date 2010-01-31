@@ -6,7 +6,7 @@ import json
 
 from models import *
 from forms import *
-from xmms2_django.daemon.models import Action
+from daemon.models import Action
 
 def ignore_case_and_the(name):
     name = name.lower()

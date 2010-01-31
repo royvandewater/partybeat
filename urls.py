@@ -8,13 +8,13 @@ urlpatterns = patterns('',
     # Example:
     # (r'^xmms2_django/', include('xmms2_django.foo.urls')),
 
-    (r'^$', 'xmms2_django.main.views.player'),
+    (r'^$', 'partybeat.main.views.player'),
 
     # Player Files
-    (r'^player/', include('xmms2_django.player.urls')),
+    (r'^player/', include('partybeat.player.urls')),
 
     # Library Files
-    (r'^library/', include('xmms2_django.library.urls')),
+    (r'^library/', include('partybeat.library.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:

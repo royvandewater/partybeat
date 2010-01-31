@@ -4,7 +4,7 @@ from django.template import RequestContext
 
 from models import *
 from xmms_layer import Xmms_layer
-from xmms2_django.library.models import SongFile
+from library.models import SongFile
 
 def get_blank(request):
     try:

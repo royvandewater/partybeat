@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from xmms2_django.daemon import daemon
+from partybeat.daemon import daemon
 
 
 class Command(BaseCommand):

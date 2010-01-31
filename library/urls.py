@@ -5,7 +5,7 @@ from django.views.generic.list_detail import object_detail
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('xmms2_django.library.views',
+urlpatterns = patterns('partybeat.library.views',
     # Library files
     (r'add/(?P<song_id>\d+)/$', 'add'),
     (r'edit/(?P<song_id>\d+)/$', 'edit'),

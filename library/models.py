@@ -1,7 +1,7 @@
 from django.db import models
 import mutagen
 
-from xmms2_django.daemon.models import Action
+from daemon.models import Action
 
 # Create your models here.
 class SongFile(models.Model):

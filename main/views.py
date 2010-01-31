@@ -2,9 +2,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from xmms2_django.player.xmms_layer import Xmms_layer
-from xmms2_django.library.models import SongFile
-from xmms2_django.library.forms import UploadForm
+from player.xmms_layer import Xmms_layer
+from library.models import SongFile
+from library.forms import UploadForm
 
 def ignore_case_and_the(name):
     name = name.lower()

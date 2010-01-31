@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('xmms2_django.player.views',
+urlpatterns = patterns('partybeat.player.views',
 
     # Player url patterns
     (r'action/seek/(?P<seek_time>\w+)/$', 'seek'),
