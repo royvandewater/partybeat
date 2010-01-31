@@ -44,6 +44,11 @@
     color: white;
     background-color: black;
     border: 0 none;
+    margin-bottom: 10px;
+}
+
+#library_upload_form_dialog input.submit {
+  margin-left: 230px;
 }
 
 #library_upload_form h2{

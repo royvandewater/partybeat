@@ -53,6 +53,12 @@ def get_blank(request):
     except (KeyError):
         return HttpResponseRedirect('/')
 
+def enqueue(request, songFile):
+    action = Action()
+    action.command = "add_" + songFile.file.path
+    action.save()
+    return get_blank(request)
+
 def artists(request):
     artists = SongFile.objects.all().values_list('artist', flat=True)
     artists = list(set(artists))
@@ -99,10 +105,7 @@ def library(request):
 
 def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
-    action = Action()
-    action.command = "add_" + songFile.file.path
-    action.save()
-    return get_blank(request)
+    return enqueue(request, songFile)
 
 def upload(request):
     if request.method == 'POST' and not request.POST.has_key("source"):
@@ -111,6 +114,8 @@ def upload(request):
             songFile = SongFile()
             songFile.file = request.FILES['file']
             songFile.save()
+            if request.POST['enqueue']:
+                enqueue(request, songFile)
             return HttpResponseRedirect('/')
     else:
         form = UploadForm()

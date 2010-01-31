@@ -1,5 +1,6 @@
 <form action="/library/upload/" enctype="multipart/form-data" method="post" id="library_upload_form_dialog">
     {{ form.file.errors }}
-    {{ form.file.label }}:  {{ form.file }}
-    <input type="submit" value="Upload" />
+    {{ form.file.label }}:  {{ form.file }} <br />
+    {{ form.enqueue.label }}: {{ form.enqueue }}
+    <input type="submit" value="Upload" class="submit" />
 </form>
