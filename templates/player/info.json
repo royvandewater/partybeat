@@ -1,25 +1,25 @@
 {"xmms2": {
     "player_status": {
-        "is_playing": "{{ player.is_playing }}",
-        "current_action": "{{ player.status }}",
-        "last_update": "{{ player.last_update }}",
-        "seek": "{{ player.seek }}",
-        "max_seek": "{{ player.max_seek }}",
-        "timeout": "{{ player.timeout }}"
+        "is_playing": "{{ player.is_playing|escapejs }}",
+        "current_action": "{{ player.status|escapejs }}",
+        "last_update": "{{ player.last_update|escapejs }}",
+        "seek": "{{ player.seek|escapejs }}",
+        "max_seek": "{{ player.max_seek|escapejs }}",
+        "timeout": "{{ player.timeout|escapejs }}"
     },
     "current_song": {
-        "name": "{{ player.current_song.name }}",
-        "artist": "{{ player.current_song.artist }}",
-        "album": "{{ player.current_song.album }}",
-        "xmms_id": "{{ player.current_song.xmms_id }}",
-        "position": "{{ player.position }}"
+        "name": "{{ player.current_song.name|escapejs }}",
+        "artist": "{{ player.current_song.artist|escapejs }}",
+        "album": "{{ player.current_song.album|escapejs }}",
+        "xmms_id": "{{ player.current_song.xmms_id|escapejs }}",
+        "position": "{{ player.position|escapejs }}"
     },
     "playlist": [
       {% for song in player.playlist %}
-        {"position": "{{ song.position }}", 
-         "name": "{{ song.name }}",
-         "artist": "{{ song.artist }}",
-         "album": "{{ song.album }}"
+        {"position": "{{ song.position|escapejs }}", 
+         "name": "{{ song.name|escapejs }}",
+         "artist": "{{ song.artist|escapejs }}",
+         "album": "{{ song.album|escapejs }}"
         }{% if not forloop.last %},{% endif %}
       {% endfor %}
     ]

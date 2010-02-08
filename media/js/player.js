@@ -78,7 +78,7 @@ function update_info() {
 
         // Set info
         $("#current_info").html(current_info);
-        document.title = "Partybeat - " + html_entity_decode(current_info);
+        document.title = "Partybeat - " + current_info;
 
         // Get progress on current track
         var seek = player_status.seek;
@@ -137,22 +137,4 @@ function trim(stringToTrim) {
 
 function start_slider() {
     seek_is_dragging = false;
-}
-
-function html_entity_decode(str)
-{
-    try
-	{
-		var  tarea=document.createElement('textarea');
-		tarea.innerHTML = str; return tarea.value;
-		tarea.parentNode.removeChild(tarea);
-	}
-	catch(e)
-	{
-		//for IE add <div id="htmlconverter" style="display:none;"></div> to the page
-		document.getElementById("htmlconverter").innerHTML = '<textarea id="innerConverter">' + str + '</textarea>';
-		var content = document.getElementById("innerConverter").value;
-		document.getElementById("htmlconverter").innerHTML = "";
-		return content;
-	}
 }
