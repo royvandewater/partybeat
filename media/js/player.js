@@ -78,7 +78,7 @@ function update_info() {
 
         // Set info
         $("#current_info").html(current_info);
-        document.title = "Partybeat - " + unescape(current_info);
+        document.title = "Partybeat - " + current_info.replace("#39;", "'");
 
         // Get progress on current track
         var seek = player_status.seek;
