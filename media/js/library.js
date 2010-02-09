@@ -18,7 +18,7 @@ $(document).ready(function() {
     $(".song_item").live('click', function(e) {
             var target_url = $(this).find(".library_item_add > a").attr("href");
             $.post(target_url, {source: "ajax"});
-            setTimeout("update_info()", 200); 
+            setTimeout("update_info()", 1000); 
     });
 
     $("#search_submit").hide();
