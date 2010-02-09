@@ -17,7 +17,7 @@ class Xmms_layer:
             self.xmms2 = XmmsStatus.objects.get()
             player = Player()
             # Retrieves playlist from database
-            all_songs = sorted(Song.objects.filter(active=True), key=song_sort)
+            all_songs = sorted(Song.objects.all(), key=song_sort)
             # If the length of all songs is not equal to the number of songs in 
             # status, the daemon is probably still writing to the db, so we
             # wait 50 milliseconds
