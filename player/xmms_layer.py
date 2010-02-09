@@ -12,19 +12,14 @@ class Xmms_layer:
         self.xmms2 = XmmsStatus()
 
     def load_player_from_db(self):
-        loop = True
-        while loop:
-            self.xmms2 = XmmsStatus.objects.get()
-            player = Player()
-            # Retrieves playlist from database
-            all_songs = sorted(Song.objects.filter(active=True), key=song_sort)
-            # If the length of all songs is not equal to the number of songs in 
-            # status, the daemon is probably still writing to the db, so we
-            # wait 50 milliseconds
-            if len(all_songs) == self.xmms2.playlist_size:
-                loop = False
-            else:
-                time.sleep(0.05)
+        self.xmms2 = XmmsStatus.objects.get()
+        player = Player()
+        # Retrieves playlist from database
+        print "Get player"
+        all_songs = sorted(Song.objects.all(), key=song_sort)
+        # If the length of all songs is not equal to the number of songs in 
+        # status, the daemon is probably still writing to the db, so we
+        # wait 50 milliseconds
 
         # Store the current song
         if(all_songs):
