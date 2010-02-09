@@ -73,8 +73,16 @@ def save_songs(player):
     """
     # Reference to see if anything has changed
     Song.objects.all().delete()
-    
+
+    # Build current song list
+    new_songs = []
+    new_songs.append(player.current_song)
+    new_songs[0].position = 0
+
     for song in player.playlist:
+        new_songs.append(song)
+    
+    for song in new_songs:
         song.save()
 
 def execute_action_queue(xmms_controller):
