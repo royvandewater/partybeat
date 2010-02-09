@@ -56,7 +56,7 @@ def update_status(player):
     # Set update time
     xmmsStatus.last_update = datetime.datetime.now()
     # Set number of songs in playlist
-    xmmsStatus.playlist_size = player.playlist_size()
+    xmmsStatus.playlist_size = player.playlist_size() + 1
     # Set position of current song in playlist
     xmmsStatus.current_position = player.position
     # Set seek time of song
