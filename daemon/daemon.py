@@ -56,7 +56,7 @@ def update_status(player):
     # Set update time
     xmmsStatus.last_update = datetime.datetime.now()
     # Set number of songs in playlist
-    xmmsStatus.playlist_size = player.playlist_size()
+    xmmsStatus.playlist_size = player.playlist_size() + 1
     # Set position of current song in playlist
     xmmsStatus.current_position = player.position
     # Set seek time of song
@@ -71,9 +71,8 @@ def save_songs(player):
     Saves all the songs in the playelist into the db
     then removes all the old songs
     """
-    
     # Reference to see if anything has changed
-    old_songs = sorted(Song.objects.filter(active=True), key=song_sort)
+    Song.objects.all().delete()
 
     # Build current song list
     new_songs = []
@@ -82,14 +81,9 @@ def save_songs(player):
 
     for song in player.playlist:
         new_songs.append(song)
-
-    if not all_the_same(old_songs, new_songs):
-        for song in new_songs:
-            song.active = False
-            song.save()
-        # Delete all the old songs
-        Song.objects.filter(active=True).delete()
-        Song.objects.all().update(active=True)
+    
+    for song in new_songs:
+        song.save()
 
 def execute_action_queue(xmms_controller):
     """
