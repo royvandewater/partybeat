@@ -125,11 +125,11 @@ function update_info() {
             setTimeout("update_info()", 200); 
         });
 
-        $(".playlist_item").live('mouseover', function(e) {
+        $(".playlist_item").mouseover( function(e) {
             $(this).addClass("ui-state-active");
         });
 
-        $(".playlist_item").live('mouseout', function(e) {
+        $(".playlist_item").mouseout( function(e) {
                 $(this).removeClass("ui-state-active");
         });
         
