@@ -84,6 +84,10 @@
     float: right;
 }
 
+#playlist a {
+      text-decoration: none;
+}
+
 #xmms_seek {
     height: 5px;
 }

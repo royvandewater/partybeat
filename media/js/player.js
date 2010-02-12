@@ -106,8 +106,31 @@ function update_info() {
             '<span class="playlist_item_delete">' + 
                 '<a href="/player/delete/' + item.position + '/" ' +
                    'class="ui-icon ui-icon-closethick"></a>' + 
-            '</span>' + song_str + '</div>';
+            '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
             $("#playlist_songs").append(html_str);
+        });
+
+        //Highlight hovered over row
+        $(".playlist_item .song_name").live('click', function(e) {
+            e.preventDefault();
+            var target_url = $(this).attr("href");
+            $.post(target_url, {source: "ajax"});
+            setTimeout("update_info()", 200); 
+        });
+
+        $(".playlist_item > .playlist_item_delete > a").live('click', function(e) {
+            e.preventDefault();
+            var target_url = $(this).attr("href");
+            $.post(target_url, {source: "ajax"});
+            setTimeout("update_info()", 200); 
+        });
+
+        $(".playlist_item").live('mouseover', function(e) {
+            $(this).addClass("ui-state-active");
+        });
+
+        $(".playlist_item").live('mouseout', function(e) {
+                $(this).removeClass("ui-state-active");
         });
         
     });
