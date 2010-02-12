@@ -98,7 +98,6 @@ def execute_action(xmms_controller, command):
     """
     Executes the provided command
     """
-    print command
     # Make command matching case insensitive
     if command.lower() in ("play", "stop", "pause", "next", "previous"):
         xmms_controller.action(command)
