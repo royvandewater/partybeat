@@ -111,14 +111,14 @@ function update_info() {
         });
 
         //Highlight hovered over row
-        $(".playlist_item .song_name").live('click', function(e) {
+        $(".playlist_item > .song_name").click(function(e) {
             e.preventDefault();
             var target_url = $(this).attr("href");
             $.post(target_url, {source: "ajax"});
-            setTimeout("update_info()", 200); 
+            // setTimeout("update_info()", 200); 
         });
 
-        $(".playlist_item > .playlist_item_delete > a").live('click', function(e) {
+        $(".playlist_item > .playlist_item_delete > a").click(function(e) {
             e.preventDefault();
             var target_url = $(this).attr("href");
             $.post(target_url, {source: "ajax"});

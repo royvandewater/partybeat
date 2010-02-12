@@ -68,6 +68,13 @@ class Xmms_controller:
         except xmmsclient.sync.XMMSError as e:
             return self.print_playback_error("seek", e.message)
             
+    def skip_to(self, id):
+        try:
+            self.xmms.playlist_set_next(int(id)-1)
+            self.xmms.playback_tickle()
+            return self.print_playback_error("skip")
+        except xmmsclient.sync.XMMSError as e:
+            return self.print_playback_error("skip", e.message)
 
     def get_song_from_minfo(self, minfo):
             song = Song()
