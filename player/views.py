@@ -54,3 +54,8 @@ def seek(request, seek_time):
     xmms_layer = Xmms_layer()
     xmms_layer.store_action("seek_{0}".format(int(seek_time)))
     return get_blank(request)
+
+def skip_to(request, position):
+    xmms_layer = Xmms_layer()
+    xmms_layer.store_action("skip_{0}".format(int(position)))
+    return get_blank(request)
