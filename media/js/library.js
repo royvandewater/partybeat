@@ -15,8 +15,15 @@ $(document).ready(function() {
             $(this).removeClass("ui-state-active");
     });
 
-    $(".song_item").live('click', function(e) {
-            var target_url = $(this).find(".library_item_add > a").attr("href");
+    $(".song_item .library_item_details").live('click', function(e) {
+            var target_url = $(this).parent().find(".library_item_add > a").attr("href");
+            $.post(target_url, {source: "ajax"});
+            setTimeout("update_info()", 1000); 
+    });
+
+    $(".library_item_add a").live('click', function(e) {
+            e.preventDefault();
+            var target_url = $(this).attr("href");
             $.post(target_url, {source: "ajax"});
             setTimeout("update_info()", 1000); 
     });
