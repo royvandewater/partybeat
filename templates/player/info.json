@@ -5,7 +5,8 @@
         "last_update": "{{ player.last_update|escapejs }}",
         "seek": "{{ player.seek|escapejs }}",
         "max_seek": "{{ player.max_seek|escapejs }}",
-        "timeout": "{{ player.timeout|escapejs }}"
+        "timeout": "{{ player.timeout|escapejs }}",
+        "hash": "{{ player.get_hash|escapejs }}"
     },
     "current_song": {
         "name": "{{ player.current_song.name|escapejs }}",

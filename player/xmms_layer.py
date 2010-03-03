@@ -5,7 +5,7 @@ from daemon.player_info import Player
 from daemon.models import *
 
 def song_sort(song):
-    return song.position 
+    return song.position
 
 class Xmms_layer:
     def __init__(self):
@@ -24,7 +24,7 @@ class Xmms_layer:
             loop = self.xmms2.playlist_size != len(all_songs)
             if loop:
                 time.sleep(0.05)
-            
+
 
         # Store the current song
         if(all_songs):

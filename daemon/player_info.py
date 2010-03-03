@@ -1,12 +1,13 @@
 import os
 import sys
+import hashlib
 
 from models import *
 
 class Player():
     """
     This class is part of the xmms_controller interface. It's purpose is to abstract the information
-    from xmms_controller (Such as current song information, player status, playlist info) from the 
+    from xmms_controller (Such as current song information, player status, playlist info) from the
     player controls (Such as play, pause, stop, etc). This provides a safer mechanism for the Django
     Template class to get access information from the xmms2 player
     """
@@ -16,7 +17,7 @@ class Player():
         self.status = ""
         self.error = ""
         self.position = None
-    
+
     def set_status(self, status):
         self.status = status
 
@@ -49,3 +50,7 @@ class Player():
     def playlist_size(self):
         """ Returns the size of the playlist plus the currently playing item """
         return len(self.playlist) + 1
+
+    def get_hash(self):
+        hashable = "".join(str(song.xmms_id) for song in self.playlist) + str(self.position)
+        return hashlib.md5(hashable).hexdigest()

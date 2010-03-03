@@ -9,7 +9,7 @@ from models import *
 from xmms_controller import Xmms_controller
 
 def song_sort(song):
-    return song.position 
+    return song.position
 
 def main(argv):
     # perform initialization
@@ -45,8 +45,8 @@ def main(argv):
         sys.exit(0)
 
 def update_status(player):
-    """ 
-    Updates the XmmsStatus object in the db with current xmms2 status 
+    """
+    Updates the XmmsStatus object in the db with current xmms2 status
     Expects an up-to-date Player() object from player_info.py
     """
     # Start by retrieving the status object
@@ -81,13 +81,13 @@ def save_songs(player):
 
     for song in player.playlist:
         new_songs.append(song)
-    
+
     for song in new_songs:
         song.save()
 
 def execute_action_queue(xmms_controller):
     """
-    Retrieves the queue of actions from the db, executes each item in the queue 
+    Retrieves the queue of actions from the db, executes each item in the queue
     and delete those items immediately after execution
     """
     for action in Action.objects.all():

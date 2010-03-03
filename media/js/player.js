@@ -6,6 +6,7 @@ var is_playing = false;
 var seek_is_dragging = false;
 var max_seek = 100;
 var timeout = 2000;
+var playlist_hash = "aoneusth";
 
 $(document).ready(function() {
 
@@ -90,20 +91,8 @@ function update_info() {
 
     // Get current player info
     $.getJSON('/player/info/', function(json) {
-            
-        // format and output result
-        var current_song = json.xmms2.current_song;
+
         var player_status = json.xmms2.player_status;
-        var playlist = json.xmms2.playlist;
-
-        var current_xmms_id = current_song.xmms_id;
-
-        var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
-
-        // Set info
-        $("#current_info").html(current_info);
-        document.title = "Partybeat - " + current_info;
-
         // Get progress on current track
         var seek = player_status.seek;
         max_seek = player_status.max_seek;
@@ -111,28 +100,44 @@ function update_info() {
         current_progress = seek / max_seek;
         var offset = current_progress * 500;
 
-        // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
-        var is_playing_string = player_status.is_playing
-        is_playing = string_to_boolean(is_playing_string);
+        if(playlist_hash != player_status.hash)
+        {
+            // format and output result
+            var current_song = json.xmms2.current_song;
+            var playlist = json.xmms2.playlist;
 
-        // Clear the playlist
-        $("#playlist_songs").html("");
-            
-        // Build the playlist
-        $.each(playlist, function(i, item) {
-            var song_str = item.position + ": " + item.name + " - " + item.artist;
+            var current_xmms_id = current_song.xmms_id;
 
-            var hover = ""
-            if( item.position == current_song.position )
-                hover = " ui-state-hover";
+            var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
+             
+            // Set info
+            $("#current_info").html(current_info);
+            document.title = "Partybeat - " + current_info;
 
-            var html_str = '<div class="playlist_item' + hover + '">' + 
-            '<span class="playlist_item_delete">' + 
-                '<a href="/player/delete/' + item.position + '/" ' +
-                   'class="ui-icon ui-icon-closethick"></a>' + 
-            '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
-            $("#playlist_songs").append(html_str);
-        });
+            playlist_hash = player_status.hash;
+            // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
+            var is_playing_string = player_status.is_playing
+                is_playing = string_to_boolean(is_playing_string);
+
+            // Clear the playlist
+            $("#playlist_songs").html("");
+
+            // Build the playlist
+            $.each(playlist, function(i, item) {
+                    var song_str = item.position + ": " + item.name + " - " + item.artist;
+
+                    var hover = ""
+                    if( item.position == current_song.position )
+                    hover = " ui-state-hover";
+
+                    var html_str = '<div class="playlist_item' + hover + '">' + 
+                    '<span class="playlist_item_delete">' + 
+                    '<a href="/player/delete/' + item.position + '/" ' +
+                    'class="ui-icon ui-icon-closethick"></a>' + 
+                    '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
+                    $("#playlist_songs").append(html_str);
+                    });
+        }
     });
 }
 
