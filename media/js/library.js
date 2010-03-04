@@ -1,3 +1,4 @@
+var latest_search = Date.now();
 $(document).ready(function() {
 
     $("#dialog_box").dialog({
@@ -31,9 +32,8 @@ $(document).ready(function() {
     $("#search_submit").hide();
     $("#search_input").bind( 'change keyup', function(e){
         var contents = this.value;
-        setTimeout(function() {
-            search(e,contents);
-        }, 200); 
+        var search_time = Date.now();
+        search(e,contents,search_time);
     });
 
     $(".library_item_edit a").live('click', render_popup);
@@ -160,10 +160,12 @@ function display_artists() {
     });
 }
 
-function search(e, value) {
-    if($("#search_input").attr("value") == value) {
-        if(value.length == 0) {
-            $.getJSON('/library/artists/', function(json) {
+function search(e, value, search_time) {
+    // if($("#search_input").attr("value") == value) {
+    if(value.length == 0) {
+        $.getJSON('/library/artists/', function(json) {
+            if(search_time > latest_search) {
+                latest_search = search_time;
                 $("#library_items").html("");
                 $.each(json, function(i, artist) {
                     var li = '<li class="library_item">' + 
@@ -174,9 +176,12 @@ function search(e, value) {
                     '</li>';
                     $("#library_items").append(li);
                 });
-            });
-        } else {
-            $.getJSON('/library/search/', {search_input: value}, function(json) {
+            }
+        });
+    } else {
+        $.getJSON('/library/search/', {search_input: value}, function(json) {
+                if (search_time > latest_search) {
+                    latest_search = search_time;
                     $("#library_items").html("")
 
                     var subtree = "";
@@ -202,9 +207,9 @@ function search(e, value) {
                         '</li>';
                         subtree += li;
                     });
-                // subtree += "</ul>";
-                $("#library_items").append(subtree);
-            });
-        }
+                    // subtree += "</ul>";
+                    $("#library_items").append(subtree);
+                }
+        });
     }
 }
