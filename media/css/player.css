@@ -113,10 +113,9 @@
   margin-left: 0.5em;
 }
 
-#float_playlist_link {
+#shuffle_playlist_link {
   float: left;
   position: relative;
   top: 8px;
   margin-left
 }
-

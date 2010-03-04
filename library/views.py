@@ -107,6 +107,10 @@ def add(request, song_id):
     songFile = SongFile.objects.get(id=song_id)
     return enqueue(request, songFile)
 
+def add_random(request):
+    songFile = SongFile.objects.order_by('?')[0]
+    return enqueue(request, songFile)
+
 def upload(request):
     if request.method == 'POST' and not request.POST.has_key("source"):
         form = UploadForm(request.POST, request.FILES)

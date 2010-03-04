@@ -169,7 +169,9 @@ ul.library_songs {
   display: none;
 }
 
-#shuffle_playlist_link {
-  display: inline-block;
-  vertical-align: bottom;
+#add_random_link {
+  float: left;
+  position: relative;
+  top: 8px;
+  margin-left
 }

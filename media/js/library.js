@@ -21,7 +21,7 @@ $(document).ready(function() {
             setTimeout("update_info()", 1000); 
     });
 
-    $(".library_item_add a").live('click', function(e) {
+    $(".library_item_add a, #add_random_link").live('click', function(e) {
             e.preventDefault();
             var target_url = $(this).attr("href");
             $.post(target_url, {source: "ajax"});

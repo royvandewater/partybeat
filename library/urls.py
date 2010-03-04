@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('partybeat.library.views',
     # Library files
+    (r'add/random/$', 'add_random'),
     (r'add/(?P<song_id>\d+)/$', 'add'),
     (r'edit/(?P<song_id>\d+)/$', 'edit'),
     (r'download/(?P<song_id>\d+)/$', 'download'),
