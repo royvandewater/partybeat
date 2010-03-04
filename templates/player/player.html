@@ -15,10 +15,10 @@
   <div class="clear_both"></div>
 
   <div id="xmms_actions">
-    <a href="{% url player.views.run_action action="previous" %}" class="ui-icon ui-icon-seek-prev"></a>
-    <a href="{% url player.views.run_action action="play" %}" class="ui-icon ui-icon-play"></a>
-    <a href="{% url player.views.run_action action="pause" %}" class="ui-icon ui-icon-pause"></a>
-    <a href="{% url player.views.run_action action="stop" %}" class="ui-icon ui-icon-stop"></a>
-    <a href="{% url player.views.run_action action="next" %}" class="ui-icon ui-icon-seek-next"></a>
+    <a href="{% url player.views.run_action action="previous" %}" class="ui-icon ui-icon-seek-prev" title="Previous">Previous</a>
+    <a href="{% url player.views.run_action action="play" %}" class="ui-icon ui-icon-play" title="Play">Play</a>
+    <a href="{% url player.views.run_action action="pause" %}" class="ui-icon ui-icon-pause" title="Pause">Pause</a>
+    <a href="{% url player.views.run_action action="stop" %}" class="ui-icon ui-icon-stop" title="Stop">Stop</a>
+    <a href="{% url player.views.run_action action="next" %}" class="ui-icon ui-icon-seek-next" title="Next">Next</a>
   </div>
 </div>
