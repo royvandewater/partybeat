@@ -4,119 +4,119 @@
 }
 
 #xmms_player {
-    margin-top: 30px;
-    height: 109px;
+  margin-top: 30px;
+  height: 109px;
 }
 
 #xmms_player div#xmms_seek {
-    clear: both;
-    width: 500px;
-    margin: 10px auto;
+  clear: both;
+  width: 500px;
+  margin: 10px auto;
 }
 
 #xmms_player div#xmms_seek img#seek_bar {
-    width: 100%;
-    height: 3px;
-    z-index: 0;
-    float: left;
+  width: 100%;
+  height: 3px;
+  z-index: 0;
+  float: left;
 }
 
 #xmms_player div#xmms_seek img#seek_head {
-    float: left;
-    z-index: 1;
-    display: inline;
-    position: relative;
-    bottom: 6px;
+  float: left;
+  z-index: 1;
+  display: inline;
+  position: relative;
+  bottom: 6px;
 }
 
 #xmms_player div#xmms_actions {
-    text-align: center;
-    margin-top: 7px;
+  text-align: center;
+  margin-top: 7px;
 }
 
 #xmms_actions a {
-    display: inline-block;
-    /* float: left; */
+  display: inline-block;
+  /* float: left; */
 }
 
 #xmms_player div.hidden {
-    display: none;
+  display: none;
 }
 
 #xmms_player div#xmms_returns {
-    text-align: center;
-    margin: auto;
+  text-align: center;
+  margin: auto;
 }
 
 #xmms_player div#xmms_returns span {
-    display: inline;
-    margin-left: 10px;
+  display: inline;
+  margin-left: 10px;
 }
 
 #xmms_returns span {
-    display: block;
+  display: block;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .highlight {
-    background-color: #555;
+  background-color: #555;
 }
 
 .playlist_item_delete a {
-    display: inline-block;
-    margin-top: 1px;
-    margin-right: 3px;
-    position: relative;
-    top: 2px;
+  display: inline-block;
+  margin-top: 1px;
+  margin-right: 3px;
+  position: relative;
+  top: 2px;
 }
 
 .highlight a {
-    margin-top: 2px;
+  margin-top: 2px;
 }
 
 #playlist {
-    margin-top: 20px;
-    padding: 10px;
-    width: 450px;
-    float: right;
+  margin-top: 20px;
+  padding: 10px;
+  width: 450px;
+  float: right;
 }
 
 #playlist a {
-      text-decoration: none;
+  text-decoration: none;
 }
 
 #xmms_seek {
-    height: 5px;
+  height: 5px;
 }
 
 #xmms_seek a {
-    height: 12px;
-    width: 35px;
+  height: 12px;
+  width: 35px;
 }
 
 #playlist_header {
-    margin-left: 1.5em;
-    margin-bottom: 1em;
-    float: left;
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  float: left;
 }
 
 #playlist_header h2 {
-    float: left;
-    display: inline; 
+  float: left;
+  display: inline; 
 }
 
 #playlist_header a {
-    font-size: 0.8em;
-    margin-left: 0.5em;
+  font-size: 0.8em;
+  margin-left: 0.5em;
 }
 
 #float_playlist_link {
-    float: left;
-    position: relative;
-    top: 8px;
-    margin-left
+  float: left;
+  position: relative;
+  top: 8px;
+  margin-left
 }
 

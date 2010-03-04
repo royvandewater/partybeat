@@ -1,32 +1,32 @@
 <div id="song_library" class="ui-widget-content ui-corner-all">
-    <div id="library_header" >
-        <h2>Song Library</h2>
-        {% if popout %}
-        <a href="#" title="Theme Roller" id="theme_roller_link" class="ui-icon ui-icon-wrench"></a>
-        {% endif %}
-        <div class="clear_both"></div>
+  <div id="library_header" >
+    <h2>Song Library</h2>
+    {% if popout %}
+    <a href="#" title="Theme Roller" id="theme_roller_link" class="ui-icon ui-icon-wrench"></a>
+    {% endif %}
+    <div class="clear_both"></div>
+  </div>
+  <div id="library_upload">
+    <a href="/library/upload/" title="Upload Song">Upload Song</a>
+  </div>
+  <div id="search_box">
+    <form id="library_search" action="/library/search/" method="get" >
+      <p>
+      <label for="search_input" id="search_input_label">Search:</label>
+      <input name="search_input" id="search_input" type="text" />
+      <input name="submit" value="search" type="submit" id="search_submit" />
+      </p>
+    </form>
+  </div>
+  <div class="clearboth spacer"></div>
+  <ul id="library_items">
+    {% for artist in artists %}
+    <li class="library_item">
+    <div class="library_row artist_item">
+      <div class="ui-icon ui-icon-triangle-1-e" ></div>
+      <span>{{ artist }}</span>
     </div>
-    <div id="library_upload">
-        <a href="/library/upload/" title="Upload Song">Upload Song</a>
-    </div>
-    <div id="search_box">
-        <form id="library_search" action="/library/search/" method="get" >
-            <p>
-              <label for="search_input" id="search_input_label">Search:</label>
-              <input name="search_input" id="search_input" type="text" />
-              <input name="submit" value="search" type="submit" id="search_submit" />
-            </p>
-        </form>
-    </div>
-    <div class="clearboth spacer"></div>
-    <ul id="library_items">
-        {% for artist in artists %}
-        <li class="library_item">
-            <div class="library_row artist_item">
-                <div class="ui-icon ui-icon-triangle-1-e" ></div>
-                <span>{{ artist }}</span>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+    </li>
+    {% endfor %}
+  </ul>
 </div>

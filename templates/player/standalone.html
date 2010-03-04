@@ -2,14 +2,14 @@
 
 {% block title %}Player{% endblock %}
 {% block html_head %}
-    {% include 'js.html' %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/player.js"></script>
+{% include 'js.html' %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/player.js"></script>
 {% endblock %}
 
 {% block html_body %}
 
 <div id="main_content">
-{% include "player/main.html" %}
+  {% include "player/main.html" %}
 </div>
 
 {% endblock %}

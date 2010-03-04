@@ -1,50 +1,50 @@
 #library_header {
-    margin-left: 1.5em;
-    float: left;
+  margin-left: 1.5em;
+  float: left;
 }
 
 #library_header h2 {
-    display: inline; 
-    float: left;
+  display: inline; 
+  float: left;
 }
 
 #theme_roller_link, #popout_library_link, #float_library_link {
-    float: left;
-    position: relative;
-    top: 8px;
+  float: left;
+  position: relative;
+  top: 8px;
 }
 
 #theme_roller {
-    margin: 10px 12px 0;
+  margin: 10px 12px 0;
 }
 
 #library_header a {
-    font-size: 0.8em;
-    margin-left: 0.5em;
+  font-size: 0.8em;
+  margin-left: 0.5em;
 }
 
 #library_upload {
-    float: right;
-    margin-right: 10px;
+  float: right;
+  margin-right: 10px;
 }
 
 #library_upload a {
 }
 
 #library_upload_form {
-    width: 400px;
-    margin: auto;
+  width: 400px;
+  margin: auto;
 }
 
 #library_upload_form_dialog {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 #library_upload_form_dialog #id_file {
-    color: white;
-    background-color: black;
-    border: 0 none;
-    margin-bottom: 10px;
+  color: white;
+  background-color: black;
+  border: 0 none;
+  margin-bottom: 10px;
 }
 
 #library_upload_form_dialog input.submit {
@@ -52,121 +52,121 @@
 }
 
 #library_upload_form h2{
-    font-size: 1.2em;
-    text-align: center;
-    margin-top: 30px;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 30px;
 }
 
 #library_upload_form h3{
-    font-size: 0.8em;
-    text-align: center;
-    margin-bottom: 20px;
+  font-size: 0.8em;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #library_edit_form {
-    width: 400px;
-    margin: auto;
+  width: 400px;
+  margin: auto;
 }
 
 #library_edit_form h2 {
-    font-size: 1.2em;
-    text-align: center;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 #library_edit_form h3 {
-    font-size: 0.8em;
-    text-align: center;
-    margin-bottom: 20px;
+  font-size: 0.8em;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 #library_edit_form div {
-    clear: both;
+  clear: both;
 }
 
 #library_edit_form label {
-    float: left;
+  float: left;
 }
 
 #library_edit_form input {
-    float: right;
-    width: 300px;
+  float: right;
+  width: 300px;
 }
 
 #library_edit_form div.submit input {
-    margin-top: 2px;
-    width: 100px;
+  margin-top: 2px;
+  width: 100px;
 }
 
 .library_item span a {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 }
 
 .library_item_add a {
-    top: 2px;
+  top: 2px;
 }
 
 .library_item_edit a {
-    margin-left: -4px;
-    top: 2px;
+  margin-left: -4px;
+  top: 2px;
 }
 
 .library_item_download a {
-    margin-left: -4px;
-    top: 3px;
+  margin-left: -4px;
+  top: 3px;
 }
 
 #song_library {
-    margin-top: 20px;
-    padding: 10px;
-    width: 450px;
-    float: left;
+  margin-top: 20px;
+  padding: 10px;
+  width: 450px;
+  float: left;
 }
 
 #song_library .spacer {
-    height: 12px;
+  height: 12px;
 }
 
 .clearboth {
-    clear: both;
+  clear: both;
 }
 
 #library_items div.ui-icon {
-    float: left;
+  float: left;
 }
 
 #library_items li {
-    list-style: none;
-    cursor: pointer;
+  list-style: none;
+  cursor: pointer;
 }
 
 #library_items li span {
-    /* width: 100%; */
+  /* width: 100%; */
 }
 
 ul.library_albums {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 ul.library_songs {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .library_item_details, .library_item_add, .library_item_edit, .library_item_download {
-    float: left;
+  float: left;
 }
 
 .library_item_details {
-    width: 350px;
+  width: 350px;
 }
 
 #search_input {
-    float: right;
-    margin-right: 10px;
+  float: right;
+  margin-right: 10px;
 }
 
 #search_input_label {
-    display: none;
+  display: none;
 }
 
 #shuffle_playlist_link {

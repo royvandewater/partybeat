@@ -1,6 +1,6 @@
 #main_content {
-    width: 960px;
-    margin: auto;
+  width: 960px;
+  margin: auto;
 }
 
 body {
@@ -8,9 +8,9 @@ body {
 }
 
 .clear_both {
-    clear: both;
+  clear: both;
 }
 
 #theme_roller {
-    display: none;
+  display: none;
 }

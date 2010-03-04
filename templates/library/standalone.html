@@ -2,14 +2,14 @@
 
 {% block title %}Library{% endblock %}
 {% block html_head %}
-    {% include "js.html" %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/library.js"></script>
+{% include "js.html" %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/library.js"></script>
 {% endblock %}
 
 {% block html_body %}
 
 <div id="main_content">
-{% include "library/library.html" %}
+  {% include "library/library.html" %}
 </div>
 
 <div id="dialog_box" class="ui-widget"></div>
