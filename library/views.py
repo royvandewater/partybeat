@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.core import serializers
+from django.core.urlresolvers import reverse
 import json
 
 from models import *
@@ -49,9 +50,9 @@ def get_json(data):
 
 def get_blank(request):
     try:
-        return render_to_response('blank.html') if is_ajax(request) else HttpResponseRedirect('/')
+        return render_to_response('blank.html') if is_ajax(request) else HttpResponseRedirect(reverse('main.views.player'))
     except (KeyError):
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(reverse('main.views.player'))
 
 def enqueue(request, songFile):
     action = Action()
@@ -92,7 +93,6 @@ def songs(request, artist=None, album=None):
         songFiles = SongFile.objects.all()
 
     return HttpResponse(get_json(songFiles))
-    
 
 def generic_xml(request, category, item_name, items):
     xml_data = dict(category=category, item_name=item_name, items=items)
@@ -116,7 +116,7 @@ def upload(request):
             songFile.save()
             if request.POST['enqueue']:
                 enqueue(request, songFile)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('main.views.player'))
     else:
         form = UploadForm()
 
@@ -132,7 +132,7 @@ def edit(request, song_id):
             songFile.artist = form.cleaned_data['artist']
             songFile.album = form.cleaned_data['album']
             songFile.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('main.views.player'))
     else:
         data = {'name': songFile.name,
                 'artist': songFile.artist,

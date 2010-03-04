@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.urlresolvers import reverse
 
 from models import *
 from xmms_layer import Xmms_layer
@@ -10,7 +11,7 @@ def get_blank(request):
     try:
         return render_to_response('blank.html') if request.POST['source'] == "ajax" else HttpResponseRedirect('/')
     except (KeyError):
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(reverse('main.views.player'))
 
 # def player(request):
     # xmms2 = Xmms_layer()
