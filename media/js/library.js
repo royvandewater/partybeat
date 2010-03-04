@@ -33,7 +33,7 @@ $(document).ready(function() {
         var contents = this.value;
         setTimeout(function() {
             search(e,contents);
-        }, 50); 
+        }, 200); 
     });
 
     $(".library_item_edit a").live('click', render_popup);
