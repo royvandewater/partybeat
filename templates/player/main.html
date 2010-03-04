@@ -3,7 +3,7 @@
 <div id="playlist" class="ui-widget-content ui-corner-all">
   <div id="playlist_header" >
     <h2>Now Playing</h2>
-    <a href="#" title="Float Window" id="float_playlist_link" class="ui-icon ui-icon-newwin" rel="external"></a>
+    <a href="{% url player.views.run_action action="shuffle" %}" title="Shuffle playlist" id="shuffle_playlist_link" class="ui-icon ui-icon-shuffle"></a>
   </div>
   <div class="clearboth"></div>
   <div id="playlist_songs">

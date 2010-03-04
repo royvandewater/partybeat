@@ -1,13 +1,10 @@
 <div id="song_library" class="ui-widget-content ui-corner-all">
   <div id="library_header" >
     <h2>Song Library</h2>
-    {% if popout %}
-    <a href="#" title="Theme Roller" id="theme_roller_link" class="ui-icon ui-icon-wrench"></a>
-    {% endif %}
     <div class="clear_both"></div>
   </div>
   <div id="library_upload">
-    <a href="/library/upload/" title="Upload Song">Upload Song</a>
+    <a href="{% url library.views.upload %}" title="Upload Song">Upload Song</a>
   </div>
   <div id="search_box">
     <form id="library_search" action="/library/search/" method="get" >
