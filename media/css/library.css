@@ -168,3 +168,8 @@ ul.library_songs {
 #search_input_label {
     display: none;
 }
+
+#shuffle_playlist_link {
+  display: inline-block;
+  vertical-align: bottom;
+}

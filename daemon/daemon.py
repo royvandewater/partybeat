@@ -99,7 +99,7 @@ def execute_action(xmms_controller, command):
     Executes the provided command
     """
     # Make command matching case insensitive
-    if command.lower() in ("play", "stop", "pause", "next", "previous"):
+    if command.lower() in ("play", "stop", "pause", "next", "previous", "shuffle"):
         xmms_controller.action(command)
     # Double parenthesis are because add and delete are in a tuple
     elif command.lower().startswith(("add", "delete", "seek", "skip")):

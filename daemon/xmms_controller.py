@@ -49,6 +49,8 @@ class Xmms_controller:
             return self.do_action(self.tickle, "next", 1)
         elif action == "previous":
             return self.do_action(self.tickle, "previous", -1)
+        elif action == "shuffle":
+            return self.do_action(self.xmms.playlist_shuffle, "shuffle")
 
     def enqueue(self, filepath):
         filepath = "file://" + filepath
@@ -67,7 +69,7 @@ class Xmms_controller:
             return self.print_playback_error("seek")
         except xmmsclient.sync.XMMSError as e:
             return self.print_playback_error("seek", e.message)
-            
+
     def skip_to(self, id):
         try:
             self.xmms.playlist_set_next(int(id)-1)

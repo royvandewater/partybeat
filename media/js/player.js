@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 
     // Send the player a command without caring about the return value
-    $("#xmms_actions > a").click(function(e) {
+    $("#xmms_actions > a, #shuffle_playlist_link").click(function(e) {
         // Disable the default behaviors of all our action links         
         e.preventDefault();
 
