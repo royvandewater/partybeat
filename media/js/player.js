@@ -31,7 +31,7 @@ $(document).ready(function() {
     $(document).everyTime(timeout, update_info);
 
     $(document).everyTime(100, function() {
-        if( is_playing )
+        if( is_playing && ((current_progress + progress_modifier) > current_progress))
             current_progress += progress_modifier;
         interpolate_progress_bar();
     });
@@ -101,11 +101,16 @@ function update_info() {
             var seek = player_status.seek;
             max_seek = player_status.max_seek;
             progress_modifier = (100 / max_seek);
-            current_progress = seek / max_seek;
+            var new_progress = seek / max_seek;
+            console.log(current_progress);
+            console.log(new_progress);
+            if((new_progress > current_progress) || ((current_progress - new_progress) > 0.05))
+                current_progress = new_progress;
             var offset = current_progress * 500;
 
             if(playlist_hash != player_status.hash)
             {
+                $("#xmms_seek").slider('value', offset);
                 // format and output result
                 var current_song = json.xmms2.current_song;
                 var playlist = json.xmms2.playlist;
