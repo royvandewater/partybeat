@@ -102,8 +102,6 @@ function update_info() {
             max_seek = player_status.max_seek;
             progress_modifier = (100 / max_seek);
             var new_progress = seek / max_seek;
-            console.log(current_progress);
-            console.log(new_progress);
             if((new_progress > current_progress) || ((current_progress - new_progress) > 0.05))
                 current_progress = new_progress;
             var offset = current_progress * 500;
