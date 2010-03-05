@@ -106,6 +106,10 @@ function update_info() {
                 current_progress = new_progress;
             var offset = current_progress * 500;
 
+            // Decide whether xmms2 is playing (used to determine progress bar interpolation)
+            var is_playing_string = player_status.is_playing
+                is_playing = string_to_boolean(is_playing_string);
+
             if(playlist_hash != player_status.hash)
             {
                 $("#xmms_seek").slider('value', offset);
@@ -122,9 +126,6 @@ function update_info() {
                 document.title = "Partybeat - " + current_info;
 
                 playlist_hash = player_status.hash;
-                // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
-                var is_playing_string = player_status.is_playing
-                    is_playing = string_to_boolean(is_playing_string);
 
                 // Clear the playlist
                 $("#playlist_songs").html("");
