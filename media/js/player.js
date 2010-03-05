@@ -7,6 +7,7 @@ var seek_is_dragging = false;
 var max_seek = 100;
 var timeout = 2000;
 var playlist_hash = "aoneusth";
+var last_update = Date.now();
 
 $(document).ready(function() {
 
@@ -88,56 +89,60 @@ $(document).ready(function() {
 });
 
 function update_info() {
-
+    var call_time = Date.now();
     // Get current player info
     $.getJSON('/player/info/', function(json) {
 
-        var player_status = json.xmms2.player_status;
-        // Get progress on current track
-        var seek = player_status.seek;
-        max_seek = player_status.max_seek;
-        progress_modifier = (100 / max_seek);
-        current_progress = seek / max_seek;
-        var offset = current_progress * 500;
+        if(call_time > last_update) {
+            last_update = call_time;
 
-        if(playlist_hash != player_status.hash)
-        {
-            // format and output result
-            var current_song = json.xmms2.current_song;
-            var playlist = json.xmms2.playlist;
+            var player_status = json.xmms2.player_status;
+            // Get progress on current track
+            var seek = player_status.seek;
+            max_seek = player_status.max_seek;
+            progress_modifier = (100 / max_seek);
+            current_progress = seek / max_seek;
+            var offset = current_progress * 500;
 
-            var current_xmms_id = current_song.xmms_id;
+            if(playlist_hash != player_status.hash)
+            {
+                // format and output result
+                var current_song = json.xmms2.current_song;
+                var playlist = json.xmms2.playlist;
 
-            var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
-             
-            // Set info
-            $("#current_info").html(current_info);
-            document.title = "Partybeat - " + current_info;
+                var current_xmms_id = current_song.xmms_id;
 
-            playlist_hash = player_status.hash;
-            // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
-            var is_playing_string = player_status.is_playing
-                is_playing = string_to_boolean(is_playing_string);
+                var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
+                 
+                // Set info
+                $("#current_info").html(current_info);
+                document.title = "Partybeat - " + current_info;
 
-            // Clear the playlist
-            $("#playlist_songs").html("");
+                playlist_hash = player_status.hash;
+                // // Decide whether xmms2 is playing (used to determine progress bar interpolation)
+                var is_playing_string = player_status.is_playing
+                    is_playing = string_to_boolean(is_playing_string);
 
-            // Build the playlist
-            $.each(playlist, function(i, item) {
-                    var song_str = item.position + ": " + item.name + " - " + item.artist;
+                // Clear the playlist
+                $("#playlist_songs").html("");
 
-                    var hover = ""
-                    if( item.position == current_song.position )
-                    hover = " ui-state-hover";
+                // Build the playlist
+                $.each(playlist, function(i, item) {
+                        var song_str = item.position + ": " + item.name + " - " + item.artist;
 
-                    var html_str = '<div class="playlist_item' + hover + '">' + 
-                    '<span class="playlist_item_delete">' + 
-                    '<a href="/player/delete/' + item.position + '/" ' +
-                    'class="ui-icon ui-icon-closethick"></a>' + 
-                    '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
-                    $("#playlist_songs").append(html_str);
-                    });
-        }
+                        var hover = ""
+                        if( item.position == current_song.position )
+                        hover = " ui-state-hover";
+
+                        var html_str = '<div class="playlist_item' + hover + '">' + 
+                        '<span class="playlist_item_delete">' + 
+                        '<a href="/player/delete/' + item.position + '/" ' +
+                        'class="ui-icon ui-icon-closethick"></a>' + 
+                        '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
+                        $("#playlist_songs").append(html_str);
+                        });
+            }
+    }
     });
 }
 
