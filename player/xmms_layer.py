@@ -25,7 +25,6 @@ class Xmms_layer:
             if loop:
                 time.sleep(0.05)
 
-
         # Store the current song
         if(all_songs):
             player.set_status(4)
@@ -40,6 +39,7 @@ class Xmms_layer:
         player.timeout = self.xmms2.timeout
         player.seek = self.xmms2.seek
         player.max_seek = self.xmms2.max_seek
+        player.volume = self.xmms2.volume
 
         self.player = player
 
@@ -48,7 +48,7 @@ class Xmms_layer:
         Creates a new action and stores it in the db
         """
         command = command.lower()
-        if command.startswith(("play", "stop", "pause", "next", "previous", "delete", "seek", "skip", "shuffle")):
+        if command.startswith(("play", "stop", "pause", "next", "previous", "delete", "seek", "skip", "shuffle", "volume")):
             action = Action()
             action.command = command
             action.save()

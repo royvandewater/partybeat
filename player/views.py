@@ -60,3 +60,12 @@ def skip_to(request, position):
     xmms_layer = Xmms_layer()
     xmms_layer.store_action("skip_{0}".format(int(position)))
     return get_blank(request)
+
+def volume(request, volume):
+    xmms_layer = Xmms_layer()
+    if int(volume) < 0:
+        volume = 0
+    elif int(volume) > 100:
+        volume = 100
+    xmms_layer.store_action("volume_{0}".format(int(volume)))
+    return get_blank(request)

@@ -59,6 +59,7 @@ def update_status(player):
     xmmsStatus.playlist_size = player.playlist_size()
     # Set position of current song in playlist
     xmmsStatus.current_position = player.position
+    xmmsStatus.volume = player.volume
     # Set seek time of song
     xmmsStatus.seek = player.seek
     xmmsStatus.max_seek = player.max_seek
@@ -102,7 +103,7 @@ def execute_action(xmms_controller, command):
     if command.lower() in ("play", "stop", "pause", "next", "previous", "shuffle"):
         xmms_controller.action(command)
     # Double parenthesis are because add and delete are in a tuple
-    elif command.lower().startswith(("add", "delete", "seek", "skip")):
+    elif command.lower().startswith(("add", "delete", "seek", "skip", "volume")):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
         split_command = command.partition("_")
         if split_command[2]:
@@ -114,6 +115,8 @@ def execute_action(xmms_controller, command):
                 xmms_controller.seek(int(split_command[2]))
             elif split_command[0] == "skip":
                 xmms_controller.skip_to(int(split_command[2]))
+            elif split_command[0] == "volume":
+                xmms_controller.volume(int(split_command[2]))
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """

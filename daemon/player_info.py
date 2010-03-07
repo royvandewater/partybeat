@@ -17,6 +17,7 @@ class Player():
         self.status = ""
         self.error = ""
         self.position = None
+        self.volume = None
 
     def set_status(self, status):
         self.status = status

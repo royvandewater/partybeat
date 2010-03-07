@@ -4,6 +4,7 @@ var progress_modifier = 0.0;
 var current_progress = 0.0;
 var is_playing = false;
 var seek_is_dragging = false;
+var volume_is_dragging = false;
 var max_seek = 100;
 var timeout = 2000;
 var playlist_hash = "aoneusth";
@@ -26,6 +27,24 @@ $(document).ready(function() {
             setTimeout("start_slider()", 2000); 
             update_info();
         },
+    });
+
+    $("#xmms_volume").slider({
+        animate: true,
+        start: function(event, ui){
+            volume_is_dragging = true;
+        },
+        stop: function(event, ui) {
+            volume_position = ui.value;
+            var url = "/player/volume/" + volume_position + "/";
+            $.post(url, {source: "ajax"});
+            setTimeout("start_volume()", 2000)
+            update_info();
+        },
+    });
+
+    $("#volume_show").click( function(e) {
+        $("#xmms_volume").slideToggle();
     });
 
     $(document).everyTime(timeout, update_info);
@@ -107,8 +126,13 @@ function update_info() {
             var offset = current_progress * 500;
 
             // Decide whether xmms2 is playing (used to determine progress bar interpolation)
-            var is_playing_string = player_status.is_playing
-                is_playing = string_to_boolean(is_playing_string);
+            var is_playing_string = player_status.is_playing;
+            is_playing = string_to_boolean(is_playing_string);
+
+            console.log(player_status);
+            if(!volume_is_dragging)
+                $("#xmms_volume").slider('value', player_status.volume);
+
 
             if(playlist_hash != player_status.hash)
             {
@@ -174,4 +198,8 @@ function trim(stringToTrim) {
 
 function start_slider() {
     seek_is_dragging = false;
+}
+
+function start_volume() {
+    volume_is_dragging = false;
 }

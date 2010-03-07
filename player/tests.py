@@ -34,4 +34,3 @@ class SimpleTest(TestCase):
 
     def test_delete(self):
         self.check_response_code('/player/delete/1/', 302)
-

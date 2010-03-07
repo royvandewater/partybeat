@@ -29,6 +29,19 @@
   bottom: 6px;
 }
 
+#xmms_player div#xmms_volume {
+  clear: both;
+  width: 100px;
+  margin: 10px auto;
+  height: 3px;
+  position: relative;
+  bottom: 5px;
+}
+
+#xmms_player div#xmms_volume .ui-slider-handle {
+  height: 10px;
+}
+
 #xmms_player div#xmms_actions {
   text-align: center;
   margin-top: 7px;

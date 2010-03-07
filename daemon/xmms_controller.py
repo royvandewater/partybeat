@@ -70,6 +70,12 @@ class Xmms_controller:
         except xmmsclient.sync.XMMSError as e:
             return self.print_playback_error("seek", e.message)
 
+    def volume(self, volume):
+        try:
+            self.xmms.playback_volume_set("master",volume)
+        except xmmsclient.sync.XMMSError as e:
+            return self.print_playback_error("volume", e.message)
+
     def skip_to(self, id):
         try:
             self.xmms.playlist_set_next(int(id)-1)
@@ -134,7 +140,7 @@ class Xmms_controller:
         try:
             current_id = self.xmms.playback_current_id()
             position = self.xmms.playlist_current_pos()
-        except xmmsclient.sync.XMMSError as e: 
+        except xmmsclient.sync.XMMSError as e:
             self.player.set_error("Playback current id returns error, %s" % e.message)
             return self.player
 
@@ -145,12 +151,13 @@ class Xmms_controller:
 
         minfo = self.get_song_info_from_id(current_id)
         self.player.current_song = self.get_song_from_minfo(minfo)
-        try: 
-            self.player.position = position['position'] + 1 
+        try:
+            self.player.position = position['position'] + 1
         except:
             self.player.position = 0
         self.player.seek = self.xmms.playback_playtime()
         self.player.max_seek = minfo["duration"]
+        self.player.volume = self.xmms.playback_volume_get()["master"]
         del(minfo)
         self.get_player_status()
         self.build_playlist()
