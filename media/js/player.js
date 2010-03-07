@@ -129,10 +129,8 @@ function update_info() {
             var is_playing_string = player_status.is_playing;
             is_playing = string_to_boolean(is_playing_string);
 
-            console.log(player_status);
             if(!volume_is_dragging)
                 $("#xmms_volume").slider('value', player_status.volume);
-
 
             if(playlist_hash != player_status.hash)
             {

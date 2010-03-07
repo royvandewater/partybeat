@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 import xmmsclient.sync
 
@@ -72,9 +73,15 @@ class Xmms_controller:
 
     def volume(self, volume):
         try:
-            self.xmms.playback_volume_set("master",volume)
+            current_volume = self.xmms.playback_volume_get()["master"]
+            mod = 4 if current_volume < volume else -4
+            for x in range(current_volume, volume, mod):
+                self.xmms.playback_volume_set("master",x)
+                time.sleep(0.001)
         except xmmsclient.sync.XMMSError as e:
             return self.print_playback_error("volume", e.message)
+        except TypeError:
+            pass
 
     def skip_to(self, id):
         try:
@@ -157,7 +164,10 @@ class Xmms_controller:
             self.player.position = 0
         self.player.seek = self.xmms.playback_playtime()
         self.player.max_seek = minfo["duration"]
-        self.player.volume = self.xmms.playback_volume_get()["master"]
+        try:
+            self.player.volume = self.xmms.playback_volume_get()["master"]
+        except TypeError:
+            pass
         del(minfo)
         self.get_player_status()
         self.build_playlist()
