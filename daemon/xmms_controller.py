@@ -74,10 +74,9 @@ class Xmms_controller:
     def volume(self, volume):
         try:
             current_volume = self.xmms.playback_volume_get()["master"]
-            mod = 4 if current_volume < volume else -4
+            mod = 10 if current_volume < volume else -10
             for x in range(current_volume, volume, mod):
                 self.xmms.playback_volume_set("master",x)
-                time.sleep(0.001)
         except xmmsclient.sync.XMMSError as e:
             return self.print_playback_error("volume", e.message)
         except TypeError:
