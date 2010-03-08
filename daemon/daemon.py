@@ -116,7 +116,11 @@ def execute_action(xmms_controller, command):
             elif split_command[0] == "skip":
                 xmms_controller.skip_to(int(split_command[2]))
             elif split_command[0] == "volume":
-                xmms_controller.volume(int(split_command[2]))
+                volume = int(split_command[2])
+                xmmsStatus = XmmsStatus.objects.get()
+                xmmsStatus.volume = volume
+                xmmsStatus.save()
+                xmms_controller.volume(volume)
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """
