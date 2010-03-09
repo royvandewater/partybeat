@@ -113,10 +113,10 @@ def execute_action(xmms_controller, command):
             elif split_command[0] == "delete":
                 song_number = int(split_command[2])
                 try:
-                    song = Song.objects.get(song_number)
+                    song = Song.objects.get(position=song_number)
                     song.delete()
                     xmms_controller.delete(song_number)
-                except:
+                except Exception:
                     pass
             elif split_command[0] == "seek":
                 seek_time = int(split_command[2])
