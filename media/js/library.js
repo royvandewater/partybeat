@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
 
     $(".hideme .library_item_details").live('click', function(e) {
-            $(this).parent().parent().fadeOut();
+            $(this).parent().parent().fadeOut().fadeIn();
     });
 
     $(".library_item_add a, #add_random_link").live('click', function(e) {
@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
 
     $(".hideme a").live('click', function(e) {
-            $(this).parent().parent().parent().fadeOut();
+            $(this).parent().parent().parent().fadeOut().fadeIn();
     });
 
     $("#search_submit").hide();
