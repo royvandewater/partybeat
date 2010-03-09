@@ -25,7 +25,6 @@ $(document).ready(function() {
     });
 
     $(".hideme .library_item_details").live('click', function(e) {
-            console.log($(this));
             $(this).parent().parent().fadeOut();
     });
 
@@ -37,7 +36,6 @@ $(document).ready(function() {
     });
 
     $(".hideme a").live('click', function(e) {
-            console.log($(this));
             $(this).parent().parent().parent().fadeOut();
     });
 
@@ -223,9 +221,7 @@ function search(e, value, search_time) {
                     });
                     // subtree += "</ul>";
                     var cur_tree = $("#library_items").html();
-                    console.log("Comparing");
                     if(cur_tree != subtree) {
-                        console.log("different");
                         $("#library_items").html("");
                         $("#library_items").append(subtree);
                     }
@@ -235,6 +231,5 @@ function search(e, value, search_time) {
 }
 
 function show_items() {
-    console.log("called");
     $("#library_items .song_item").fadeIn();
 }
