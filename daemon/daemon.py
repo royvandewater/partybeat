@@ -111,7 +111,13 @@ def execute_action(xmms_controller, command):
             if split_command[0].lower() == "add":
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
-                xmms_controller.delete(int(split_command[2]))
+                song_number = int(split_command[2])
+                try:
+                    song = Song.objects.get(song_number)
+                    song.delete()
+                    xmms_controller.delete(song_number)
+                except:
+                    pass
             elif split_command[0] == "seek":
                 seek_time = int(split_command[2])
                 xmms_controller.seek(seek_time)
