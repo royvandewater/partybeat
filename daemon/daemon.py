@@ -107,20 +107,22 @@ def execute_action(xmms_controller, command):
         # explode the command, it will be in the form of "add_path/to/file.mp3"
         split_command = command.partition("_")
         if split_command[2]:
+            xmmsStatus = XmmsStatus.objects.get()
             if split_command[0].lower() == "add":
                 xmms_controller.enqueue(split_command[2])
             elif split_command[0] == "delete":
                 xmms_controller.delete(int(split_command[2]))
             elif split_command[0] == "seek":
-                xmms_controller.seek(int(split_command[2]))
+                seek_time = int(split_command[2])
+                xmms_controller.seek(seek_time)
+                xmmsStatus.seek = seek_time
             elif split_command[0] == "skip":
                 xmms_controller.skip_to(int(split_command[2]))
             elif split_command[0] == "volume":
                 volume = int(split_command[2])
-                xmmsStatus = XmmsStatus.objects.get()
-                xmmsStatus.volume = volume
-                xmmsStatus.save()
                 xmms_controller.volume(volume)
+                xmmsStatus.volume = volume
+            xmmsStatus.save()
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """

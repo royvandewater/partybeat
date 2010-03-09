@@ -75,7 +75,6 @@ class Xmms_controller:
         try:
             current_volume = self.xmms.playback_volume_get()["master"]
             mod = 10 if current_volume < volume else -10
-            print "current: {0}, new: {1}, mod: {2}".format(current_volume, volume, mod)
             for x in range(current_volume, volume, mod):
                 self.xmms.playback_volume_set("master",x)
             self.xmms.playback_volume_set("master", volume)
