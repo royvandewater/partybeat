@@ -175,3 +175,7 @@ ul.library_songs {
   top: 8px;
   margin-left
 }
+
+.hidden {
+  display: hidden;
+}
