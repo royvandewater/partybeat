@@ -131,6 +131,13 @@ function update_info() {
             var is_playing_string = player_status.is_playing;
             is_playing = string_to_boolean(is_playing_string);
 
+            var current_song = json.xmms2.current_song;
+            var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
+            document.title = "Partybeat - " + current_info;
+             
+            // Set info
+            $("#current_info").html(current_info);
+
             if(!volume_is_dragging)
                 $("#xmms_volume").slider('value', player_status.volume);
 
@@ -138,16 +145,9 @@ function update_info() {
             {
                 $("#xmms_seek").slider('value', offset);
                 // format and output result
-                var current_song = json.xmms2.current_song;
                 var playlist = json.xmms2.playlist;
 
                 var current_xmms_id = current_song.xmms_id;
-
-                var current_info = current_song.name + " - " + current_song.artist + " - " + current_song.album;
-                 
-                // Set info
-                $("#current_info").html(current_info);
-                document.title = "Partybeat - " + current_info;
 
                 playlist_hash = player_status.hash;
 
