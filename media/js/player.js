@@ -1,3 +1,4 @@
+
 // Percentage of the progress bar that is increased each 100 ms
 var progress_modifier = 0.0;
 // Percentage of the song we have progressed to
@@ -94,6 +95,7 @@ $(document).ready(function() {
         e.preventDefault();
         var target_url = $(this).attr("href");
         $.post(target_url, {source: "ajax"});
+        $(this).parent().parent().hide();
         setTimeout("update_info()", 200); 
     });
 

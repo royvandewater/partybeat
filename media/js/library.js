@@ -1,4 +1,5 @@
 var latest_search = Date.now();
+var search_field = "";
 $(document).ready(function() {
 
     $("#dialog_box").dialog({
@@ -16,10 +17,16 @@ $(document).ready(function() {
             $(this).removeClass("ui-state-active");
     });
 
+
     $(".song_item .library_item_details").live('click', function(e) {
             var target_url = $(this).parent().find(".library_item_add > a").attr("href");
             $.post(target_url, {source: "ajax"});
             setTimeout("update_info()", 1000); 
+    });
+
+    $(".hideme .library_item_details").live('click', function(e) {
+            console.log($(this));
+            $(this).parent().parent().fadeOut();
     });
 
     $(".library_item_add a, #add_random_link").live('click', function(e) {
@@ -29,11 +36,19 @@ $(document).ready(function() {
             setTimeout("update_info()", 1000); 
     });
 
+    $(".hideme a").live('click', function(e) {
+            console.log($(this));
+            $(this).parent().parent().parent().fadeOut();
+    });
+
     $("#search_submit").hide();
     $("#search_input").bind( 'change keyup', function(e){
         var contents = this.value;
         var search_time = Date.now();
-        search(e,contents,search_time);
+        if(contents != search_field) {
+            search_field = contents;
+            search(e,contents,search_time);
+        }
     });
 
     $(".library_item_edit a").live('click', render_popup);
@@ -190,7 +205,7 @@ function search(e, value, search_time) {
                         var artist = song.fields.artist;
                         var album = song.fields.album;
                         var li = '<li>' +
-                        '<div class="library_row song_item">' +
+                        '<div class="library_row song_item hideme">' +
                         '<span class="library_item_add">' +
                         '<a href="/library/add/' + id + '/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a>' +
                         '</span>' +
