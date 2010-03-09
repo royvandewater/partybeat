@@ -110,10 +110,13 @@ $(document).ready(function() {
 
     $(".playlist_item > .playlist_item_delete > a").live("click", function(e) {
         e.preventDefault();
-        var target_url = $(this).attr("href");
+        var item = $(this).parent().parent().find("span > a").attr("href");
+        var del_pos = index_of(item, playlist_sort_order) + 1;
+        var target_url = "/player/delete/" + del_pos + "/";
         $.post(target_url, {source: "ajax"});
-        $(this).parent().parent().hide();
+        $(this).parent().parent().remove();
         setTimeout("update_info()", 200); 
+        playlist_sort_order = update_playlist_order();
     });
 
     $(".playlist_item").live("mouseover", function(e) {
