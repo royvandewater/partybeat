@@ -130,6 +130,13 @@ def execute_action(xmms_controller, command):
                 xmms_controller.volume(volume)
                 xmmsStatus.volume = volume
             xmmsStatus.save()
+    elif command.lower().startswith("move",):
+        # explode the command, it will be in the form of move_from_to
+        split_command = command.split("_")
+        if split_command[0] == "move":
+            start = int(split_command[1])
+            end = int(split_command[2])
+            xmms_controller.move(start, end)
 
 def check_for_connection(xmms_controller):
     """ Returns true if the xmms connection is valid """

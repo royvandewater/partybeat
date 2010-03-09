@@ -10,6 +10,7 @@ var max_seek = 100;
 var timeout = 2000;
 var playlist_hash = "aoneusth";
 var last_update = Date.now();
+var playlist_sort_order = new Array();
 
 $(document).ready(function() {
 
@@ -82,6 +83,22 @@ $(document).ready(function() {
         $.post(target_url, {source: "ajax"});
     });
 
+    $("#playlist_songs").sortable({
+            stop: function(event, ui) {
+                // See what was moved
+                
+                var item = ui.item.find("span > a").attr("href");
+
+                var old_location = index_of(item, playlist_sort_order);
+                var new_location = index_of(item, update_playlist_order());
+                var url = "/player/move/" + old_location + "/to/" + new_location + "/";
+                if (old_location != new_location) {
+                    $.post(url, {source: "ajax"});
+                    console.log(url);
+                    playlist_sort_order = update_playlist_order();
+                }
+            }
+    });
 
     //Highlight hovered over row
     $(".playlist_item > .song_name").live("click", function(e) {
@@ -169,6 +186,7 @@ function update_info() {
                         '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
                         $("#playlist_songs").append(html_str);
                         });
+                playlist_sort_order = update_playlist_order();
             }
     }
     });
@@ -202,4 +220,21 @@ function start_slider() {
 
 function start_volume() {
     volume_is_dragging = false;
+}
+
+function update_playlist_order() {
+    sort_order = new Array();
+    $("#playlist_songs div").each(function(e) {
+            sort_order.push($(this).find("span > a").attr("href"));
+    });
+    return sort_order;
+}
+
+function index_of(element, arr) {
+    // Finds index of element in array arr
+    var i=0;
+    for(i=0; i < arr.length; i++)
+        if(arr[i] == element)
+            return i;
+    return -1;
 }

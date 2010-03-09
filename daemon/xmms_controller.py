@@ -195,3 +195,10 @@ class Xmms_controller:
         """ Re inits the player object """
         # del(self.player)
         # self.player = Player()
+
+    def move(self, start, end):
+        try:
+            self.xmms.playlist_move(start, end)
+            return self.print_playback_error("move")
+        except xmmsclient.sync.XMMSError as e:
+            return self.print_playback_error("move", e.message)

@@ -16,5 +16,6 @@ urlpatterns = patterns('partybeat.player.views',
     (r'player/$', 'player'),
     (r'playlist/$', 'playlist'),
     (r'skip_to/(?P<position>\d+)/$', 'skip_to'),
+    (r'move/(?P<start>\d+)/to/(?P<end>\d+)/$', 'move'),
     (r'$', 'main'),
 )

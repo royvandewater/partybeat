@@ -69,3 +69,8 @@ def volume(request, volume):
         volume = 100
     xmms_layer.store_action("volume_{0}".format(int(volume)))
     return get_blank(request)
+
+def move(request, start, end):
+    xmms_layer = Xmms_layer()
+    xmms_layer.store_action("move_{0}_{1}".format(start,end))
+    return get_blank(request)
