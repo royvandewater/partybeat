@@ -112,7 +112,7 @@ $(document).ready(function() {
         e.preventDefault();
         var target_url = $(this).attr("href");
         $.post(target_url, {source: "ajax"});
-        $(this).parent().parent().addClass("ui-state-error");
+        $(this).parent().parent().addClass("ui-state-disabled");
         playlist_hash = "cheese";
     });
 
