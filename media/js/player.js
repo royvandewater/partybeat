@@ -112,7 +112,8 @@ $(document).ready(function() {
         e.preventDefault();
         var target_url = $(this).attr("href");
         $.post(target_url, {source: "ajax"});
-        setTimeout("update_info()", 200); 
+        $(this).parent().parent().addClass("ui-state-error");
+        playlist_hash = "cheese";
     });
 
     $(".playlist_item").live("mouseover", function(e) {
