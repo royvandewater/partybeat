@@ -31,7 +31,7 @@ class Xmms_controller:
         if error:
             return("action '{0}' returned error: '{1}'".format(action, error))
         else:
-            return("action '{0}' executed".format(action)) 
+            return("action '{0}' executed".format(action))
 
     def tickle(self, amount):
         """ Amount = 1 for next, -1 for previous """

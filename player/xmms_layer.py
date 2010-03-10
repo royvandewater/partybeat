@@ -12,10 +12,10 @@ class Xmms_layer:
         self.xmms2 = XmmsStatus()
 
     def load_player_from_db(self):
-        self.xmms2 = XmmsStatus.objects.get()
         player = Player()
         loop = True
         while(loop):
+            self.xmms2 = XmmsStatus.objects.get()
             # Retrieves playlist from database
             all_songs = sorted(Song.objects.all(), key=song_sort)
             # If the length of all songs is not equal to the number of songs in 

@@ -91,7 +91,14 @@ def execute_action_queue(xmms_controller):
     Retrieves the queue of actions from the db, executes each item in the queue
     and delete those items immediately after execution
     """
+    number_of_deletes = 0
     for action in Action.objects.all():
+        if action.command.lower().startswith("delete"):
+            s_command = list(action.command.partition("_"))
+            s_command[2] = str(int(s_command[2]) + number_of_deletes)
+            number_of_deletes += 1
+            action.command = "".join(s_command)
+        print action.command
         execute_action(xmms_controller, action.command)
         action.delete()
 
@@ -115,6 +122,7 @@ def execute_action(xmms_controller, command):
                 try:
                     song = Song.objects.get(position=song_number)
                     song.delete()
+                    xmmsStatus.playlist_size -= 1
                     xmms_controller.delete(song_number)
                 except Exception:
                     pass
