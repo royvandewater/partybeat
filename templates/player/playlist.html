@@ -1,10 +1,10 @@
-{% for item in player.playlist %}
-<div class="playlist_item{% ifequal item.position player.position %} ui-state-hover{% endifequal %}">
+{% for song in player.playlist %}
+<div class="playlist_item{% ifequal song.position player.position %} ui-state-hover{% endifequal %}">
   <span class="playlist_item_delete">
-    <a href="{% url player.views.delete position=player.position %}" class="ui-icon ui-icon-closethick" title="Delete">x</a>
+    <a href="{% url player.views.delete position=song.position %}" class="ui-icon ui-icon-closethick" title="Delete">x</a>
   </span>
-  <span class="playlist_item_position">{{ item.position }}</span>:&nbsp;
-  <span class="playlist_item_name">{{ item.name }}</span> -
-  <span class="playlist_item_artist">{{ item.artist }}</span>
+  <span class="playlist_item_position">{{ song.position }}</span>:&nbsp;
+  <span class="playlist_item_name">{{ song.name }}</span> -
+  <span class="playlist_item_artist">{{ song.artist }}</span>
 </div>
 {% endfor %}
