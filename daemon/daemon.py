@@ -98,7 +98,6 @@ def execute_action_queue(xmms_controller):
             s_command[2] = str(int(s_command[2]) + number_of_deletes)
             number_of_deletes += 1
             action.command = "".join(s_command)
-        print action.command
         execute_action(xmms_controller, action.command)
         action.delete()
 
