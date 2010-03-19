@@ -6,11 +6,16 @@ if [ $# -eq "$NO_ARGS" ]
 then
     current_ip='localhost'
 else 
-    if [ $1 = '-p' ]
+    if [ $1 = '-w' ]
     then
         current_ip=`ifconfig wlan0 | egrep -m 1 -o '\b([0-9]+\.){3}[0-9]+\b' | egrep -v '(^255)|(255$)'`
     else
-        echo "Invalid parameter, use -p to use current ip or no params for localhost"
+        if [ $1 = '-e' ]
+        then
+            current_ip=`ifconfig eth0 | egrep -m 1 -o '\b([0-9]+\.){3}[0-9]+\b' | egrep -v '(^255)|(255$)'`
+        else
+            echo "Invalid parameter, to use current ip, user '-w' for wlan0 or '-e' for eth0, or no params for localhost"
+        fi
     fi
 fi
 echo "Using $current_ip"

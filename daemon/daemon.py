@@ -12,6 +12,9 @@ def song_sort(song):
     return song.position
 
 def main(argv):
+    # Start xmms2 and immediatly pause
+    os.system("xmms2 play")
+    os.system("xmms2 pause")
     # perform initialization
     xmms_controller = Xmms_controller()
 
@@ -19,30 +22,53 @@ def main(argv):
     # Check for active connection
     print("Waiting for xmms2...")
 
-    connected = False
-    while not connected:
-        connected = check_for_connection(xmms_controller)
-        time.sleep(1)
+    fail_count = 0
+    while True:
+        try:
+            connected = False
+            while not connected:
+                if fail_count > 5:
+                    print("starting xmms2 manually")
+                    print("If nothing happnes, try adding a song to the queue manually")
+                    os.system("xmms2 play")
+                    fail_count = 0
+                connected = check_for_connection(xmms_controller)
+                fail_count += 1
+                time.sleep(1)
 
-    print("xmms2 found")
-    print("Daemon Initialized")
+            print("xmms2 found")
+            print("Daemon Initialized")
 
-    # enter main loop
-    try:
-        while True:
-            # Execute existing actions in queue
-            execute_action_queue(xmms_controller)
+            # enter main loop
+            try:
+                while True:
+                    # Execute existing actions in queue
+                        execute_action_queue(xmms_controller)
 
-            # clear existing player attribute
-            xmms_controller.clear_player()
-            xmms_controller.get_player_info()
-            # We need to update the db with the relevant info
-            timeout = update_status(xmms_controller.player)
-            save_songs(xmms_controller.player)
-            time.sleep(timeout/1000.0)
-    except KeyboardInterrupt:
-        print("\nDaemon terminating")
-        sys.exit(0)
+                        # clear existing player attribute
+                        xmms_controller.clear_player()
+                        xmms_controller.get_player_info()
+                        # We need to update the db with the relevant info
+                        timeout = update_status(xmms_controller.player)
+                        save_songs(xmms_controller.player)
+                        time.sleep(timeout/1000.0)
+                        fail_count = 0
+            except KeyboardInterrupt:
+                print("\nDaemon terminating")
+                sys.exit(0)
+
+        except (AttributeError, TypeError,):
+            os.system("xmms2 quit")
+            if fail_count == 2:
+                print("Two restarts failed, I give up")
+                sys.exit(-1)
+            elif fail_count:
+                os.system("xmms2 clear")
+                fail_count = 2
+            else:
+                fail_count = 1
+            os.system("xmms2 play")
+            os.system("xmms2 pause")
 
 def update_status(player):
     """

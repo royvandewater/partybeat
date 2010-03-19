@@ -3,3 +3,4 @@ settings.py
 *.swp
 media/music/*
 .coverage
+ip.sh
