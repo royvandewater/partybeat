@@ -7,6 +7,7 @@ import datetime
 
 from models import *
 from xmms_controller import Xmms_controller
+from library.models import *
 
 def song_sort(song):
     return song.position
@@ -43,16 +44,21 @@ def main(argv):
             try:
                 while True:
                     # Execute existing actions in queue
-                        execute_action_queue(xmms_controller)
+                    execute_action_queue(xmms_controller)
 
-                        # clear existing player attribute
-                        xmms_controller.clear_player()
-                        xmms_controller.get_player_info()
-                        # We need to update the db with the relevant info
-                        timeout = update_status(xmms_controller.player)
-                        save_songs(xmms_controller.player)
-                        time.sleep(timeout/1000.0)
-                        fail_count = 0
+                    # clear existing player attribute
+                    xmms_controller.clear_player()
+                    xmms_controller.get_player_info()
+
+                    # We need to update the db with the relevant info
+                    timeout = update_status(xmms_controller.player)
+                    save_songs(xmms_controller.player)
+
+                    # Execute any mode dependant actions
+                    execute_mode_actions(xmms_controller)
+
+                    time.sleep(timeout/1000.0)
+                    fail_count = 0
             except KeyboardInterrupt:
                 print("\nDaemon terminating")
                 sys.exit(0)
@@ -111,6 +117,41 @@ def save_songs(player):
 
     for song in new_songs:
         song.save()
+
+def execute_mode_actions(xmms_controller):
+    """
+    Checks the current play mode (currently, "Auto Shuffle" is the
+    only alternate play mode) and executes whatever needs to be done
+    for the play mode.
+    """
+    status = XmmsStatus.objects.get()
+    if status.play_mode == 1: # 1 is "Auto shuffle"
+       """
+       what the position of the current song is. If its greater than
+       10, we need to remove songs from the top of the playlist until
+       we are at the 10th position.
+       Then we check how many songs are after the current song
+       (size of playlist - current positino). If the number is less than
+       10, add random songs until there are 10 future songs
+       """
+       while status.current_position > 10:
+           #Remove the first song and loop
+           xmms_controller.delete(0)
+           status.current_position -= 1
+           status.playlist_size -= 1
+
+       while status.playlist_size - status.current_position < 10:
+           # Append random song and loop
+           songFile = SongFile.objects.order_by('?')[0]
+           xmms_controller.enqueue(songFile.file.path)
+           status.playlist_size += 1
+
+       # Refresh player info
+       xmms_controller.clear_player()
+       xmms_controller.get_player_info()
+       timeout = update_status(xmms_controller.player)
+       save_songs(xmms_controller.player)
+
 
 def execute_action_queue(xmms_controller):
     """

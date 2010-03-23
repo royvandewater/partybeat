@@ -14,7 +14,7 @@ class Song(models.Model):
         return ("{0}: {1}".format(self.position, self.name))
 
 class XmmsStatus(models.Model):
-    timeout = models.IntegerField(help_text="Cache refresh time in milliseconds, set too low and xmms2 will crash")
+    timeout = models.IntegerField(help_text="Cache refresh time in milliseconds, Lower values increase responsivenes but also increase amount of CPU usage.<br /> Recommended to be set to 1000ms")
     current_action = models.IntegerField(help_text="0: Stopped, 1: Playing, 2: Paused")
     last_update = models.DateTimeField()
     playlist_size = models.IntegerField(help_text="Sets number of songs currently in playlist")
@@ -22,6 +22,8 @@ class XmmsStatus(models.Model):
     seek = models.IntegerField()
     max_seek = models.IntegerField()
     volume = models.IntegerField()
+    PLAY_MODES = ((0, 'Normal'), (1, 'Auto Shuffle'),)
+    play_mode = models.IntegerField(choices=PLAY_MODES)
 
 class Action(models.Model):
     """

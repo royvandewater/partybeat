@@ -67,6 +67,6 @@ class SongFile(models.Model):
         if old_name: self.name = old_name
         if old_artist: self.artist = old_artist
         if old_album: self.album = old_album
-            
+
         # Save again!
         super(SongFile, self).save(force_insert, force_update)
