@@ -140,7 +140,7 @@ def execute_mode_actions(xmms_controller):
            status.current_position -= 1
            status.playlist_size -= 1
 
-       while status.playlist_size - status.current_position < 10:
+       while status.playlist_size - status.current_position < 11:
            # Append random song and loop
            songFile = SongFile.objects.order_by('?')[0]
            xmms_controller.enqueue(songFile.file.path)
