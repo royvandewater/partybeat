@@ -9,7 +9,7 @@ class SongFileAdmin(admin.ModelAdmin):
                 'fields': ('file',)
             }),
             ('Leave blank to extract from id3', {
-                'fields': ('name', 'artist', 'album')
+                'fields': ('name', 'artist', 'album', 'track_number')
             }),
     )
 
