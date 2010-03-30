@@ -103,6 +103,9 @@ $(document).ready(function() {
                     $.each(json, function(i, song) {
                         var id = song.pk;
                         var name = song.fields.name;
+                        var track_number = song.fields.track_number;
+                        if(track_number != 0)
+                            name = track_number + ": " + name
                         var li = '<li>' +
                                     '<div class="library_row song_item">' +
                                         '<span class="library_item_add">' +

@@ -12,7 +12,7 @@ class SongFile(models.Model):
     track_number = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return ("{song.artist} - {song.album} - {song.name}".format(song=self))
+        return ("{song.track_number}: {song.artist} - {song.album} - {song.name}".format(song=self))
 
     def print_list(self, list):
         total = list[0]
