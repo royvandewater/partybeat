@@ -82,13 +82,13 @@ def songs(request, artist=None, album=None):
     if request.method == 'GET' and request.GET.has_key("artist") and request.GET.has_key("album"):
         artist = request.GET["artist"].replace("&amp;", "&")
         album = request.GET["album"].replace("&amp;", "&")
-        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
+        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " ")).order_by('track_number','name')
     elif artist and album:
-        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " "))
+        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "), album__icontains=album.replace("_", " ")).order_by('track_number','name')
     elif album:
-        songFiles = SongFile.objects.filter(album__icontains=album.replace("_", " "))
+        songFiles = SongFile.objects.filter(album__icontains=album.replace("_", " ")).order_by('track_number','name')
     elif artist:
-        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " "))
+        songFiles = SongFile.objects.filter(artist__icontains=artist.replace("_", " ")).order_by('track_number','name')
     else:
         songFiles = SongFile.objects.all()
 
@@ -135,12 +135,14 @@ def edit(request, song_id):
             songFile.name = form.cleaned_data['name']
             songFile.artist = form.cleaned_data['artist']
             songFile.album = form.cleaned_data['album']
+            songFile.track_number = form.cleaned_data['track_number']
             songFile.save()
             return HttpResponseRedirect(reverse('main.views.player'))
     else:
         data = {'name': songFile.name,
                 'artist': songFile.artist,
-                'album': songFile.album}
+                'album': songFile.album,
+                'track_number': songFile.track_number}
         form = EditForm(data)
 
     # Check for ajax
