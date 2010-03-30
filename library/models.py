@@ -60,6 +60,17 @@ class SongFile(models.Model):
                     self.track_number = int(self.print_list(info["tracknumber"]))
                 except ValueError:
                     self.track_number = 0
+
+            elif filetype == "m4a":
+                from mutagen.m4a import M4A
+                info = M4A(self.file.path)
+                self.name = info["\xa9nam"]
+                self.artist = info["\xa9ART"]
+                self.album = info["\xa9alb"]
+                try:
+                    self.track_number = int(info["trkn"][0])
+                except (ValueError, KeyError):
+                    self.track_number = 0
             else:
                 self.name = self.file.name.rpartition("/")[2]
                 self.artist = "Unknown"
