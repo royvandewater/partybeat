@@ -41,6 +41,11 @@ $(document).ready(function() {
 
     $("#search_submit").hide();
     $("#search_input").bind( 'change keyup', function(e){
+            
+        if (e.keyCode == 27){
+            this.value = "";
+        }
+
         var contents = this.value;
         var search_time = Date.now();
         if(contents != search_field) {
