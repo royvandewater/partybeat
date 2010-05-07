@@ -12,6 +12,8 @@ var playlist_hash = "aoneusth";
 var last_update = Date.now();
 var playlist_sort_order = new Array();
 
+var template_playlist = "\u003C% $.each(playlist, function(i, item) { %\u003E\u000A\u003Cdiv class\u003D\u0022playlist_item\u003C% if( item.position \u003D\u003D current_song.position ) { %\u003E ui\u002Dstate\u002Dhover\u003C% } %\u003E\u0022\u003E\u000A  \u003Cspan class\u003D\u0022playlist_item_delete\u0022\u003E\u000A    \u003Ca href\u003D\u0022/player/delete/\u003C%\u003D item.position %\u003E/\u0022 class\u003D\u0022ui\u002Dicon ui\u002Dicon\u002Dclosethick\u0022\u003E\u003C/a\u003E\u000A  \u003C/span\u003E\u000A  \u003Ca href\u003D\u0022/player/skip_to/\u003C%\u003D item.position %\u003E/\u0022 class\u003D\u0022song_name\u0022\u003E\u000A    \u003C%\u003D item.position %\u003E: \u003C%\u003D item.name %\u003E \u002D \u003C%\u003D item.artist %\u003E\u000A  \u003C/a\u003E\u000A\u003C/div\u003E\u000A\u003C% })\u003B %\u003E\u000A";
+
 $(document).ready(function() {
 
     update_info();
@@ -169,23 +171,12 @@ function update_info() {
                 playlist_hash = player_status.hash;
 
                 // Clear the playlist
-                $("#playlist_songs").html("");
+                // $("#playlist_songs").html("");
 
                 // Build the playlist
-                $.each(playlist, function(i, item) {
-                        var song_str = item.position + ": " + item.name + " - " + item.artist;
+                html_string = Jst.evaluateSingleShot(template_playlist, {"playlist":playlist, "current_song":current_song});
+                $("#playlist_songs").html(html_string);
 
-                        var hover = ""
-                        if( item.position == current_song.position )
-                        hover = " ui-state-hover";
-
-                        var html_str = '<div class="playlist_item' + hover + '">' + 
-                        '<span class="playlist_item_delete">' + 
-                        '<a href="/player/delete/' + item.position + '/" ' +
-                        'class="ui-icon ui-icon-closethick"></a>' + 
-                        '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
-                        $("#playlist_songs").append(html_str);
-                        });
                 playlist_sort_order = update_playlist_order();
             }
     }

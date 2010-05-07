@@ -1,0 +1,10 @@
+<% $.each(playlist, function(i, item) { %>
+<div class="playlist_item<% if( item.position == current_song.position ) { %> ui-state-hover<% } %>">
+  <span class="playlist_item_delete">
+    <a href="/player/delete/<%= item.position %>/" class="ui-icon ui-icon-closethick"></a>
+  </span>
+  <a href="/player/skip_to/<%= item.position %>/" class="song_name">
+    <%= item.position %>: <%= item.name %> - <%= item.artist %>
+  </a>
+</div>
+<% }); %>
