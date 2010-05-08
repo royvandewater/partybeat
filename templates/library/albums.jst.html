@@ -1,0 +1,12 @@
+<ul class="library_item collapsable library_albums">
+
+  <% $.each(json, function(i, album) { %>
+    <li>
+      <div class="library_row album_item">
+        <div class="ui-icon ui-icon-triangle-1-e" ></div>
+        <span><%= album %></span>
+      </div>
+    </li>
+  <% }); %>
+
+</ul>

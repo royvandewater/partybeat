@@ -13,6 +13,8 @@ var last_update = Date.now();
 var playlist_sort_order = new Array();
 
 var template_playlist = "{% filter escapejs %}{% include 'player/playlist.jst.html' %}{% endfilter %}";
+var compiled_playlist = Jst.compile(template_playlist)
+
 
 $(document).ready(function() {
 
@@ -174,7 +176,7 @@ function update_info() {
                 // $("#playlist_songs").html("");
 
                 // Build the playlist
-                html_string = Jst.evaluateSingleShot(template_playlist, {"playlist":playlist, "current_song":current_song});
+                var html_string = Jst.evaluate(compiled_playlist, {"playlist":playlist, "current_song":current_song});
                 $("#playlist_songs").html(html_string);
 
                 playlist_sort_order = update_playlist_order();

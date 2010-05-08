@@ -1,5 +1,15 @@
 var latest_search = Date.now();
 var search_field = "";
+
+var template_artists = "{% filter escapejs %}{% include 'library/artists.jst.html' %}{% endfilter %}";
+var compiled_artists = Jst.compile(template_artists);
+
+var template_albums = "{% filter escapejs %}{% include 'library/albums.jst.html' %}{% endfilter %}";
+var compiled_albums = Jst.compile(template_albums);
+
+var template_songs = "{% filter escapejs %}{% include 'library/songs.jst.html' %}{% endfilter %}";
+var compiled_songs = Jst.compile(template_songs);
+
 $(document).ready(function() {
 
     $("#dialog_box").dialog({
@@ -65,18 +75,8 @@ $(document).ready(function() {
             var artist_item = $(this);
 
             $.getJSON('/library/albums/?artist=' + escape(artist), function(json) {
-                var subtree = '<ul class="library_item collapsable library_albums">';
-                $.each(json, function(i, album) {
-                    var li = '<li>' +
-                                 '<div class="library_row album_item">' +
-                                     '<div class="ui-icon ui-icon-triangle-1-e" ></div>' +
-                                     '<span>' + album  + '</span>' +
-                                 '</div>' + 
-                             '</li>';
-                    subtree += li;
-                });
+                var subtree = Jst.evaluate(compiled_albums, {"json":json});
 
-                subtree += "</ul>";
                 artist_item.parent().append(subtree);
                 artist_item.find("div").removeClass("ui-icon-triangle-1-e");
                 artist_item.find("div").addClass("ui-icon-triangle-1-se");
@@ -104,32 +104,7 @@ $(document).ready(function() {
                 var album_item = $(this);
 
                 $.getJSON('/library/songs/?artist=' + escape(artist) + '&album=' + escape(album), function(json) {
-                    var subtree = '<ul class="library_item library_songs">';
-                    $.each(json, function(i, song) {
-                        var id = song.pk;
-                        var name = song.fields.name;
-                        var track_number = song.fields.track_number;
-                        if(track_number != 0)
-                            name = track_number + ": " + name
-                        var li = '<li>' +
-                                    '<div class="library_row song_item">' +
-                                        '<span class="library_item_add">' +
-                                            '<a href="/library/add/' + id + '/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a>' +
-                                        '</span>' +
-                                        '<span class="library_item_edit">' +
-                                            '<a href="/library/edit/' + id + '/" title="Edit Song" class="ui-icon ui-icon-gear"></a>' +
-                                        '</span>' +
-                                        '<span class="library_item_download">' +
-                                            '<a href="/library/download/' + id + '/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a>' +
-                                        '</span>' +
-                                        '<div class="library_item_details">' + name +  '</div>' +
-                                        '<div class="clearboth"></div>' +
-                                    '</div>' +
-                                 '</li>';
-                         subtree += li;
-                    });
-
-                    subtree += "</ul>";
+                    var subtree = Jst.evaluate(compiled_songs, {"json":json});
                     album_item.parent().append(subtree);
                     album_item.find("div").removeClass("ui-icon-triangle-1-e");
                     album_item.find("div").addClass("ui-icon-triangle-1-se");
@@ -172,31 +147,14 @@ function render_popup(e) {
         $("#dialog_box").dialog('option', 'title', title);
 }
 
-function display_artists() {
-    $('#library_items').html("")
-    $.getJSON('/library/artists/', function(json) {
-        $.each(json, function(i, artist) {
-            $('#library_items').append('<div class="library_item">' + artist + '</div>');
-        });
-    });
-}
-
 function search(e, value, search_time) {
     // if($("#search_input").attr("value") == value) {
     if(value.length == 0) {
         $.getJSON('/library/artists/', function(json) {
             if(search_time > latest_search) {
                 latest_search = search_time;
-                $("#library_items").html("");
-                $.each(json, function(i, artist) {
-                    var li = '<li class="library_item">' + 
-                    '<div class="library_row artist_item">' +
-                    '<div class="ui-icon ui-icon-triangle-1-e" ></div>' +
-                    '<span>' + artist + '</span>' +
-                    '</div>' +
-                    '</li>';
-                    $("#library_items").append(li);
-                });
+                var html_string = Jst.evaluate(compiled_artists, {"json":json});
+                $("#library_items").html(html_string);
             }
         });
     } else {

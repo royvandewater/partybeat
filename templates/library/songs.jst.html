@@ -1,0 +1,27 @@
+<ul class="library_item library_songs">
+  
+  <% $.each(json, function(i, song) { %>
+    <li>
+      <div class="library_row song_item">
+        <span class="library_item_add">
+          <a href="/library/add/<%= song.pk %>/" title="Add to playlist" class="ui-icon ui-icon-plusthick"></a>
+        </span>
+        <span class="library_item_edit">
+          <a href="/library/edit/<%= song.pk %>/" title="Edit Song" class="ui-icon ui-icon-gear"></a>
+        </span>
+        <span class="library_item_download">
+          <a href="/library/download/<%= song.pk %>/" title="Download Song" class="ui-icon ui-icon-arrowthick-1-s"></a>
+        </span>
+        <div class="library_item_details">
+          <% if (song.fields.track_number != 0) { %>
+            <%= song.fields.track_number %>: <%= song.fields.name %>
+          <% } else { %>
+            <%= song.fields.name %>
+          <% } %>
+        </div>
+        <div class="clearboth"></div>
+        </div>
+    </li>
+  <% }); %>
+
+</ul>

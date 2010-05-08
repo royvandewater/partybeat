@@ -13,6 +13,8 @@ var last_update = Date.now();
 var playlist_sort_order = new Array();
 
 var template_playlist = "\u003C% $.each(playlist, function(i, item) { %\u003E\u000A\u003Cdiv class\u003D\u0022playlist_item\u003C% if( item.position \u003D\u003D current_song.position ) { %\u003E ui\u002Dstate\u002Dhover\u003C% } %\u003E\u0022\u003E\u000A  \u003Cspan class\u003D\u0022playlist_item_delete\u0022\u003E\u000A    \u003Ca href\u003D\u0022/player/delete/\u003C%\u003D item.position %\u003E/\u0022 class\u003D\u0022ui\u002Dicon ui\u002Dicon\u002Dclosethick\u0022\u003E\u003C/a\u003E\u000A  \u003C/span\u003E\u000A  \u003Ca href\u003D\u0022/player/skip_to/\u003C%\u003D item.position %\u003E/\u0022 class\u003D\u0022song_name\u0022\u003E\u000A    \u003C%\u003D item.position %\u003E: \u003C%\u003D item.name %\u003E \u002D \u003C%\u003D item.artist %\u003E\u000A  \u003C/a\u003E\u000A\u003C/div\u003E\u000A\u003C% })\u003B %\u003E\u000A";
+var compiled_playlist = Jst.compile(template_playlist)
+
 
 $(document).ready(function() {
 
@@ -174,7 +176,7 @@ function update_info() {
                 // $("#playlist_songs").html("");
 
                 // Build the playlist
-                html_string = Jst.evaluateSingleShot(template_playlist, {"playlist":playlist, "current_song":current_song});
+                var html_string = Jst.evaluate(compiled_playlist, {"playlist":playlist, "current_song":current_song});
                 $("#playlist_songs").html(html_string);
 
                 playlist_sort_order = update_playlist_order();
