@@ -21,8 +21,13 @@ class SongFile(models.Model):
         return total
 
     def save(self, force_insert=False, force_update=False):
+
+        import pdb
+        pdb.set_trace()
+
         # Call the real save method
         super(SongFile, self).save(force_insert, force_update)
+
         # Get the filetype
         filetype = (self.file.name.rpartition(".")[2]).lower()
 
