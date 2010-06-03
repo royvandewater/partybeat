@@ -20,4 +20,4 @@ else
 fi
 echo "Using $current_ip"
 sed -i "s/^MEDIA_URL.*$/MEDIA_URL = 'http:\/\/$current_ip\/xd\/media\/'/" settings.py
-python manage.py runserver $current_ip:8000
+python manage.py runserver --noreload $current_ip:8000
