@@ -12,6 +12,10 @@ var playlist_hash = "aoneusth";
 var last_update = Date.now();
 var playlist_sort_order = new Array();
 
+var template_playlist = "{% filter escapejs %}{% include 'player/playlist.jst.html' %}{% endfilter %}";
+var compiled_playlist = Jst.compile(template_playlist)
+
+
 $(document).ready(function() {
 
     update_info();
@@ -169,23 +173,12 @@ function update_info() {
                 playlist_hash = player_status.hash;
 
                 // Clear the playlist
-                $("#playlist_songs").html("");
+                // $("#playlist_songs").html("");
 
                 // Build the playlist
-                $.each(playlist, function(i, item) {
-                        var song_str = item.position + ": " + item.name + " - " + item.artist;
+                var html_string = Jst.evaluate(compiled_playlist, {"playlist":playlist, "current_song":current_song});
+                $("#playlist_songs").html(html_string);
 
-                        var hover = ""
-                        if( item.position == current_song.position )
-                        hover = " ui-state-hover";
-
-                        var html_str = '<div class="playlist_item' + hover + '">' + 
-                        '<span class="playlist_item_delete">' + 
-                        '<a href="/player/delete/' + item.position + '/" ' +
-                        'class="ui-icon ui-icon-closethick"></a>' + 
-                        '</span><a href="/player/skip_to/' + item.position + '/" class="song_name">' + song_str + '</a></div>';
-                        $("#playlist_songs").append(html_str);
-                        });
                 playlist_sort_order = update_playlist_order();
             }
     }
