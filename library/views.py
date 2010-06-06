@@ -1,9 +1,12 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.template import RequestContext
-from django.shortcuts import render_to_response
 from django.core import serializers
+from django.core.files.uploadedfile import UploadedFile
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 import json
+import zipfile
 
 from models import *
 from forms import *
@@ -115,11 +118,30 @@ def upload(request):
     if request.method == 'POST' and not request.POST.has_key("source"):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            songFile = SongFile()
-            songFile.file = request.FILES['file']
-            songFile.save()
-            if request.POST['enqueue']:
-                enqueue(request, songFile)
+            uploaded_file = request.FILES['file']
+
+            if zipfile.is_zipfile(uploaded_file.temporary_file_path()):
+                zipped_songs = zipfile.ZipFile(uploaded_file)
+                temp_dir = uploaded_file.file.name.rpartition('/')[0]
+
+                for song_name in zipped_songs.namelist():
+                    path = zipped_songs.extract(song_name,temp_dir)
+                    try:
+                        songFile = SongFile()
+                        songFile.file = file(path)
+                        songFile.save()
+                        if request.POST['enqueue']:
+                            enqueue(request, songFile)
+                    except IOError:
+                        pass
+            else:
+                songFile = SongFile()
+                songFile.file = request.FILES['file']
+                songFile.save()
+
+                if request.POST['enqueue']:
+                    enqueue(request, songFile)
+
             return HttpResponseRedirect(reverse('main.views.player'))
     else:
         form = UploadForm()
