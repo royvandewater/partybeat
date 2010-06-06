@@ -15,6 +15,14 @@ def mkdir_p(path):
             pass
         else: raise
 
+def prune_dir(path):
+    try:
+        directory = path.rpartition('/')[0]
+        if len(os.listdir(directory)) == 0:
+            os.removedirs(directory)
+    except OSError:
+        pass
+
 # Create your models here.
 class SongFile(models.Model):
     file = models.FileField(upload_to="music/%Y/%m/%d", max_length=255)
@@ -33,7 +41,6 @@ class SongFile(models.Model):
         return total
 
     def save(self, force_insert=False, force_update=False):
-
         # don't Call the real save method
         # super(SongFile, self).save(force_insert, force_update)
 
@@ -91,9 +98,7 @@ class SongFile(models.Model):
                 except (ValueError, KeyError):
                     self.track_number = 0
             else:
-                self.name = temp_file.file.name.rpartition("/")[2]
-                self.artist = "Unknown"
-                self.album = "Unknown"
+                raise KeyError
 
         except KeyError:
             self.name = temp_file.file.name.rpartition("/")[2]
@@ -107,24 +112,29 @@ class SongFile(models.Model):
         if old_album: self.album = old_album
         if old_track_number: self.track_number = old_track_number
 
-        # Now move the temporary file to its resting place
+        # Generate relevant paths
+        # /home/doppler/Project/git/partybeat/music
         music_directory = "{0}music".format(settings.MEDIA_ROOT)
+        # artist/album/ 
         music_sub_directory = "{0}/{1}/".format(self.artist, self.album).lower().replace(" ","_")
 
+        # /home/doppler/Project/git/partybeat/music/artist/album
         destination_directory = "{0}/{1}".format(music_directory, music_sub_directory)
 
+        # name.ext
         music_file = "{0}.{1}".format(self.name, filetype).lower().replace(" ","_")
 
+        # Now move the temporary file to its resting place
         mkdir_p(destination_directory)
-        # shutil.copy(temp_file.file.name, "{0}{1}".format(destination_directory, destination_file))
         destination_file = "".join([destination_directory, music_file])
-        shutil.copy(temp_file.file.name, destination_file)
-        os.remove(temp_file.file.name)
+        tmp_file_name = temp_file.file.name
+        shutil.copy(tmp_file_name, destination_file)
+        os.remove(tmp_file_name)
 
-        import pdb
-        pdb.set_trace()
-        # self.file = models.FileField(destination_file)
+        # Also remove the directory if its now empty
+        prune_dir(tmp_file_name)
+
         self.file = destination_file
-        # self.file._committed = True
+
 
         super(SongFile, self).save(force_insert, force_update)
