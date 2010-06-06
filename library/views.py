@@ -1,9 +1,9 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.template import RequestContext
-from django.shortcuts import render_to_response
 from django.core import serializers
-from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import UploadedFile
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 import json
 import zipfile
@@ -126,16 +126,22 @@ def upload(request):
 
                 for song_name in zipped_songs.namelist():
                     path = zipped_songs.extract(song_name,temp_dir)
-                    songFile = SongFile()
-                    # songFile.file = UploadedFile(file(path),song_name,)
-                    songFile.save()
+                    try:
+                        songFile = SongFile()
+                        songFile.file = file(path)
+                        songFile.save()
+                        if request.POST['enqueue']:
+                            enqueue(request, songFile)
+                    except IOError:
+                        pass
             else:
                 songFile = SongFile()
                 songFile.file = request.FILES['file']
                 songFile.save()
 
-            if request.POST['enqueue']:
-                enqueue(request, songFile)
+                if request.POST['enqueue']:
+                    enqueue(request, songFile)
+
             return HttpResponseRedirect(reverse('main.views.player'))
     else:
         form = UploadForm()

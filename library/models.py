@@ -45,7 +45,12 @@ class SongFile(models.Model):
         # super(SongFile, self).save(force_insert, force_update)
 
         # Get the temporary file
-        temp_file = self.file.file
+        try:
+            temp_file = self.file.file
+            original_file = self.file.file.file
+        except AttributeError:
+            temp_file = self.file
+            original_file = temp_file
 
         # Get the filetype
         filetype = (temp_file.name.rpartition(".")[2]).lower()
@@ -60,7 +65,7 @@ class SongFile(models.Model):
         try:
             if filetype == "mp3":
                 from mutagen.mp3 import MP3
-                mp3 = MP3(temp_file.file.name)
+                mp3 = MP3(original_file.name)
 
                 self.name = mp3["TIT2"].text[0]
                 self.artist = mp3["TPE1"].text[0]
@@ -73,11 +78,11 @@ class SongFile(models.Model):
                 info = None
                 if filetype == "flac":
                     from mutagen.flac import FLAC
-                    info = FLAC(temp_file.file.name)
+                    info = FLAC(original_file.name)
 
                 elif filetype == "ogg":
                     from mutagen.oggvorbis import OggVorbis
-                    info = OggVorbis(temp_file.file.name)
+                    info = OggVorbis(original_file.name)
 
                 self.name = self.print_list(info["title"])
                 self.artist = self.print_list(info["artist"])
@@ -89,7 +94,7 @@ class SongFile(models.Model):
 
             elif filetype == "m4a":
                 from mutagen.m4a import M4A
-                info = M4A(temp_file.file.name)
+                info = M4A(original_file.name)
                 self.name = info["\xa9nam"]
                 self.artist = info["\xa9ART"]
                 self.album = info["\xa9alb"]
@@ -101,7 +106,7 @@ class SongFile(models.Model):
                 raise KeyError
 
         except KeyError:
-            self.name = temp_file.file.name.rpartition("/")[2]
+            self.name = original_file.name.rpartition("/")[2]
             self.artist = "Unknown"
             self.album = "Unknown"
             self.track_number = 0
@@ -127,7 +132,7 @@ class SongFile(models.Model):
         # Now move the temporary file to its resting place
         mkdir_p(destination_directory)
         destination_file = "".join([destination_directory, music_file])
-        tmp_file_name = temp_file.file.name
+        tmp_file_name = original_file.name
         shutil.copy(tmp_file_name, destination_file)
         os.remove(tmp_file_name)
 
@@ -135,6 +140,5 @@ class SongFile(models.Model):
         prune_dir(tmp_file_name)
 
         self.file = destination_file
-
 
         super(SongFile, self).save(force_insert, force_update)
