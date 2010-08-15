@@ -5,3 +5,4 @@ media/music/*
 .coverage
 ip.sh
 tmp
+.idea/

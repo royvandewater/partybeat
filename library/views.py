@@ -118,29 +118,31 @@ def upload(request):
     if request.method == 'POST' and not request.POST.has_key("source"):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            uploaded_file = request.FILES['file']
 
-            try:
-                zipped_songs = zipfile.ZipFile(uploaded_file)
-                temp_dir = uploaded_file.file.name.rpartition('/')[0]
+            files = request.FILES.getlist('file')
+            
+            for uploaded_file in files:
+                try:
+                    zipped_songs = zipfile.ZipFile(uploaded_file)
+                    temp_dir = uploaded_file.file.name.rpartition('/')[0]
 
-                for song_name in zipped_songs.namelist():
-                    path = zipped_songs.extract(song_name,temp_dir)
-                    try:
-                        songFile = SongFile()
-                        songFile.file = file(path)
-                        songFile.save()
-                        if request.POST['enqueue']:
-                            enqueue(request, songFile)
-                    except IOError:
-                        pass
-            except zipfile.BadZipfile:
-                songFile = SongFile()
-                songFile.file = request.FILES['file']
-                songFile.save()
+                    for song_name in zipped_songs.namelist():
+                        path = zipped_songs.extract(song_name,temp_dir)
+                        try:
+                            songFile = SongFile()
+                            songFile.file = file(path)
+                            songFile.save()
+                            if request.POST['enqueue']:
+                                enqueue(request, songFile)
+                        except IOError:
+                            pass
+                except zipfile.BadZipfile:
+                    songFile = SongFile()
+                    songFile.file = request.FILES['file']
+                    songFile.save()
 
-                if request.POST['enqueue']:
-                    enqueue(request, songFile)
+                    if request.POST['enqueue']:
+                        enqueue(request, songFile)
 
             return HttpResponseRedirect(reverse('main.views.player'))
     else:
