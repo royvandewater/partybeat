@@ -120,7 +120,7 @@ def upload(request):
         if form.is_valid():
             uploaded_file = request.FILES['file']
 
-            if zipfile.is_zipfile(uploaded_file.temporary_file_path()):
+            try:
                 zipped_songs = zipfile.ZipFile(uploaded_file)
                 temp_dir = uploaded_file.file.name.rpartition('/')[0]
 
@@ -134,7 +134,7 @@ def upload(request):
                             enqueue(request, songFile)
                     except IOError:
                         pass
-            else:
+            except zipfile.BadZipfile:
                 songFile = SongFile()
                 songFile.file = request.FILES['file']
                 songFile.save()
